@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CardGame</string>
+    <string name="action_settings">Settings</string>
+    <string name="fredrik">Fredrik</string>
+    <string name="anders">Anders</string>
+    <string name="johan">Johan</string>
+    <string name="black">Svart</string>
+    <string name="red">Rött</string>
+    <string name="low">Pass</string>
+    <string name="high">Spel</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="register">Register score</string>
+    <string name="zero">0</string>
+    <string name="welcome">Welcome!</string>
+</resources>
