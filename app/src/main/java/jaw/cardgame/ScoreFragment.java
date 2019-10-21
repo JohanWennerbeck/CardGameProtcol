@@ -19,6 +19,8 @@ import android.widget.TextView;
  */
 public class ScoreFragment extends Fragment implements View.OnClickListener{
 
+    static final String STATE_ROUND = "round";
+
     public ScoreFragment() {
         // Required empty public constructor
     }
@@ -42,10 +44,6 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            //mParam1 = getArguments().getString(ARG_PARAM1);
-            //mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -53,11 +51,23 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_score, container, false);
-        initView(v);
+        initView(v, savedInstanceState);
         return v;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+// Save the user's current game state
+        savedInstanceState.putInt(STATE_ROUND, round);
+// Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -82,7 +92,7 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
     Button registerScore;
     ImageButton gameOptions[][] = new ImageButton[3][4];
 
-    private void initView(View v){
+    private void initView(View v, Bundle savedInstanceState){
 
     scorePersonOneTextView = v.findViewById(R.id.scoreCount1);
     scorePersonTwoTextView = v.findViewById(R.id.scoreCount2);
@@ -104,6 +114,9 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
     initScoreViews(v);
     initGameOptions(v);
     initGameOptionsBooleans();
+    if (savedInstanceState != null) {
+        round = savedInstanceState.getInt(STATE_ROUND);
+    }
 
     }
 
