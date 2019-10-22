@@ -20,6 +20,18 @@ import android.widget.TextView;
 public class ScoreFragment extends Fragment implements View.OnClickListener{
 
     static final String STATE_ROUND = "round";
+    static final String STATE_PERSON_ONE_SCORE = "personOne";
+    static final String STATE_PERSON_TWO_SCORE = "personTwo";
+    static final String STATE_PERSON_THREE_SCORE = "personThree";
+    static final String STATE_PERSON_ONE_SCORE_ARRAY = "personOneScoreArray";
+    static final String STATE_PERSON_TWO_SCORE_ARRAY = "personTwoScoreArray";
+    static final String STATE_PERSON_THREE_SCORE_ARRAY = "personThreeScoreArray";
+    static final String STATE_PERSON_ONE_ROUND_SCORE = "personOneRoundScore";
+    static final String STATE_PERSON_TWO_ROUND_SCORE = "personTwoRoundScore";
+    static final String STATE_PERSON_THREE_ROUND_SCORE = "personThreeRoundScore";
+    static final String STATE_GAME_OPTION_ONE = "gameOptionOne";
+    static final String STATE_GAME_OPTION_TWO = "gameOptionTwo";
+    static final String STATE_GAME_OPTION_THREE = "gameOptionThree";
 
     public ScoreFragment() {
         // Required empty public constructor
@@ -34,10 +46,6 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename and change types and number of parameters
     public static ScoreFragment newInstance() {
         ScoreFragment fragment = new ScoreFragment();
-        Bundle args = new Bundle();
-        //args.putString(ARG_PARAM1, param1);
-        //args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -65,6 +73,18 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
     public void onSaveInstanceState(Bundle savedInstanceState) {
 // Save the user's current game state
         savedInstanceState.putInt(STATE_ROUND, round);
+        savedInstanceState.putInt(STATE_PERSON_ONE_SCORE, personOneTotalScore);
+        savedInstanceState.putInt(STATE_PERSON_TWO_SCORE, personTwoTotalScore);
+        savedInstanceState.putInt(STATE_PERSON_THREE_SCORE, personThreeTotalScore);
+        savedInstanceState.putIntArray(STATE_PERSON_ONE_SCORE_ARRAY, personOneScoreArray);
+        savedInstanceState.putIntArray(STATE_PERSON_TWO_SCORE_ARRAY, personTwoScoreArray);
+        savedInstanceState.putIntArray(STATE_PERSON_THREE_SCORE_ARRAY, personThreeScoreArray);
+        savedInstanceState.putInt(STATE_PERSON_ONE_ROUND_SCORE, personOneScore);
+        savedInstanceState.putInt(STATE_PERSON_TWO_ROUND_SCORE, personTwoScore);
+        savedInstanceState.putInt(STATE_PERSON_THREE_ROUND_SCORE, personThreeScore);
+        savedInstanceState.putBooleanArray(STATE_GAME_OPTION_ONE, checkedGameOptions[0]);
+        savedInstanceState.putBooleanArray(STATE_GAME_OPTION_TWO, checkedGameOptions[1]);
+        savedInstanceState.putBooleanArray(STATE_GAME_OPTION_THREE, checkedGameOptions[2]);
 // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -81,8 +101,11 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
 
     private int personOneScore, personTwoScore, personThreeScore;
     private int personOneTotalScore, personTwoTotalScore, personThreeTotalScore;
+    private int[] personOneScoreArray = new int[12];
+    private int[] personTwoScoreArray = new int[12];
+    private int[] personThreeScoreArray = new int[12];
     private int round;
-    private Boolean[][] checkedGameOptions = new Boolean[3][4];
+    private boolean[][] checkedGameOptions = new boolean[3][4];
     TextView scorePersonOneTextView, scorePersonTwoTextView, scorePersonThreeTextView;
     TextView finalScorePersonOneTextView, finalScorePersonTwoTextView, finalScorePersonThreeTextView;
     TextView scoreTextViews[][] = new TextView[3][12];
@@ -105,6 +128,8 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
     personTwoTotalScore = 0;
     personThreeTotalScore = 0;
     round = 1;
+
+
     initCounterButtons(v);
 
     //Init register score
@@ -116,8 +141,40 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
     initGameOptionsBooleans();
     if (savedInstanceState != null) {
         round = savedInstanceState.getInt(STATE_ROUND);
+        personOneTotalScore = savedInstanceState.getInt(STATE_PERSON_ONE_SCORE);
+        personTwoTotalScore = savedInstanceState.getInt(STATE_PERSON_TWO_SCORE);
+        personThreeTotalScore = savedInstanceState.getInt(STATE_PERSON_THREE_SCORE);
+        personOneScoreArray = savedInstanceState.getIntArray(STATE_PERSON_ONE_SCORE_ARRAY);
+        personTwoScoreArray = savedInstanceState.getIntArray(STATE_PERSON_TWO_SCORE_ARRAY);
+        personThreeScoreArray = savedInstanceState.getIntArray(STATE_PERSON_THREE_SCORE_ARRAY);
+        personOneScore = savedInstanceState.getInt(STATE_PERSON_ONE_ROUND_SCORE);
+        personTwoScore = savedInstanceState.getInt(STATE_PERSON_TWO_ROUND_SCORE);
+        personThreeScore = savedInstanceState.getInt(STATE_PERSON_THREE_ROUND_SCORE);
+        checkedGameOptions[0] = savedInstanceState.getBooleanArray(STATE_GAME_OPTION_ONE);
+        checkedGameOptions[1] = savedInstanceState.getBooleanArray(STATE_GAME_OPTION_TWO);
+        checkedGameOptions[2] = savedInstanceState.getBooleanArray(STATE_GAME_OPTION_THREE);
+        setSavedUI();
+
     }
 
+    }
+
+    private void setSavedUI() {
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < round - 1; j++){
+                scoreTextViews[i][j].setText(String.valueOf(personOneScoreArray[i]));
+            }
+        }
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 4; j++) {
+                if (checkedGameOptions[i][j]) {
+                    gameOptions[i][j].setImageResource(R.drawable.ic_check_black_24dp);
+                }
+            }
+        }
+        scorePersonOneTextView.setText(String.valueOf(personOneScore));
+        scorePersonTwoTextView.setText(String.valueOf(personTwoScore));
+        scorePersonThreeTextView.setText(String.valueOf(personThreeScore));
     }
 
     private void initGameOptionsBooleans() {
@@ -312,6 +369,9 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
         scoreTextViews[0][round-1].setText(String.valueOf(personOneTotalScore));
         scoreTextViews[1][round-1].setText(String.valueOf(personTwoTotalScore));
         scoreTextViews[2][round-1].setText(String.valueOf(personThreeTotalScore));
+        personOneScoreArray[round-1] = personOneTotalScore;
+        personTwoScoreArray[round-1] = personTwoTotalScore;
+        personThreeScoreArray[round-1] = personThreeTotalScore;
         round++;
         personOneScore = 0;
         personTwoScore = 0;
