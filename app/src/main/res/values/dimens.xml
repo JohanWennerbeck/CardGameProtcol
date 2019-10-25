@@ -5,4 +5,18 @@
 	<dimen name="game_option_margin_vertical">20.8dp</dimen>
 	<dimen name="name">41.7dp</dimen>
 	<dimen name="margin20">8.3dp</dimen>
+	<dimen name="marginNeg4">-1.7dp</dimen>
+	<dimen name="marginNeg5">-2.1dp</dimen>
+	<dimen name="marginNeg45">-18.8dp</dimen>
+	<dimen name="marginNeg50">-20.8dp</dimen>
+	<dimen name="margin5">2.1dp</dimen>
+	<dimen name="margin10">4.2dp</dimen>
+	<dimen name="margin30">12.5dp</dimen>
+	<dimen name="margin50">20.8dp</dimen>
+	<dimen name="margin60">25dp</dimen>
+	<dimen name="margin80">33.3dp</dimen>
+	<dimen name="margin100">41.7dp</dimen>
+	<dimen name="register_height">20.8dp</dimen>
+	<dimen name="count_button">20.8dp</dimen>
+	<dimen name="size20">8.3dp</dimen>
 </resources>
