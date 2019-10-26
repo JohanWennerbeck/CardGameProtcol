@@ -1,8 +1,3 @@
 <resources>
-	<dimen name="game_option_button_width">33.3dp</dimen>
-	<dimen name="game_option_button_heigth">20.8dp</dimen>
-	<dimen name="game_option_margin_horizontal">41.7dp</dimen>
-	<dimen name="game_option_margin_vertical">20.8dp</dimen>
-	<dimen name="name">41.7dp</dimen>
-	<dimen name="margin20">8.3dp</dimen>
+
 </resources>

@@ -1,8 +1,0 @@
-<resources>
-	<dimen name="game_option_button_heigth">25dp</dimen>
-	<dimen name="game_option_button_width">40dp</dimen>
-	<dimen name="game_option_margin_horizontal">50dp</dimen>
-	<dimen name="game_option_margin_vertical">25dp</dimen>
-	<dimen name="name">50dp</dimen>
-	<dimen name="margin20">10dp</dimen>
-</resources>
