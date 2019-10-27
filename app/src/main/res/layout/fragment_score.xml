@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/name1"
-        android:layout_width="@dimen/_90sdp"
+        android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_5sdp"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/name1"
         android:layout_toEndOf="@id/name1"
-        android:layout_marginStart="@dimen/_minus15sdp"
+        android:layout_marginStart="@dimen/_minus20sdp"
         android:gravity="center"
         android:text="@string/anders" />
     <TextView
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/name1"
         android:layout_toEndOf="@id/name2"
-        android:layout_marginStart="@dimen/_minus15sdp"
+        android:layout_marginStart="@dimen/_minus20sdp"
         android:gravity="center"
         android:text="@string/johan" />
 
@@ -254,7 +254,7 @@
         android:layout_below="@id/black"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_alignStart="@id/scoreCount1"
-        android:layout_marginStart="@dimen/_minus45sdp"
+        android:layout_marginStart="@dimen/_minus47sdp"
         android:gravity="center"
         android:text="@string/fredrik" />
 
@@ -264,7 +264,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/scoreName1"
         android:layout_alignStart="@id/scoreCount2"
-        android:layout_marginStart="@dimen/_minus45sdp"
+        android:layout_marginStart="@dimen/_minus42sdp"
         android:gravity="center"
         android:text="@string/anders" />
 
@@ -274,7 +274,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/scoreName2"
         android:layout_alignStart="@id/scoreCount3"
-        android:layout_marginStart="@dimen/_minus45sdp"
+        android:layout_marginStart="@dimen/_minus47sdp"
         android:gravity="center"
         android:text="@string/johan" />
 
