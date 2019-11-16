@@ -3,12 +3,14 @@ package jaw.cardgame;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -250,7 +252,7 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
                 break;
             }
             case R.id.register: {
-                updateScore();
+                updateScore(v);
                 break;
             }
             case R.id.ImageButton1: {
@@ -315,20 +317,30 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void updateScore() {
-        model.updateScore();
+    private void updateScore(View v) {
+        if (model.getPersonOneScore() + model.getPersonTwoScore() + model.getPersonThreeScore() == 0) {
+            model.updateScore();
 
-        scoreTextViews[0][model.getRound() - 1].setText(String.valueOf(model.getPersonOneTotalScore()));
-        scoreTextViews[1][model.getRound() - 1].setText(String.valueOf(model.getPersonTwoTotalScore()));
-        scoreTextViews[2][model.getRound() - 1].setText(String.valueOf(model.getPersonThreeTotalScore()));
+            scoreTextViews[0][model.getRound() - 1].setText(String.valueOf(model.getPersonOneTotalScore()));
+            scoreTextViews[1][model.getRound() - 1].setText(String.valueOf(model.getPersonTwoTotalScore()));
+            scoreTextViews[2][model.getRound() - 1].setText(String.valueOf(model.getPersonThreeTotalScore()));
 
-        model.nextRound();
+            model.nextRound();
 
-        scorePersonOneTextView.setText("0");
-        scorePersonTwoTextView.setText("0");
-        scorePersonThreeTextView.setText("0");
-        if (model.getRound() == 13) {
-            endGame();
+            scorePersonOneTextView.setText("0");
+            scorePersonTwoTextView.setText("0");
+            scorePersonThreeTextView.setText("0");
+            if (model.getRound() == 13) {
+                endGame();
+            }
+        } else {
+            Context context = v.getContext();
+            CharSequence text = "Wrong score input!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
         }
     }
 
