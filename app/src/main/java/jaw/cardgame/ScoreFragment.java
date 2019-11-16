@@ -1,7 +1,6 @@
 package jaw.cardgame;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,21 +16,18 @@ import android.widget.TextView;
  * Use the {@link ScoreFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScoreFragment extends Fragment implements View.OnClickListener{
+public class ScoreFragment extends Fragment implements View.OnClickListener {
 
-    static final String STATE_ROUND = "round";
-    static final String STATE_PERSON_ONE_SCORE = "personOne";
-    static final String STATE_PERSON_TWO_SCORE = "personTwo";
-    static final String STATE_PERSON_THREE_SCORE = "personThree";
-    static final String STATE_PERSON_ONE_SCORE_ARRAY = "personOneScoreArray";
-    static final String STATE_PERSON_TWO_SCORE_ARRAY = "personTwoScoreArray";
-    static final String STATE_PERSON_THREE_SCORE_ARRAY = "personThreeScoreArray";
-    static final String STATE_PERSON_ONE_ROUND_SCORE = "personOneRoundScore";
-    static final String STATE_PERSON_TWO_ROUND_SCORE = "personTwoRoundScore";
-    static final String STATE_PERSON_THREE_ROUND_SCORE = "personThreeRoundScore";
-    static final String STATE_GAME_OPTION_ONE = "gameOptionOne";
-    static final String STATE_GAME_OPTION_TWO = "gameOptionTwo";
-    static final String STATE_GAME_OPTION_THREE = "gameOptionThree";
+    TrebelloGameModel model;
+
+    TextView scorePersonOneTextView, scorePersonTwoTextView, scorePersonThreeTextView;
+    TextView finalScorePersonOneTextView, finalScorePersonTwoTextView, finalScorePersonThreeTextView;
+    TextView scoreTextViews[][] = new TextView[3][12];
+    ImageButton decrementPersonOneButton, incrementPersonOneButton,
+            decrementPersonTwoButton, incrementPersonTwoButton,
+            decrementPersonThreeButton, incrementPersonThreeButton;
+    Button registerScore;
+    ImageButton gameOptions[][] = new ImageButton[3][4];
 
     public ScoreFragment() {
         // Required empty public constructor
@@ -71,22 +67,10 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-// Save the user's current game state
-        savedInstanceState.putInt(STATE_ROUND, round);
-        savedInstanceState.putInt(STATE_PERSON_ONE_SCORE, personOneTotalScore);
-        savedInstanceState.putInt(STATE_PERSON_TWO_SCORE, personTwoTotalScore);
-        savedInstanceState.putInt(STATE_PERSON_THREE_SCORE, personThreeTotalScore);
-        savedInstanceState.putIntArray(STATE_PERSON_ONE_SCORE_ARRAY, personOneScoreArray);
-        savedInstanceState.putIntArray(STATE_PERSON_TWO_SCORE_ARRAY, personTwoScoreArray);
-        savedInstanceState.putIntArray(STATE_PERSON_THREE_SCORE_ARRAY, personThreeScoreArray);
-        savedInstanceState.putInt(STATE_PERSON_ONE_ROUND_SCORE, personOneScore);
-        savedInstanceState.putInt(STATE_PERSON_TWO_ROUND_SCORE, personTwoScore);
-        savedInstanceState.putInt(STATE_PERSON_THREE_ROUND_SCORE, personThreeScore);
-        savedInstanceState.putBooleanArray(STATE_GAME_OPTION_ONE, checkedGameOptions[0]);
-        savedInstanceState.putBooleanArray(STATE_GAME_OPTION_TWO, checkedGameOptions[1]);
-        savedInstanceState.putBooleanArray(STATE_GAME_OPTION_THREE, checkedGameOptions[2]);
-// Always call the superclass so it can save the view hierarchy state
-        super.onSaveInstanceState(savedInstanceState);
+        // Save the user's current game state
+        Bundle savedInstanceStateNew = model.onSaveInstanceState(savedInstanceState);
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceStateNew);
     }
 
     @Override
@@ -99,88 +83,55 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
         super.onDetach();
     }
 
-    private int personOneScore, personTwoScore, personThreeScore;
-    private int personOneTotalScore, personTwoTotalScore, personThreeTotalScore;
-    private int[] personOneScoreArray = new int[12];
-    private int[] personTwoScoreArray = new int[12];
-    private int[] personThreeScoreArray = new int[12];
-    private int round;
-    private boolean[][] checkedGameOptions = new boolean[3][4];
-    TextView scorePersonOneTextView, scorePersonTwoTextView, scorePersonThreeTextView;
-    TextView finalScorePersonOneTextView, finalScorePersonTwoTextView, finalScorePersonThreeTextView;
-    TextView scoreTextViews[][] = new TextView[3][12];
-    ImageButton decrementPersonOneButton, incrementPersonOneButton,
-            decrementPersonTwoButton, incrementPersonTwoButton,
-            decrementPersonThreeButton, incrementPersonThreeButton;
-    Button registerScore;
-    ImageButton gameOptions[][] = new ImageButton[3][4];
+    private void initView(View v, Bundle savedInstanceState) {
+        model = new TrebelloGameModel();
 
-    private void initView(View v, Bundle savedInstanceState){
+        scorePersonOneTextView = v.findViewById(R.id.scoreCount1);
+        scorePersonTwoTextView = v.findViewById(R.id.scoreCount2);
+        scorePersonThreeTextView = v.findViewById(R.id.scoreCount3);
 
-    scorePersonOneTextView = v.findViewById(R.id.scoreCount1);
-    scorePersonTwoTextView = v.findViewById(R.id.scoreCount2);
-    scorePersonThreeTextView = v.findViewById(R.id.scoreCount3);
+        initCounterButtons(v);
 
-    personOneScore = 0;
-    personTwoScore = 0;
-    personThreeScore = 0;
-    personOneTotalScore = 0;
-    personTwoTotalScore = 0;
-    personThreeTotalScore = 0;
-    round = 1;
+        //Init register score
+        registerScore = v.findViewById(R.id.register);
+        registerScore.setOnClickListener(this);
 
-
-    initCounterButtons(v);
-
-    //Init register score
-    registerScore = v.findViewById(R.id.register);
-    registerScore.setOnClickListener(this);
-
-    initScoreViews(v);
-    initGameOptions(v);
-    initGameOptionsBooleans();
-    if (savedInstanceState != null) {
-        round = savedInstanceState.getInt(STATE_ROUND);
-        personOneTotalScore = savedInstanceState.getInt(STATE_PERSON_ONE_SCORE);
-        personTwoTotalScore = savedInstanceState.getInt(STATE_PERSON_TWO_SCORE);
-        personThreeTotalScore = savedInstanceState.getInt(STATE_PERSON_THREE_SCORE);
-        personOneScoreArray = savedInstanceState.getIntArray(STATE_PERSON_ONE_SCORE_ARRAY);
-        personTwoScoreArray = savedInstanceState.getIntArray(STATE_PERSON_TWO_SCORE_ARRAY);
-        personThreeScoreArray = savedInstanceState.getIntArray(STATE_PERSON_THREE_SCORE_ARRAY);
-        personOneScore = savedInstanceState.getInt(STATE_PERSON_ONE_ROUND_SCORE);
-        personTwoScore = savedInstanceState.getInt(STATE_PERSON_TWO_ROUND_SCORE);
-        personThreeScore = savedInstanceState.getInt(STATE_PERSON_THREE_ROUND_SCORE);
-        checkedGameOptions[0] = savedInstanceState.getBooleanArray(STATE_GAME_OPTION_ONE);
-        checkedGameOptions[1] = savedInstanceState.getBooleanArray(STATE_GAME_OPTION_TWO);
-        checkedGameOptions[2] = savedInstanceState.getBooleanArray(STATE_GAME_OPTION_THREE);
-        setSavedUI();
-
-    }
+        initScoreViews(v);
+        initGameOptions(v);
+        initGameOptionsBooleans();
+        if (savedInstanceState != null) {
+            model.setSavedInstanceState(savedInstanceState);
+            setSavedUI();
+        }
 
     }
 
     private void setSavedUI() {
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < round - 1; j++){
-                scoreTextViews[i][j].setText(String.valueOf(personOneScoreArray[i]));
-            }
+        for (int j = 0; j < model.getRound() - 1; j++) {
+            scoreTextViews[0][j].setText(String.valueOf(model.getPersonOneScoreArray()[j]));
+            scoreTextViews[1][j].setText(String.valueOf(model.getPersonTwoScoreArray()[j]));
+            scoreTextViews[2][j].setText(String.valueOf(model.getPersonThreeScoreArray()[j]));
         }
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 4; j++) {
-                if (checkedGameOptions[i][j]) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (model.getCheckedGameOptions()[i][j]) {
                     gameOptions[i][j].setImageResource(R.drawable.ic_check_black_24dp);
                 }
             }
         }
-        scorePersonOneTextView.setText(String.valueOf(personOneScore));
-        scorePersonTwoTextView.setText(String.valueOf(personTwoScore));
-        scorePersonThreeTextView.setText(String.valueOf(personThreeScore));
+        if(model.getRound() == 13){
+            endGame();
+        } else {
+            scorePersonOneTextView.setText(String.valueOf(model.getPersonOneScore()));
+            scorePersonTwoTextView.setText(String.valueOf(model.getPersonTwoScore()));
+            scorePersonThreeTextView.setText(String.valueOf(model.getPersonThreeScore()));
+        }
     }
 
     private void initGameOptionsBooleans() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
-                checkedGameOptions[i][j] = false;
+                model.getCheckedGameOptions()[i][j] = false;
             }
         }
     }
@@ -264,136 +215,137 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
         incrementPersonThreeButton = v.findViewById(R.id.count6);
         incrementPersonThreeButton.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.count1:{
-                personOneScore--;
-                scorePersonOneTextView.setText(String.valueOf(personOneScore));
+        switch (v.getId()) {
+            case R.id.count1: {
+                model.setPersonOneScore(model.getPersonOneScore()-1);
+                scorePersonOneTextView.setText(String.valueOf(model.getPersonOneScore()));
                 break;
             }
-            case R.id.count2:{
-                personOneScore++;
-                scorePersonOneTextView.setText(String.valueOf(personOneScore));
+            case R.id.count2: {
+                model.setPersonOneScore(model.getPersonOneScore()+1);
+                scorePersonOneTextView.setText(String.valueOf(model.getPersonOneScore()));
                 break;
             }
-            case R.id.count3:{
-                personTwoScore--;
-                scorePersonTwoTextView.setText(String.valueOf(personTwoScore));
+            case R.id.count3: {
+                model.setPersonTwoScore(model.getPersonTwoScore()-1);
+                scorePersonTwoTextView.setText(String.valueOf(model.getPersonTwoScore()));
                 break;
             }
-            case R.id.count4:{
-                personTwoScore++;
-                scorePersonTwoTextView.setText(String.valueOf(personTwoScore));
+            case R.id.count4: {
+                model.setPersonTwoScore(model.getPersonTwoScore()+1);
+                scorePersonTwoTextView.setText(String.valueOf(model.getPersonTwoScore()));
                 break;
             }
-            case R.id.count5:{
-                personThreeScore--;
-                scorePersonThreeTextView.setText(String.valueOf(personThreeScore));
+            case R.id.count5: {
+                model.setPersonThreeScore(model.getPersonThreeScore()-1);
+                scorePersonThreeTextView.setText(String.valueOf(model.getPersonThreeScore()));
                 break;
             }
-            case R.id.count6:{
-                personThreeScore++;
-                scorePersonThreeTextView.setText(String.valueOf(personThreeScore));
+            case R.id.count6: {
+                model.setPersonThreeScore(model.getPersonThreeScore()+1);
+                scorePersonThreeTextView.setText(String.valueOf(model.getPersonThreeScore()));
                 break;
             }
-            case R.id.register:{
+            case R.id.register: {
                 updateScore();
                 break;
             }
-            case R.id.ImageButton1:{
+            case R.id.ImageButton1: {
                 toggleGameOption(0, 0);
                 break;
             }
-            case R.id.ImageButton2:{
+            case R.id.ImageButton2: {
                 toggleGameOption(1, 0);
                 break;
             }
-            case R.id.ImageButton3:{
+            case R.id.ImageButton3: {
                 toggleGameOption(2, 0);
                 break;
             }
-            case R.id.ImageButton4:{
+            case R.id.ImageButton4: {
                 toggleGameOption(0, 1);
                 break;
             }
-            case R.id.ImageButton5:{
+            case R.id.ImageButton5: {
                 toggleGameOption(1, 1);
                 break;
             }
-            case R.id.ImageButton6:{
+            case R.id.ImageButton6: {
                 toggleGameOption(2, 1);
                 break;
             }
-            case R.id.ImageButton7:{
+            case R.id.ImageButton7: {
                 toggleGameOption(0, 2);
                 break;
             }
-            case R.id.ImageButton8:{
+            case R.id.ImageButton8: {
                 toggleGameOption(1, 2);
                 break;
             }
-            case R.id.ImageButton9:{
+            case R.id.ImageButton9: {
                 toggleGameOption(2, 2);
                 break;
             }
-            case R.id.ImageButton10:{
+            case R.id.ImageButton10: {
                 toggleGameOption(0, 3);
                 break;
             }
-            case R.id.ImageButton11:{
+            case R.id.ImageButton11: {
                 toggleGameOption(1, 3);
                 break;
             }
-            case R.id.ImageButton12:{
+            case R.id.ImageButton12: {
                 toggleGameOption(2, 3);
                 break;
             }
 
         }
     }
+
     private void toggleGameOption(int i, int j) {
-        if (checkedGameOptions[i][j]) {
+        if (model.getCheckedGameOptions()[i][j]) {
             gameOptions[i][j].setImageResource(android.R.color.transparent);
-            checkedGameOptions[i][j] = false;
+            model.setCheckedGameOption(i, j, false);
         } else {
             gameOptions[i][j].setImageResource(R.drawable.ic_check_black_24dp);
-            checkedGameOptions[i][j] = true;
+            model.setCheckedGameOption(i, j, true);
         }
     }
 
     private void updateScore() {
-        personOneTotalScore += personOneScore;
-        personTwoTotalScore += personTwoScore;
-        personThreeTotalScore += personThreeScore;
-        scoreTextViews[0][round-1].setText(String.valueOf(personOneTotalScore));
-        scoreTextViews[1][round-1].setText(String.valueOf(personTwoTotalScore));
-        scoreTextViews[2][round-1].setText(String.valueOf(personThreeTotalScore));
-        personOneScoreArray[round-1] = personOneTotalScore;
-        personTwoScoreArray[round-1] = personTwoTotalScore;
-        personThreeScoreArray[round-1] = personThreeTotalScore;
-        round++;
-        personOneScore = 0;
-        personTwoScore = 0;
-        personThreeScore = 0;
+        model.updateScore();
+
+        scoreTextViews[0][model.getRound() - 1].setText(String.valueOf(model.getPersonOneTotalScore()));
+        scoreTextViews[1][model.getRound() - 1].setText(String.valueOf(model.getPersonTwoTotalScore()));
+        scoreTextViews[2][model.getRound() - 1].setText(String.valueOf(model.getPersonThreeTotalScore()));
+
+        model.nextRound();
+
         scorePersonOneTextView.setText("0");
         scorePersonTwoTextView.setText("0");
         scorePersonThreeTextView.setText("0");
-        if(round == 13) {
-            registerScore.setEnabled(false);
-            scorePersonOneTextView.setTextColor(scorePersonOneTextView.getTextColors().withAlpha(0));
-            scorePersonTwoTextView.setTextColor(scorePersonTwoTextView.getTextColors().withAlpha(0));
-            scorePersonThreeTextView.setTextColor(scorePersonThreeTextView.getTextColors().withAlpha(0));
-            decrementPersonOneButton.setEnabled(false);
-            incrementPersonOneButton.setEnabled(false);
-            decrementPersonTwoButton.setEnabled(false);
-            incrementPersonTwoButton.setEnabled(false);
-            decrementPersonThreeButton.setEnabled(false);
-            incrementPersonThreeButton.setEnabled(false);
-            finalScorePersonOneTextView.setText(String.valueOf(personOneTotalScore));
-            finalScorePersonTwoTextView.setText(String.valueOf(personTwoTotalScore));
-            finalScorePersonThreeTextView.setText(String.valueOf(personThreeTotalScore));
+        if (model.getRound() == 13) {
+            endGame();
         }
+    }
+
+    void endGame(){
+        registerScore.setEnabled(false);
+        scorePersonOneTextView.setTextColor(scorePersonOneTextView.getTextColors().withAlpha(0));
+        scorePersonTwoTextView.setTextColor(scorePersonTwoTextView.getTextColors().withAlpha(0));
+        scorePersonThreeTextView.setTextColor(scorePersonThreeTextView.getTextColors().withAlpha(0));
+        decrementPersonOneButton.setEnabled(false);
+        incrementPersonOneButton.setEnabled(false);
+        decrementPersonTwoButton.setEnabled(false);
+        incrementPersonTwoButton.setEnabled(false);
+        decrementPersonThreeButton.setEnabled(false);
+        incrementPersonThreeButton.setEnabled(false);
+        finalScorePersonOneTextView.setText(String.valueOf(model.getPersonOneTotalScore()));
+        finalScorePersonTwoTextView.setText(String.valueOf(model.getPersonTwoTotalScore()));
+        finalScorePersonThreeTextView.setText(String.valueOf(model.getPersonThreeTotalScore()));
     }
 
 }
