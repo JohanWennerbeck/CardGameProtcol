@@ -36,9 +36,12 @@ public class TrebelloGameModel {
         playerTwoTotalScore = 0;
         playerThreeTotalScore = 0;
         round = 1;
-        playerOne = new Player("Fredrik");
-        playerTwo = new Player("Anders");
-        playerThree = new Player("Johan");
+        playerOne = new Player();
+        playerTwo = new Player();
+        playerThree = new Player();
+        playerOne.setName("Fredrik");
+        playerTwo.setName("Anders");
+        playerThree.setName("Johan");
     }
 
     void setSavedInstanceState(Bundle savedInstanceState){

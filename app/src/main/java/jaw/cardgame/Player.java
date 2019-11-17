@@ -11,8 +11,8 @@ public class Player {
     private int trebelloHighscore;
     private int trebelloJumboScore;
 
-    Player(String name){
-        this.name = name;
+    public Player() {
+
     }
 
     public String getName() {
