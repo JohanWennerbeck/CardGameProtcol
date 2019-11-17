@@ -4,49 +4,54 @@ import android.os.Bundle;
 
 public class TrebelloGameModel {
 
-    private int personOneScore, personTwoScore, personThreeScore;
-    private int personOneTotalScore, personTwoTotalScore, personThreeTotalScore;
-    private int[] personOneScoreArray = new int[12];
-    private int[] personTwoScoreArray = new int[12];
-    private int[] personThreeScoreArray = new int[12];
+    private int playerOneScore, playerTwoScore, playerThreeScore;
+    private int playerOneTotalScore, playerTwoTotalScore, playerThreeTotalScore;
+    private int[] playerOneScoreArray = new int[12];
+    private int[] playerTwoScoreArray = new int[12];
+    private int[] playerThreeScoreArray = new int[12];
     private int round;
     private boolean[][] checkedGameOptions = new boolean[3][4];
 
+    private Player playerOne, playerTwo, playerThree;
+
     static final String STATE_ROUND = "round";
-    static final String STATE_PERSON_ONE_SCORE = "personOne";
-    static final String STATE_PERSON_TWO_SCORE = "personTwo";
-    static final String STATE_PERSON_THREE_SCORE = "personThree";
-    static final String STATE_PERSON_ONE_SCORE_ARRAY = "personOneScoreArray";
-    static final String STATE_PERSON_TWO_SCORE_ARRAY = "personTwoScoreArray";
-    static final String STATE_PERSON_THREE_SCORE_ARRAY = "personThreeScoreArray";
-    static final String STATE_PERSON_ONE_ROUND_SCORE = "personOneRoundScore";
-    static final String STATE_PERSON_TWO_ROUND_SCORE = "personTwoRoundScore";
-    static final String STATE_PERSON_THREE_ROUND_SCORE = "personThreeRoundScore";
+    static final String STATE_PERSON_ONE_SCORE = "playerOne";
+    static final String STATE_PERSON_TWO_SCORE = "playerTwo";
+    static final String STATE_PERSON_THREE_SCORE = "playerThree";
+    static final String STATE_PERSON_ONE_SCORE_ARRAY = "playerOneScoreArray";
+    static final String STATE_PERSON_TWO_SCORE_ARRAY = "playerTwoScoreArray";
+    static final String STATE_PERSON_THREE_SCORE_ARRAY = "playerThreeScoreArray";
+    static final String STATE_PERSON_ONE_ROUND_SCORE = "playerOneRoundScore";
+    static final String STATE_PERSON_TWO_ROUND_SCORE = "playerTwoRoundScore";
+    static final String STATE_PERSON_THREE_ROUND_SCORE = "playerThreeRoundScore";
     static final String STATE_GAME_OPTION_ONE = "gameOptionOne";
     static final String STATE_GAME_OPTION_TWO = "gameOptionTwo";
     static final String STATE_GAME_OPTION_THREE = "gameOptionThree";
 
     TrebelloGameModel(){
-        personOneScore = 0;
-        personTwoScore = 0;
-        personThreeScore = 0;
-        personOneTotalScore = 0;
-        personTwoTotalScore = 0;
-        personThreeTotalScore = 0;
+        playerOneScore = 0;
+        playerTwoScore = 0;
+        playerThreeScore = 0;
+        playerOneTotalScore = 0;
+        playerTwoTotalScore = 0;
+        playerThreeTotalScore = 0;
         round = 1;
+        playerOne = new Player("Fredrik");
+        playerTwo = new Player("Anders");
+        playerThree = new Player("Johan");
     }
 
     void setSavedInstanceState(Bundle savedInstanceState){
         round = savedInstanceState.getInt(STATE_ROUND);
-        personOneTotalScore = savedInstanceState.getInt(STATE_PERSON_ONE_SCORE);
-        personTwoTotalScore = savedInstanceState.getInt(STATE_PERSON_TWO_SCORE);
-        personThreeTotalScore = savedInstanceState.getInt(STATE_PERSON_THREE_SCORE);
-        personOneScoreArray = savedInstanceState.getIntArray(STATE_PERSON_ONE_SCORE_ARRAY);
-        personTwoScoreArray = savedInstanceState.getIntArray(STATE_PERSON_TWO_SCORE_ARRAY);
-        personThreeScoreArray = savedInstanceState.getIntArray(STATE_PERSON_THREE_SCORE_ARRAY);
-        personOneScore = savedInstanceState.getInt(STATE_PERSON_ONE_ROUND_SCORE);
-        personTwoScore = savedInstanceState.getInt(STATE_PERSON_TWO_ROUND_SCORE);
-        personThreeScore = savedInstanceState.getInt(STATE_PERSON_THREE_ROUND_SCORE);
+        playerOneTotalScore = savedInstanceState.getInt(STATE_PERSON_ONE_SCORE);
+        playerTwoTotalScore = savedInstanceState.getInt(STATE_PERSON_TWO_SCORE);
+        playerThreeTotalScore = savedInstanceState.getInt(STATE_PERSON_THREE_SCORE);
+        playerOneScoreArray = savedInstanceState.getIntArray(STATE_PERSON_ONE_SCORE_ARRAY);
+        playerTwoScoreArray = savedInstanceState.getIntArray(STATE_PERSON_TWO_SCORE_ARRAY);
+        playerThreeScoreArray = savedInstanceState.getIntArray(STATE_PERSON_THREE_SCORE_ARRAY);
+        playerOneScore = savedInstanceState.getInt(STATE_PERSON_ONE_ROUND_SCORE);
+        playerTwoScore = savedInstanceState.getInt(STATE_PERSON_TWO_ROUND_SCORE);
+        playerThreeScore = savedInstanceState.getInt(STATE_PERSON_THREE_ROUND_SCORE);
         checkedGameOptions[0] = savedInstanceState.getBooleanArray(STATE_GAME_OPTION_ONE);
         checkedGameOptions[1] = savedInstanceState.getBooleanArray(STATE_GAME_OPTION_TWO);
         checkedGameOptions[2] = savedInstanceState.getBooleanArray(STATE_GAME_OPTION_THREE);
@@ -54,15 +59,15 @@ public class TrebelloGameModel {
 
     Bundle onSaveInstanceState(Bundle savedInstanceState){
         savedInstanceState.putInt(STATE_ROUND, round);
-        savedInstanceState.putInt(STATE_PERSON_ONE_SCORE, personOneTotalScore);
-        savedInstanceState.putInt(STATE_PERSON_TWO_SCORE, personTwoTotalScore);
-        savedInstanceState.putInt(STATE_PERSON_THREE_SCORE, personThreeTotalScore);
-        savedInstanceState.putIntArray(STATE_PERSON_ONE_SCORE_ARRAY, personOneScoreArray);
-        savedInstanceState.putIntArray(STATE_PERSON_TWO_SCORE_ARRAY, personTwoScoreArray);
-        savedInstanceState.putIntArray(STATE_PERSON_THREE_SCORE_ARRAY, personThreeScoreArray);
-        savedInstanceState.putInt(STATE_PERSON_ONE_ROUND_SCORE, personOneScore);
-        savedInstanceState.putInt(STATE_PERSON_TWO_ROUND_SCORE, personTwoScore);
-        savedInstanceState.putInt(STATE_PERSON_THREE_ROUND_SCORE, personThreeScore);
+        savedInstanceState.putInt(STATE_PERSON_ONE_SCORE, playerOneTotalScore);
+        savedInstanceState.putInt(STATE_PERSON_TWO_SCORE, playerTwoTotalScore);
+        savedInstanceState.putInt(STATE_PERSON_THREE_SCORE, playerThreeTotalScore);
+        savedInstanceState.putIntArray(STATE_PERSON_ONE_SCORE_ARRAY, playerOneScoreArray);
+        savedInstanceState.putIntArray(STATE_PERSON_TWO_SCORE_ARRAY, playerTwoScoreArray);
+        savedInstanceState.putIntArray(STATE_PERSON_THREE_SCORE_ARRAY, playerThreeScoreArray);
+        savedInstanceState.putInt(STATE_PERSON_ONE_ROUND_SCORE, playerOneScore);
+        savedInstanceState.putInt(STATE_PERSON_TWO_ROUND_SCORE, playerTwoScore);
+        savedInstanceState.putInt(STATE_PERSON_THREE_ROUND_SCORE, playerThreeScore);
         savedInstanceState.putBooleanArray(STATE_GAME_OPTION_ONE, checkedGameOptions[0]);
         savedInstanceState.putBooleanArray(STATE_GAME_OPTION_TWO, checkedGameOptions[1]);
         savedInstanceState.putBooleanArray(STATE_GAME_OPTION_THREE, checkedGameOptions[2]);
@@ -71,91 +76,91 @@ public class TrebelloGameModel {
     }
 
     void updateScore(){
-        personOneTotalScore += personOneScore;
-        personTwoTotalScore += personTwoScore;
-        personThreeTotalScore += personThreeScore;
-         personOneScoreArray[round - 1] = personOneTotalScore;
-        personTwoScoreArray[round - 1] = personTwoTotalScore;
-        personThreeScoreArray[round - 1] = personThreeTotalScore;
+        playerOneTotalScore += playerOneScore;
+        playerTwoTotalScore += playerTwoScore;
+        playerThreeTotalScore += playerThreeScore;
+         playerOneScoreArray[round - 1] = playerOneTotalScore;
+        playerTwoScoreArray[round - 1] = playerTwoTotalScore;
+        playerThreeScoreArray[round - 1] = playerThreeTotalScore;
     }
 
     void nextRound(){
         round++;
-        personOneScore = 0;
-        personTwoScore = 0;
-        personThreeScore = 0;
+        playerOneScore = 0;
+        playerTwoScore = 0;
+        playerThreeScore = 0;
     }
 
-    public int getPersonOneScore() {
-        return personOneScore;
+    public int getPlayerOneScore() {
+        return playerOneScore;
     }
 
-    public void setPersonOneScore(int personOneScore) {
-        this.personOneScore = personOneScore;
+    public void setPlayerOneScore(int playerOneScore) {
+        this.playerOneScore = playerOneScore;
     }
 
-    public int getPersonTwoScore() {
-        return personTwoScore;
+    public int getPlayerTwoScore() {
+        return playerTwoScore;
     }
 
-    public void setPersonTwoScore(int personTwoScore) {
-        this.personTwoScore = personTwoScore;
+    public void setPlayerTwoScore(int playerTwoScore) {
+        this.playerTwoScore = playerTwoScore;
     }
 
-    public int getPersonThreeScore() {
-        return personThreeScore;
+    public int getPlayerThreeScore() {
+        return playerThreeScore;
     }
 
-    public void setPersonThreeScore(int personThreeScore) {
-        this.personThreeScore = personThreeScore;
+    public void setPlayerThreeScore(int playerThreeScore) {
+        this.playerThreeScore = playerThreeScore;
     }
 
-    public int getPersonOneTotalScore() {
-        return personOneTotalScore;
+    public int getPlayerOneTotalScore() {
+        return playerOneTotalScore;
     }
 
-    public void setPersonOneTotalScore(int personOneTotalScore) {
-        this.personOneTotalScore = personOneTotalScore;
+    public void setPlayerOneTotalScore(int playerOneTotalScore) {
+        this.playerOneTotalScore = playerOneTotalScore;
     }
 
-    public int getPersonTwoTotalScore() {
-        return personTwoTotalScore;
+    public int getPlayerTwoTotalScore() {
+        return playerTwoTotalScore;
     }
 
-    public void setPersonTwoTotalScore(int personTwoTotalScore) {
-        this.personTwoTotalScore = personTwoTotalScore;
+    public void setPlayerTwoTotalScore(int playerTwoTotalScore) {
+        this.playerTwoTotalScore = playerTwoTotalScore;
     }
 
-    public int getPersonThreeTotalScore() {
-        return personThreeTotalScore;
+    public int getPlayerThreeTotalScore() {
+        return playerThreeTotalScore;
     }
 
-    public void setPersonThreeTotalScore(int personThreeTotalScore) {
-        this.personThreeTotalScore = personThreeTotalScore;
+    public void setPlayerThreeTotalScore(int playerThreeTotalScore) {
+        this.playerThreeTotalScore = playerThreeTotalScore;
     }
 
-    public int[] getPersonOneScoreArray() {
-        return personOneScoreArray;
+    public int[] getPlayerOneScoreArray() {
+        return playerOneScoreArray;
     }
 
-    public void setPersonOneScoreArray(int[] personOneScoreArray) {
-        this.personOneScoreArray = personOneScoreArray;
+    public void setPlayerOneScoreArray(int[] playerOneScoreArray) {
+        this.playerOneScoreArray = playerOneScoreArray;
     }
 
-    public int[] getPersonTwoScoreArray() {
-        return personTwoScoreArray;
+    public int[] getPlayerTwoScoreArray() {
+        return playerTwoScoreArray;
     }
 
-    public void setPersonTwoScoreArray(int[] personTwoScoreArray) {
-        this.personTwoScoreArray = personTwoScoreArray;
+    public void setPlayerTwoScoreArray(int[] playerTwoScoreArray) {
+        this.playerTwoScoreArray = playerTwoScoreArray;
     }
 
-    public int[] getPersonThreeScoreArray() {
-        return personThreeScoreArray;
+    public int[] getPlayerThreeScoreArray() {
+        return playerThreeScoreArray;
     }
 
-    public void setPersonThreeScoreArray(int[] personThreeScoreArray) {
-        this.personThreeScoreArray = personThreeScoreArray;
+    public void setPlayerThreeScoreArray(int[] playerThreeScoreArray) {
+        this.playerThreeScoreArray = playerThreeScoreArray;
     }
 
     public int getRound() {
@@ -178,4 +183,15 @@ public class TrebelloGameModel {
         this.checkedGameOptions[i][j] = bool;
     }
 
+    public Player getPlayerOne() {
+        return playerOne;
+    }
+
+    public Player getPlayerTwo() {
+        return playerTwo;
+    }
+
+    public Player getPlayerThree() {
+        return playerThree;
+    }
 }

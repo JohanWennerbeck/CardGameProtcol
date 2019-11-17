@@ -22,14 +22,17 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
 
     TrebelloGameModel model;
 
-    TextView scorePersonOneTextView, scorePersonTwoTextView, scorePersonThreeTextView;
-    TextView finalScorePersonOneTextView, finalScorePersonTwoTextView, finalScorePersonThreeTextView;
+    TextView scorePlayerOneTextView, scorePlayerTwoTextView, scorePlayerThreeTextView;
+    TextView finalScorePlayerOneTextView, finalScorePlayerTwoTextView, finalScorePlayerThreeTextView;
     TextView scoreTextViews[][] = new TextView[3][12];
-    ImageButton decrementPersonOneButton, incrementPersonOneButton,
-            decrementPersonTwoButton, incrementPersonTwoButton,
-            decrementPersonThreeButton, incrementPersonThreeButton;
+    ImageButton decrementPlayerOneButton, incrementPlayerOneButton,
+            decrementPlayerTwoButton, incrementPlayerTwoButton,
+            decrementPlayerThreeButton, incrementPlayerThreeButton;
     Button registerScore;
     ImageButton gameOptions[][] = new ImageButton[3][4];
+    TextView playerOneName, playerTwoName, playerThreeName;
+    TextView playerOneScoreName, playerTwoScoreName, playerThreeScoreName;
+
 
     public ScoreFragment() {
         // Required empty public constructor
@@ -88,10 +91,11 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
     private void initView(View v, Bundle savedInstanceState) {
         model = new TrebelloGameModel();
 
-        scorePersonOneTextView = v.findViewById(R.id.scoreCount1);
-        scorePersonTwoTextView = v.findViewById(R.id.scoreCount2);
-        scorePersonThreeTextView = v.findViewById(R.id.scoreCount3);
+        scorePlayerOneTextView = v.findViewById(R.id.scoreCount1);
+        scorePlayerTwoTextView = v.findViewById(R.id.scoreCount2);
+        scorePlayerThreeTextView = v.findViewById(R.id.scoreCount3);
 
+        initPlayerNames(v);
         initCounterButtons(v);
 
         //Init register score
@@ -108,11 +112,28 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    private void initPlayerNames(View v) {
+        playerOneName = v.findViewById(R.id.playerName1);
+        playerTwoName = v.findViewById(R.id.playerName2);
+        playerThreeName = v.findViewById(R.id.playerName3);
+        playerOneScoreName = v.findViewById(R.id.playerScoreName1);
+        playerTwoScoreName = v.findViewById(R.id.playerScoreName2);
+        playerThreeScoreName = v.findViewById(R.id.playerScoreName3);
+
+        playerOneName.setText(model.getPlayerOne().getName());
+        playerTwoName.setText(model.getPlayerTwo().getName());
+        playerThreeName.setText(model.getPlayerThree().getName());
+        playerOneScoreName.setText(model.getPlayerOne().getName());
+        playerTwoScoreName.setText(model.getPlayerTwo().getName());
+        playerThreeScoreName.setText(model.getPlayerThree().getName());
+
+    }
+
     private void setSavedUI() {
         for (int j = 0; j < model.getRound() - 1; j++) {
-            scoreTextViews[0][j].setText(String.valueOf(model.getPersonOneScoreArray()[j]));
-            scoreTextViews[1][j].setText(String.valueOf(model.getPersonTwoScoreArray()[j]));
-            scoreTextViews[2][j].setText(String.valueOf(model.getPersonThreeScoreArray()[j]));
+            scoreTextViews[0][j].setText(String.valueOf(model.getPlayerOneScoreArray()[j]));
+            scoreTextViews[1][j].setText(String.valueOf(model.getPlayerTwoScoreArray()[j]));
+            scoreTextViews[2][j].setText(String.valueOf(model.getPlayerThreeScoreArray()[j]));
         }
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
@@ -124,9 +145,9 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
         if(model.getRound() == 13){
             endGame();
         } else {
-            scorePersonOneTextView.setText(String.valueOf(model.getPersonOneScore()));
-            scorePersonTwoTextView.setText(String.valueOf(model.getPersonTwoScore()));
-            scorePersonThreeTextView.setText(String.valueOf(model.getPersonThreeScore()));
+            scorePlayerOneTextView.setText(String.valueOf(model.getPlayerOneScore()));
+            scorePlayerTwoTextView.setText(String.valueOf(model.getPlayerTwoScore()));
+            scorePlayerThreeTextView.setText(String.valueOf(model.getPlayerThreeScore()));
         }
     }
 
@@ -196,59 +217,59 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
         scoreTextViews[0][11] = v.findViewById(R.id.score34);
         scoreTextViews[1][11] = v.findViewById(R.id.score35);
         scoreTextViews[2][11] = v.findViewById(R.id.score36);
-        finalScorePersonOneTextView = v.findViewById(R.id.finalScore1);
-        finalScorePersonTwoTextView = v.findViewById(R.id.finalScore2);
-        finalScorePersonThreeTextView = v.findViewById(R.id.finalScore3);
+        finalScorePlayerOneTextView = v.findViewById(R.id.finalScore1);
+        finalScorePlayerTwoTextView = v.findViewById(R.id.finalScore2);
+        finalScorePlayerThreeTextView = v.findViewById(R.id.finalScore3);
     }
 
     private void initCounterButtons(View v) {
 
         //Init plus and minus ImageButtons
-        decrementPersonOneButton = v.findViewById(R.id.count1);
-        decrementPersonOneButton.setOnClickListener(this);
-        incrementPersonOneButton = v.findViewById(R.id.count2);
-        incrementPersonOneButton.setOnClickListener(this);
-        decrementPersonTwoButton = v.findViewById(R.id.count3);
-        decrementPersonTwoButton.setOnClickListener(this);
-        incrementPersonTwoButton = v.findViewById(R.id.count4);
-        incrementPersonTwoButton.setOnClickListener(this);
-        decrementPersonThreeButton = v.findViewById(R.id.count5);
-        decrementPersonThreeButton.setOnClickListener(this);
-        incrementPersonThreeButton = v.findViewById(R.id.count6);
-        incrementPersonThreeButton.setOnClickListener(this);
+        decrementPlayerOneButton = v.findViewById(R.id.count1);
+        decrementPlayerOneButton.setOnClickListener(this);
+        incrementPlayerOneButton = v.findViewById(R.id.count2);
+        incrementPlayerOneButton.setOnClickListener(this);
+        decrementPlayerTwoButton = v.findViewById(R.id.count3);
+        decrementPlayerTwoButton.setOnClickListener(this);
+        incrementPlayerTwoButton = v.findViewById(R.id.count4);
+        incrementPlayerTwoButton.setOnClickListener(this);
+        decrementPlayerThreeButton = v.findViewById(R.id.count5);
+        decrementPlayerThreeButton.setOnClickListener(this);
+        incrementPlayerThreeButton = v.findViewById(R.id.count6);
+        incrementPlayerThreeButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.count1: {
-                model.setPersonOneScore(model.getPersonOneScore()-1);
-                scorePersonOneTextView.setText(String.valueOf(model.getPersonOneScore()));
+                model.setPlayerOneScore(model.getPlayerOneScore()-1);
+                scorePlayerOneTextView.setText(String.valueOf(model.getPlayerOneScore()));
                 break;
             }
             case R.id.count2: {
-                model.setPersonOneScore(model.getPersonOneScore()+1);
-                scorePersonOneTextView.setText(String.valueOf(model.getPersonOneScore()));
+                model.setPlayerOneScore(model.getPlayerOneScore()+1);
+                scorePlayerOneTextView.setText(String.valueOf(model.getPlayerOneScore()));
                 break;
             }
             case R.id.count3: {
-                model.setPersonTwoScore(model.getPersonTwoScore()-1);
-                scorePersonTwoTextView.setText(String.valueOf(model.getPersonTwoScore()));
+                model.setPlayerTwoScore(model.getPlayerTwoScore()-1);
+                scorePlayerTwoTextView.setText(String.valueOf(model.getPlayerTwoScore()));
                 break;
             }
             case R.id.count4: {
-                model.setPersonTwoScore(model.getPersonTwoScore()+1);
-                scorePersonTwoTextView.setText(String.valueOf(model.getPersonTwoScore()));
+                model.setPlayerTwoScore(model.getPlayerTwoScore()+1);
+                scorePlayerTwoTextView.setText(String.valueOf(model.getPlayerTwoScore()));
                 break;
             }
             case R.id.count5: {
-                model.setPersonThreeScore(model.getPersonThreeScore()-1);
-                scorePersonThreeTextView.setText(String.valueOf(model.getPersonThreeScore()));
+                model.setPlayerThreeScore(model.getPlayerThreeScore()-1);
+                scorePlayerThreeTextView.setText(String.valueOf(model.getPlayerThreeScore()));
                 break;
             }
             case R.id.count6: {
-                model.setPersonThreeScore(model.getPersonThreeScore()+1);
-                scorePersonThreeTextView.setText(String.valueOf(model.getPersonThreeScore()));
+                model.setPlayerThreeScore(model.getPlayerThreeScore()+1);
+                scorePlayerThreeTextView.setText(String.valueOf(model.getPlayerThreeScore()));
                 break;
             }
             case R.id.register: {
@@ -318,18 +339,18 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
     }
 
     private void updateScore(View v) {
-        if (model.getPersonOneScore() + model.getPersonTwoScore() + model.getPersonThreeScore() == 0) {
+        if (model.getPlayerOneScore() + model.getPlayerTwoScore() + model.getPlayerThreeScore() == 0) {
             model.updateScore();
 
-            scoreTextViews[0][model.getRound() - 1].setText(String.valueOf(model.getPersonOneTotalScore()));
-            scoreTextViews[1][model.getRound() - 1].setText(String.valueOf(model.getPersonTwoTotalScore()));
-            scoreTextViews[2][model.getRound() - 1].setText(String.valueOf(model.getPersonThreeTotalScore()));
+            scoreTextViews[0][model.getRound() - 1].setText(String.valueOf(model.getPlayerOneTotalScore()));
+            scoreTextViews[1][model.getRound() - 1].setText(String.valueOf(model.getPlayerTwoTotalScore()));
+            scoreTextViews[2][model.getRound() - 1].setText(String.valueOf(model.getPlayerThreeTotalScore()));
 
             model.nextRound();
 
-            scorePersonOneTextView.setText("0");
-            scorePersonTwoTextView.setText("0");
-            scorePersonThreeTextView.setText("0");
+            scorePlayerOneTextView.setText("0");
+            scorePlayerTwoTextView.setText("0");
+            scorePlayerThreeTextView.setText("0");
             if (model.getRound() == 13) {
                 endGame();
             }
@@ -346,18 +367,18 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
 
     void endGame(){
         registerScore.setEnabled(false);
-        scorePersonOneTextView.setTextColor(scorePersonOneTextView.getTextColors().withAlpha(0));
-        scorePersonTwoTextView.setTextColor(scorePersonTwoTextView.getTextColors().withAlpha(0));
-        scorePersonThreeTextView.setTextColor(scorePersonThreeTextView.getTextColors().withAlpha(0));
-        decrementPersonOneButton.setEnabled(false);
-        incrementPersonOneButton.setEnabled(false);
-        decrementPersonTwoButton.setEnabled(false);
-        incrementPersonTwoButton.setEnabled(false);
-        decrementPersonThreeButton.setEnabled(false);
-        incrementPersonThreeButton.setEnabled(false);
-        finalScorePersonOneTextView.setText(String.valueOf(model.getPersonOneTotalScore()));
-        finalScorePersonTwoTextView.setText(String.valueOf(model.getPersonTwoTotalScore()));
-        finalScorePersonThreeTextView.setText(String.valueOf(model.getPersonThreeTotalScore()));
+        scorePlayerOneTextView.setTextColor(scorePlayerOneTextView.getTextColors().withAlpha(0));
+        scorePlayerTwoTextView.setTextColor(scorePlayerTwoTextView.getTextColors().withAlpha(0));
+        scorePlayerThreeTextView.setTextColor(scorePlayerThreeTextView.getTextColors().withAlpha(0));
+        decrementPlayerOneButton.setEnabled(false);
+        incrementPlayerOneButton.setEnabled(false);
+        decrementPlayerTwoButton.setEnabled(false);
+        incrementPlayerTwoButton.setEnabled(false);
+        decrementPlayerThreeButton.setEnabled(false);
+        incrementPlayerThreeButton.setEnabled(false);
+        finalScorePlayerOneTextView.setText(String.valueOf(model.getPlayerOneTotalScore()));
+        finalScorePlayerTwoTextView.setText(String.valueOf(model.getPlayerTwoTotalScore()));
+        finalScorePlayerThreeTextView.setText(String.valueOf(model.getPlayerThreeTotalScore()));
     }
 
 }

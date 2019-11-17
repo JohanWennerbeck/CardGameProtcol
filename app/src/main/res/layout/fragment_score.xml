@@ -7,31 +7,28 @@
     tools:context=".ScoreFragment">
 
     <TextView
-        android:id="@+id/name1"
+        android:id="@+id/playerName1"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:gravity="center"
-        android:text="@string/fredrik" />
+        android:gravity="center" />
     <TextView
-        android:id="@+id/name2"
+        android:id="@+id/playerName2"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/name1"
-        android:layout_toEndOf="@id/name1"
+        android:layout_alignTop="@+id/playerName1"
+        android:layout_toEndOf="@id/playerName1"
         android:layout_marginStart="@dimen/_minus20sdp"
-        android:gravity="center"
-        android:text="@string/anders" />
+        android:gravity="center"/>
     <TextView
-        android:id="@+id/name3"
+        android:id="@+id/playerName3"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/name1"
-        android:layout_toEndOf="@id/name2"
+        android:layout_alignTop="@+id/playerName1"
+        android:layout_toEndOf="@id/playerName2"
         android:layout_marginStart="@dimen/_minus20sdp"
-        android:gravity="center"
-        android:text="@string/johan" />
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/high"
@@ -69,7 +66,7 @@
         android:id="@+id/ImageButton1"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_40sdp"
-        android:layout_below="@+id/name1"
+        android:layout_below="@+id/playerName1"
         android:layout_toEndOf="@id/high"
         android:layout_marginStart="@dimen/_20sdp"
         android:contentDescription="TODO" />
@@ -248,35 +245,32 @@
         android:text="@string/register" />
 
     <TextView
-        android:id="@+id/scoreName1"
+        android:id="@+id/playerScoreName1"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
         android:layout_below="@id/black"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_alignStart="@id/scoreCount1"
         android:layout_marginStart="@dimen/_minus47sdp"
-        android:gravity="center"
-        android:text="@string/fredrik" />
+        android:gravity="center" />
 
     <TextView
-        android:id="@+id/scoreName2"
+        android:id="@+id/playerScoreName2"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/scoreName1"
+        android:layout_alignTop="@id/playerScoreName1"
         android:layout_alignStart="@id/scoreCount2"
         android:layout_marginStart="@dimen/_minus42sdp"
-        android:gravity="center"
-        android:text="@string/anders" />
+        android:gravity="center" />
 
     <TextView
-        android:id="@+id/scoreName3"
+        android:id="@+id/playerScoreName3"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/scoreName2"
+        android:layout_alignTop="@id/playerScoreName2"
         android:layout_alignStart="@id/scoreCount3"
         android:layout_marginStart="@dimen/_minus47sdp"
-        android:gravity="center"
-        android:text="@string/johan" />
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/score1"
@@ -284,7 +278,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_minus4sdp"
         android:textSize="@dimen/_13sdp"
-        android:layout_below="@id/scoreName1"
+        android:layout_below="@id/playerScoreName1"
         android:layout_alignStart="@id/scoreCount1"
         />
     <TextView
@@ -293,7 +287,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_minus4sdp"
         android:textSize="@dimen/_13sdp"
-        android:layout_below="@id/scoreName2"
+        android:layout_below="@id/playerScoreName2"
         android:layout_alignStart="@id/scoreCount2"
         android:layout_marginStart="@dimen/_6sdp"
         />
@@ -303,7 +297,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_minus4sdp"
         android:textSize="@dimen/_13sdp"
-        android:layout_below="@id/scoreName3"
+        android:layout_below="@id/playerScoreName3"
         android:layout_alignStart="@id/scoreCount3"
         />
 
