@@ -21,6 +21,7 @@ import android.widget.Toast;
 public class ScoreFragment extends Fragment implements View.OnClickListener {
 
     TrebelloGameModel model;
+    private Context mContext;
 
     TextView scorePlayerOneTextView, scorePlayerTwoTextView, scorePlayerThreeTextView;
     TextView finalScorePlayerOneTextView, finalScorePlayerTwoTextView, finalScorePlayerThreeTextView;
@@ -65,9 +66,16 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onResume() {
+        model.load(mContext);
+        setSavedUI();
+        super.onResume();
+    }
 
+    @Override
+    public void onPause() {
+        model.save(mContext);
+        super.onPause();
     }
 
     @Override
@@ -80,6 +88,7 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onAttach(Context context) {
+        mContext = context;
         super.onAttach(context);
     }
 
@@ -126,14 +135,13 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
         playerOneScoreName.setText(model.getPlayerOne().getName());
         playerTwoScoreName.setText(model.getPlayerTwo().getName());
         playerThreeScoreName.setText(model.getPlayerThree().getName());
-
     }
 
     private void setSavedUI() {
         for (int j = 0; j < model.getRound() - 1; j++) {
-            scoreTextViews[0][j].setText(String.valueOf(model.getPlayerOneScoreArray()[j]));
-            scoreTextViews[1][j].setText(String.valueOf(model.getPlayerTwoScoreArray()[j]));
-            scoreTextViews[2][j].setText(String.valueOf(model.getPlayerThreeScoreArray()[j]));
+            scoreTextViews[0][j].setText(String.valueOf(model.getPlayerOneScoreArray().get(j)));
+            scoreTextViews[1][j].setText(String.valueOf(model.getPlayerTwoScoreArray().get(j)));
+            scoreTextViews[2][j].setText(String.valueOf(model.getPlayerThreeScoreArray().get(j)));
         }
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
@@ -355,11 +363,10 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
                 endGame();
             }
         } else {
-            Context context = v.getContext();
             CharSequence text = "Wrong score input!";
             int duration = Toast.LENGTH_SHORT;
 
-            Toast toast = Toast.makeText(context, text, duration);
+            Toast toast = Toast.makeText(mContext, text, duration);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }

@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import jaw.cardgame.Player;
 
 
-public class PlayerConverterJson implements IConverterJson<Player> {
+public class PlayerConverterJson {
 
     private final static PlayerConverterJson INSTANCE = new PlayerConverterJson();
 
@@ -17,7 +17,6 @@ public class PlayerConverterJson implements IConverterJson<Player> {
 
     }
 
-    @Override
     public JsonObject toJson(Player player) {
         JsonObject jsonObject = new JsonObject();
 
@@ -26,7 +25,6 @@ public class PlayerConverterJson implements IConverterJson<Player> {
         return jsonObject;
     }
 
-    @Override
     public Player toObject(JsonObject object) {
         Player player = new Player();
 
