@@ -48,12 +48,9 @@ public class TrebelloGameModel {
         playerTwoTotalScore = 0;
         playerThreeTotalScore = 0;
         round = 1;
-        playerOne = new Player();
-        playerTwo = new Player();
-        playerThree = new Player();
-        playerOne.setName("Fredrik");
-        playerTwo.setName("Anders");
-        playerThree.setName("Johan");
+        playerOne = new Player("Fredrik");
+        playerTwo = new Player("Anders");
+        playerThree = new Player("Johan");
         playerOneScoreArray = new ArrayList<>(Collections.nCopies(0,12));
         playerTwoScoreArray = new ArrayList<>(Collections.nCopies(0,12));
         playerThreeScoreArray = new ArrayList<>(Collections.nCopies(0,12));
@@ -94,9 +91,9 @@ public class TrebelloGameModel {
     }
 
     void save(Context context){
-        playerOne.save(context, "playerOne");
-        playerTwo.save(context, "playerTwo");
-        playerThree.save(context, "playerThree");
+        playerOne.save(context, playerOne.getName());
+        playerTwo.save(context, playerTwo.getName());
+        playerThree.save(context, playerThree.getName());
         JsonArray array1 = TrebelloGameConverterJson.getInstance().toJson(playerOneScoreArray);
         JsonArray array2 = TrebelloGameConverterJson.getInstance().toJson(playerTwoScoreArray);
         JsonArray array3 = TrebelloGameConverterJson.getInstance().toJson(playerThreeScoreArray);
@@ -121,9 +118,9 @@ public class TrebelloGameModel {
     }
 
     void load(Context context){
-        playerOne.load(context, "playerOne");
-        playerTwo.load(context, "playerTwo");
-        playerThree.load(context, "playerThree");
+        playerOne.load(context, playerOne.getName());
+        playerTwo.load(context, playerTwo.getName());
+        playerThree.load(context, playerThree.getName());
 
         JsonElement element1 = null;
         JsonElement element2 = null;
@@ -220,6 +217,91 @@ public class TrebelloGameModel {
         playerOneScore = 0;
         playerTwoScore = 0;
         playerThreeScore = 0;
+    }
+
+    void addStatistics() {
+        if(playerOneTotalScore > playerTwoTotalScore ){
+            if (playerTwoTotalScore > playerThreeTotalScore) {
+                playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
+                playerTwo.setTrebelloSecond(playerTwo.getTrebelloSecond()+1);
+                playerThree.setTrebelloThird(playerThree.getTrebelloThird()+1);
+            } else if (playerTwoTotalScore < playerThreeTotalScore) {
+                if (playerOneTotalScore > playerThreeTotalScore) {
+                    playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
+                    playerTwo.setTrebelloThird(playerTwo.getTrebelloThird()+1);
+                    playerThree.setTrebelloSecond(playerThree.getTrebelloSecond()+1);
+                } else if ( playerOneTotalScore < playerThreeTotalScore){
+                    playerOne.setTrebelloSecond(playerOne.getTrebelloSecond()+1);
+                    playerTwo.setTrebelloThird(playerTwo.getTrebelloThird()+1);
+                    playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+                } else {
+                    playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
+                    playerTwo.setTrebelloThird(playerTwo.getTrebelloThird()+1);
+                    playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+                }
+            } else {
+                playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
+                playerTwo.setTrebelloSecond(playerTwo.getTrebelloSecond()+1);
+                playerThree.setTrebelloSecond(playerThree.getTrebelloSecond()+1);
+            }
+        } else if (playerOneTotalScore < playerTwoTotalScore) {
+            if (playerOneTotalScore > playerThreeTotalScore) {
+                playerOne.setTrebelloSecond(playerOne.getTrebelloSecond()+1);
+                playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
+                playerThree.setTrebelloThird(playerThree.getTrebelloThird()+1);
+            } else if (playerOneTotalScore < playerThreeTotalScore) {
+                if (playerTwoTotalScore > playerThreeTotalScore) {
+                    playerOne.setTrebelloThird(playerOne.getTrebelloThird()+1);
+                    playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
+                    playerThree.setTrebelloSecond(playerThree.getTrebelloSecond()+1);
+                } else if (playerTwoTotalScore < playerThreeTotalScore) {
+                    playerOne.setTrebelloThird(playerOne.getTrebelloThird()+1);
+                    playerTwo.setTrebelloSecond(playerTwo.getTrebelloSecond()+1);
+                    playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+                } else {
+                    playerOne.setTrebelloThird(playerOne.getTrebelloThird()+1);
+                    playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
+                    playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+                }
+            } else {
+                playerOne.setTrebelloSecond(playerOne.getTrebelloSecond()+1);
+                playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
+                playerThree.setTrebelloSecond(playerThree.getTrebelloSecond()+1);
+            }
+        } else {
+            if (playerOneTotalScore > playerThreeTotalScore) {
+                playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
+                playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
+                playerThree.setTrebelloThird(playerThree.getTrebelloThird()+1);
+            } else if (playerOneTotalScore < playerThreeTotalScore) {
+                playerOne.setTrebelloSecond(playerOne.getTrebelloSecond()+1);
+                playerTwo.setTrebelloSecond(playerTwo.getTrebelloSecond()+1);
+                playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+            } else {
+                playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
+                playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
+                playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+            }
+        }
+
+        if (playerOneTotalScore > playerOne.getTrebelloHighScore()){
+            playerOne.setTrebelloHighScore(playerOneTotalScore);
+        }
+        if (playerOneTotalScore < playerOne.getTrebelloJumboScore()){
+            playerOne.setTrebelloJumboScore(playerOneTotalScore);
+        }
+        if (playerTwoTotalScore > playerTwo.getTrebelloHighScore()){
+            playerTwo.setTrebelloHighScore(playerTwoTotalScore);
+        }
+        if (playerTwoTotalScore < playerTwo.getTrebelloJumboScore()){
+            playerTwo.setTrebelloJumboScore(playerTwoTotalScore);
+        }
+        if (playerThreeTotalScore > playerThree.getTrebelloHighScore()){
+            playerThree.setTrebelloHighScore(playerThreeTotalScore);
+        }
+        if (playerThreeTotalScore < playerThree.getTrebelloJumboScore()){
+            playerThree.setTrebelloJumboScore(playerThreeTotalScore);
+        }
     }
 
     int getPlayerOneScore() {

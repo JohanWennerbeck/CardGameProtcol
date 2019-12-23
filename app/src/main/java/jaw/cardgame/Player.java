@@ -18,11 +18,24 @@ public class Player {
     private int trebelloFirst;
     private int trebelloSecond;
     private int trebelloThird;
-    private int trebelloHighscore;
+    private int trebelloHighScore;
     private int trebelloJumboScore;
 
-    public Player() {
+    public Player(String name) {
+        this.name = name;
+        trebelloFirst = 0;
+        trebelloSecond = 0;
+        trebelloThird = 0;
+        trebelloHighScore = 0;
+        trebelloJumboScore = 0;
+    }
 
+    public Player() {
+        trebelloFirst = 0;
+        trebelloSecond = 0;
+        trebelloThird = 0;
+        trebelloHighScore = 0;
+        trebelloJumboScore = 0;
     }
 
     void save(Context context, String id){
@@ -47,6 +60,11 @@ public class Player {
 
         Player player = PlayerConverterJson.getInstance().toObject(object);
         this.name = player.getName();
+        this.trebelloFirst = player.getTrebelloFirst();
+        this.trebelloSecond = player.getTrebelloSecond();
+        this.trebelloThird = player.getTrebelloThird();
+        this.trebelloHighScore = player.getTrebelloHighScore();
+        this.trebelloJumboScore = player.getTrebelloJumboScore();
     }
 
     public String getName() {
@@ -55,5 +73,45 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getTrebelloJumboScore() {
+        return trebelloJumboScore;
+    }
+
+    public void setTrebelloJumboScore(int trebelloJumboScore) {
+        this.trebelloJumboScore = trebelloJumboScore;
+    }
+
+    public int getTrebelloHighScore() {
+        return trebelloHighScore;
+    }
+
+    public void setTrebelloHighScore(int trebelloHighscore) {
+        this.trebelloHighScore = trebelloHighscore;
+    }
+
+    public int getTrebelloThird() {
+        return trebelloThird;
+    }
+
+    public void setTrebelloThird(int trebelloThird) {
+        this.trebelloThird = trebelloThird;
+    }
+
+    public int getTrebelloSecond() {
+        return trebelloSecond;
+    }
+
+    public void setTrebelloSecond(int trebelloSecond) {
+        this.trebelloSecond = trebelloSecond;
+    }
+
+    public int getTrebelloFirst() {
+        return trebelloFirst;
+    }
+
+    public void setTrebelloFirst(int trebelloFirst) {
+        this.trebelloFirst = trebelloFirst;
     }
 }

@@ -386,6 +386,8 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
         finalScorePlayerOneTextView.setText(String.valueOf(model.getPlayerOneTotalScore()));
         finalScorePlayerTwoTextView.setText(String.valueOf(model.getPlayerTwoTotalScore()));
         finalScorePlayerThreeTextView.setText(String.valueOf(model.getPlayerThreeTotalScore()));
+        model.addStatistics();
     }
+
 
 }
