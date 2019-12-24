@@ -17,10 +17,10 @@ import jaw.cardgame.util.StorageUtil;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ScoreFragment#newInstance} factory method to
+ * Use the {@link TrebelloScoreFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScoreFragment extends Fragment implements View.OnClickListener {
+public class TrebelloScoreFragment extends Fragment implements View.OnClickListener {
 
     TrebelloGameModel model;
     private Context mContext;
@@ -37,7 +37,7 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
     TextView playerOneScoreName, playerTwoScoreName, playerThreeScoreName;
 
 
-    public ScoreFragment() {
+    public TrebelloScoreFragment() {
         // Required empty public constructor
     }
 
@@ -45,11 +45,11 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment ScoreFragment.
+     * @return A new instance of fragment TrebelloScoreFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ScoreFragment newInstance() {
-        ScoreFragment fragment = new ScoreFragment();
+    public static TrebelloScoreFragment newInstance() {
+        TrebelloScoreFragment fragment = new TrebelloScoreFragment();
         return fragment;
     }
 

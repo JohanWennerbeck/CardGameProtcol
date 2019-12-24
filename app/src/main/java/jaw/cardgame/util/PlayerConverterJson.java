@@ -27,8 +27,6 @@ public class PlayerConverterJson {
         jsonObject.addProperty("HighScore", player.getTrebelloHighScore());
         jsonObject.addProperty("JumboScore", player.getTrebelloJumboScore());
 
-
-
         return jsonObject;
     }
 

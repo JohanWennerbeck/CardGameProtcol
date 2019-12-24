@@ -2,16 +2,11 @@ package jaw.cardgame;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-
-import jaw.cardgame.util.StorageUtil;
-import jaw.cardgame.util.TrebelloGameConverterJson;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -22,7 +17,18 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Button trebelloGame = findViewById(R.id.trebelloButton);
-        trebelloGame.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ScoreActivity.class)));
+        trebelloGame.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, TrebelloActivity.class);
+            intent.setAction("Game");
+            startActivity(intent);
+        });
+
+        Button trebelloStatistics = findViewById(R.id.statistics);
+        trebelloStatistics.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, TrebelloActivity.class);
+            intent.setAction("Statistics");
+            startActivity(intent);
+        });
     }
 
     @Override
