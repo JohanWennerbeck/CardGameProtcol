@@ -53,7 +53,7 @@ public class Player {
         } catch (FileNotFoundException ignored) {
         }
 
-        if (element == null || !element.isJsonArray()) {
+        if (element == null || !element.isJsonObject()) {
             return;
         }
         JsonObject object = element.getAsJsonObject();

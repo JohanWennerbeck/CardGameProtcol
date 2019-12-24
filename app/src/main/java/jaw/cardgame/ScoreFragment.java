@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import jaw.cardgame.util.StorageUtil;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +31,7 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
     ImageButton decrementPlayerOneButton, incrementPlayerOneButton,
             decrementPlayerTwoButton, incrementPlayerTwoButton,
             decrementPlayerThreeButton, incrementPlayerThreeButton;
-    Button registerScore;
+    Button registerScore, newGame;
     ImageButton gameOptions[][] = new ImageButton[3][4];
     TextView playerOneName, playerTwoName, playerThreeName;
     TextView playerOneScoreName, playerTwoScoreName, playerThreeScoreName;
@@ -110,6 +112,9 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
         //Init register score
         registerScore = v.findViewById(R.id.register);
         registerScore.setOnClickListener(this);
+
+        newGame = v.findViewById(R.id.new_game);
+        newGame.setOnClickListener(this);
 
         initScoreViews(v);
         initGameOptions(v);
@@ -284,6 +289,11 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
                 updateScore(v);
                 break;
             }
+            case R.id.new_game: {
+                model.newGame(mContext);
+                newGame();
+                break;
+            }
             case R.id.ImageButton1: {
                 toggleGameOption(0, 0);
                 break;
@@ -361,6 +371,7 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
             scorePlayerThreeTextView.setText("0");
             if (model.getRound() == 13) {
                 endGame();
+                model.addStatistics(mContext);
             }
         } else {
             CharSequence text = "Wrong score input!";
@@ -374,6 +385,8 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
 
     void endGame(){
         registerScore.setEnabled(false);
+        registerScore.setVisibility(View.INVISIBLE);
+        newGame.setVisibility(View.VISIBLE);
         scorePlayerOneTextView.setTextColor(scorePlayerOneTextView.getTextColors().withAlpha(0));
         scorePlayerTwoTextView.setTextColor(scorePlayerTwoTextView.getTextColors().withAlpha(0));
         scorePlayerThreeTextView.setTextColor(scorePlayerThreeTextView.getTextColors().withAlpha(0));
@@ -386,8 +399,36 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
         finalScorePlayerOneTextView.setText(String.valueOf(model.getPlayerOneTotalScore()));
         finalScorePlayerTwoTextView.setText(String.valueOf(model.getPlayerTwoTotalScore()));
         finalScorePlayerThreeTextView.setText(String.valueOf(model.getPlayerThreeTotalScore()));
-        model.addStatistics();
     }
 
+    void newGame(){
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 3; j++) {
+                scoreTextViews[j][i].setText("");
+            }
+        }
+
+        scorePlayerOneTextView.setText("0");
+        scorePlayerTwoTextView.setText("0");
+        scorePlayerThreeTextView.setText("0");
+        finalScorePlayerOneTextView.setText("");
+        finalScorePlayerTwoTextView.setText("");
+        finalScorePlayerThreeTextView.setText("");
+        newGame.setVisibility(View.GONE);
+        registerScore.setVisibility(View.VISIBLE);
+
+        scorePlayerOneTextView.setTextColor(scorePlayerOneTextView.getTextColors().withAlpha(255));
+        scorePlayerTwoTextView.setTextColor(scorePlayerTwoTextView.getTextColors().withAlpha(255));
+        scorePlayerThreeTextView.setTextColor(scorePlayerThreeTextView.getTextColors().withAlpha(255));
+        decrementPlayerOneButton.setEnabled(true);
+        incrementPlayerOneButton.setEnabled(true);
+        decrementPlayerTwoButton.setEnabled(true);
+        incrementPlayerTwoButton.setEnabled(true);
+        decrementPlayerThreeButton.setEnabled(true);
+        incrementPlayerThreeButton.setEnabled(true);
+        registerScore.setEnabled(true);
+
+
+    }
 
 }

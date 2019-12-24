@@ -13,13 +13,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/_100sdp"/>
 
     <Button
-        android:id="@+id/newGameButton"
+        android:id="@+id/trebelloButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_game"
+        android:text="@string/trebello"
         android:layout_below="@+id/welcome"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_30sdp"/>
+
+    <Button
+        android:id="@+id/statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/statistics"
+        android:layout_below="@+id/trebelloButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_30sdp"/>
 </RelativeLayout>

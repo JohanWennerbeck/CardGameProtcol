@@ -10,6 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import jaw.cardgame.util.StorageUtil;
+import jaw.cardgame.util.TrebelloGameConverterJson;
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button newGameButton = findViewById(R.id.newGameButton);
-        newGameButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ScoreActivity.class)));
+        Button trebelloGame = findViewById(R.id.trebelloButton);
+        trebelloGame.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ScoreActivity.class)));
     }
 
     @Override

@@ -13,8 +13,7 @@
     <string name="register">Register score</string>
     <string name="zero">0</string>
     <string name="welcome">Welcome!!!</string>
-    <string name="new_game">New game</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="trebello">Trebello</string>
+    <string name="statistics">Statistics</string>
+    <string name="new_game">New Game</string>
 </resources>

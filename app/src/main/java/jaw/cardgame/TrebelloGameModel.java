@@ -91,9 +91,7 @@ public class TrebelloGameModel {
     }
 
     void save(Context context){
-        playerOne.save(context, playerOne.getName());
-        playerTwo.save(context, playerTwo.getName());
-        playerThree.save(context, playerThree.getName());
+        savePlayers(context);
         JsonArray array1 = TrebelloGameConverterJson.getInstance().toJson(playerOneScoreArray);
         JsonArray array2 = TrebelloGameConverterJson.getInstance().toJson(playerTwoScoreArray);
         JsonArray array3 = TrebelloGameConverterJson.getInstance().toJson(playerThreeScoreArray);
@@ -117,10 +115,14 @@ public class TrebelloGameModel {
         StorageUtil.save(context.getApplicationContext(), "PlayerThreeScore", object4);
     }
 
+    void savePlayers(Context context){
+        playerOne.save(context, playerOne.getName());
+        playerTwo.save(context, playerTwo.getName());
+        playerThree.save(context, playerThree.getName());
+    }
+
     void load(Context context){
-        playerOne.load(context, playerOne.getName());
-        playerTwo.load(context, playerTwo.getName());
-        playerThree.load(context, playerThree.getName());
+        loadPlayers(context);
 
         JsonElement element1 = null;
         JsonElement element2 = null;
@@ -167,16 +169,6 @@ public class TrebelloGameModel {
                 || (element8 == null) || !element8.isJsonArray()
                 || (element9 == null) || !element9.isJsonArray()
                 || (element10 == null) || !element10.isJsonArray()) {
-            System.out.println(element1);
-            System.out.println(element2);
-            System.out.println(element3);
-            System.out.println(element4);
-            System.out.println(element5);
-            System.out.println(element6);
-            System.out.println(element7);
-            System.out.println(element8);
-            System.out.println(element9);
-            System.out.println(element10);
             return;
         }
         JsonArray array1 = element1.getAsJsonArray();
@@ -203,6 +195,12 @@ public class TrebelloGameModel {
 
     }
 
+    void loadPlayers(Context context){
+        playerOne.load(context, playerOne.getName());
+        playerTwo.load(context, playerTwo.getName());
+        playerThree.load(context, playerThree.getName());
+    }
+
     void updateScore(){
         playerOneTotalScore += playerOneScore;
         playerTwoTotalScore += playerTwoScore;
@@ -219,7 +217,30 @@ public class TrebelloGameModel {
         playerThreeScore = 0;
     }
 
-    void addStatistics() {
+    void newGame(Context context){
+        StorageUtil.resetData(context.getApplicationContext(), "PlayerOneArray");
+        StorageUtil.resetData(context.getApplicationContext(), "PlayerTwoArray");
+        StorageUtil.resetData(context.getApplicationContext(), "PlayerThreeArray");
+        StorageUtil.resetData(context.getApplicationContext(), "GameOption0");
+        StorageUtil.resetData(context.getApplicationContext(), "GameOption1");
+        StorageUtil.resetData(context.getApplicationContext(), "GameOption2");
+        StorageUtil.resetData(context.getApplicationContext(), "Round");
+        StorageUtil.resetData(context.getApplicationContext(), "PlayerOneScore");
+        StorageUtil.resetData(context.getApplicationContext(), "PlayerTwoScore");
+        StorageUtil.resetData(context.getApplicationContext(), "PlayerThreeScore");
+        playerOneScore = 0;
+        playerTwoScore = 0;
+        playerThreeScore = 0;
+        playerOneTotalScore = 0;
+        playerTwoTotalScore = 0;
+        playerThreeTotalScore = 0;
+        round = 1;
+        playerOneScoreArray = new ArrayList<>(Collections.nCopies(0,12));
+        playerTwoScoreArray = new ArrayList<>(Collections.nCopies(0,12));
+        playerThreeScoreArray = new ArrayList<>(Collections.nCopies(0,12));
+    }
+
+    void addStatistics(Context context) {
         if(playerOneTotalScore > playerTwoTotalScore ){
             if (playerTwoTotalScore > playerThreeTotalScore) {
                 playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
@@ -302,6 +323,7 @@ public class TrebelloGameModel {
         if (playerThreeTotalScore < playerThree.getTrebelloJumboScore()){
             playerThree.setTrebelloJumboScore(playerThreeTotalScore);
         }
+        savePlayers(context);
     }
 
     int getPlayerOneScore() {
