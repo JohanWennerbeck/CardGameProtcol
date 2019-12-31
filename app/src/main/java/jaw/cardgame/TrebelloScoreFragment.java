@@ -399,6 +399,7 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
         finalScorePlayerOneTextView.setText(String.valueOf(model.getPlayerOneTotalScore()));
         finalScorePlayerTwoTextView.setText(String.valueOf(model.getPlayerTwoTotalScore()));
         finalScorePlayerThreeTextView.setText(String.valueOf(model.getPlayerThreeTotalScore()));
+
     }
 
     void newGame(){
@@ -407,7 +408,13 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
                 scoreTextViews[j][i].setText("");
             }
         }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                gameOptions[i][j].setImageResource(android.R.color.transparent);
+                model.setCheckedGameOption(i, j, false);
+            }
 
+        }
         scorePlayerOneTextView.setText("0");
         scorePlayerTwoTextView.setText("0");
         scorePlayerThreeTextView.setText("0");
