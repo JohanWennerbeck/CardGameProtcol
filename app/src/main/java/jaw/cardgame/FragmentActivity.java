@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class TrebelloActivity extends AppCompatActivity {
+public class FragmentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,13 @@ public class TrebelloActivity extends AppCompatActivity {
         } else if (getIntent().getAction() == "Statistics"){
             if (fragment == null) {
                 fragment = new TrebelloStatisticsFragment();
+                manager.beginTransaction()
+                        .add(R.id.trebelloFragmentContainer, fragment)
+                        .commit();
+            }
+        } else if (getIntent().getAction() == "EditPlayers"){
+            if (fragment == null) {
+                fragment = new PlayerFragment();
                 manager.beginTransaction()
                         .add(R.id.trebelloFragmentContainer, fragment)
                         .commit();

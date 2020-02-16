@@ -18,15 +18,22 @@ public class MainActivity extends AppCompatActivity {
 
         Button trebelloGame = findViewById(R.id.trebelloButton);
         trebelloGame.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, TrebelloActivity.class);
+            Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
             intent.setAction("Game");
             startActivity(intent);
         });
 
         Button trebelloStatistics = findViewById(R.id.statistics);
         trebelloStatistics.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, TrebelloActivity.class);
+            Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
             intent.setAction("Statistics");
+            startActivity(intent);
+        });
+
+        Button editPlayers = findViewById(R.id.edit_players);
+        editPlayers.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
+            intent.setAction("EditPlayers");
             startActivity(intent);
         });
     }

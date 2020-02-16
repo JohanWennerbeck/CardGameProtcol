@@ -47,7 +47,6 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
      *
      * @return A new instance of fragment TrebelloScoreFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static TrebelloScoreFragment newInstance() {
         TrebelloScoreFragment fragment = new TrebelloScoreFragment();
         return fragment;

@@ -34,4 +34,13 @@
         android:layout_below="@+id/trebelloButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_30sdp"/>
+
+    <Button
+            android:id="@+id/edit_players"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_players"
+            android:layout_below="@+id/statistics"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_30sdp"/>
 </RelativeLayout>
