@@ -19,4 +19,5 @@
     <string name="edit_players">Edit Players</string>
     <string name="name_new_player">Name of new player</string>
     <string name="add_player">Add player</string>
+    <string name="write_the_player_name_here">Write the player name here</string>
 </resources>
