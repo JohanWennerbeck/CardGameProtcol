@@ -182,9 +182,9 @@ public class TrebelloGameModel {
         JsonArray array5 = element9.getAsJsonArray();
         JsonArray array6 = element10.getAsJsonArray();
 
-        playerOneScoreArray = (ArrayList<Integer>) TrebelloGameConverterJson.getInstance().toObject(array1);
-        playerTwoScoreArray = (ArrayList<Integer>) TrebelloGameConverterJson.getInstance().toObject(array2);
-        playerThreeScoreArray = (ArrayList<Integer>) TrebelloGameConverterJson.getInstance().toObject(array3);
+        playerOneScoreArray = TrebelloGameConverterJson.getInstance().toObject(array1);
+        playerTwoScoreArray = TrebelloGameConverterJson.getInstance().toObject(array2);
+        playerThreeScoreArray = TrebelloGameConverterJson.getInstance().toObject(array3);
         round = TrebelloGameConverterJson.getInstance().toObject(object1, "Round");
         playerOneTotalScore = TrebelloGameConverterJson.getInstance().toObject(object2, "PlayerOneScore");
         playerTwoTotalScore = TrebelloGameConverterJson.getInstance().toObject(object3, "PlayerTwoScore");

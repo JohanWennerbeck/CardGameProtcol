@@ -60,8 +60,8 @@ public class TrebelloGameConverterJson{
         return jsonObject;
     }
 
-    public List toObject(JsonArray array) {
-        List<Integer> list = new ArrayList<>();
+    public ArrayList<Integer> toObject(JsonArray array) {
+        ArrayList<Integer> list = new ArrayList<>();
         for (int i = 0; i < array.size(); i++) {
             JsonObject object = array.get(i).getAsJsonObject();
 

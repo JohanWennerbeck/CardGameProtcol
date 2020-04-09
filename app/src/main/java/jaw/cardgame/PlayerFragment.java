@@ -69,7 +69,7 @@ public class PlayerFragment extends Fragment implements View.OnClickListener {
             case R.id.add_new_player_button: {
                 new_player_name = editText_new_player_name.getText().toString();
                 Player player = new Player(new_player_name);
-                player.save(mContext, new_player_name);
+                player.saveNewPlayer(mContext, new_player_name);
                 editText_new_player_name.setText(null);
             }
         }

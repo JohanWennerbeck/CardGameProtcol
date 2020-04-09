@@ -2,10 +2,12 @@ package jaw.cardgame;
 
 import android.content.Context;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import jaw.cardgame.util.PlayerConverterJson;
 import jaw.cardgame.util.StorageUtil;
@@ -43,6 +45,34 @@ public class Player {
         StorageUtil.save(context.getApplicationContext(), id, object);
     }
 
+    void saveNewPlayer(Context context, String id){
+        JsonElement element = null;
+        try {
+            element = StorageUtil.load(context.getApplicationContext(), "All_players");
+        } catch (IllegalStateException e){
+            StorageUtil.resetData(context.getApplicationContext(), id);
+        } catch (FileNotFoundException ignored){
+        }
+
+        if(element == null || !element.isJsonArray()){
+            //First time one player is added
+            ArrayList<String> initAllNames = new ArrayList<>();
+            initAllNames.add(id);
+            JsonArray newArray = PlayerConverterJson.getInstance().toJson(initAllNames);
+            StorageUtil.save(context.getApplicationContext(), "All_players", newArray);
+            return;
+        } else {
+            JsonArray array = element.getAsJsonArray();
+            ArrayList<String> allNames = PlayerConverterJson.getInstance().toObjectString(array);
+            if (!allNames.contains(id)) {
+                allNames.add(id);
+                JsonArray newArray = PlayerConverterJson.getInstance().toJson(allNames);
+                StorageUtil.save(context.getApplicationContext(), "All_players", newArray);
+            }
+        }
+        JsonObject object = PlayerConverterJson.getInstance().toJson(this);
+        StorageUtil.save(context.getApplicationContext(), id, object);
+    }
     void load(Context context, String id){
         JsonElement element = null;
         try {

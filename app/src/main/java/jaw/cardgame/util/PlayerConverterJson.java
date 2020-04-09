@@ -1,6 +1,10 @@
 package jaw.cardgame.util;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import jaw.cardgame.Player;
 
@@ -41,5 +45,37 @@ public class PlayerConverterJson {
         player.setTrebelloJumboScore(object.get("JumboScore").getAsInt());
 
         return player;
+    }
+
+    public JsonArray toJson(ArrayList<String> list) {
+        JsonArray jsonArray = new JsonArray();
+
+        for (String string : list) {
+            jsonArray.add(toJson(string));
+        }
+        return jsonArray;
+    }
+
+    public JsonObject toJson(String string) {
+        JsonObject jsonObject = new JsonObject();
+
+        jsonObject.addProperty("Name", string);
+
+        return jsonObject;
+    }
+
+    public ArrayList<String> toObjectString(JsonArray array) {
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < array.size(); i++) {
+            JsonObject object = array.get(i).getAsJsonObject();
+
+            list.add(toObjectString(object));
+        }
+        return list;
+    }
+
+    public String toObjectString(JsonObject object) {
+        String string = object.get("Name").getAsString();
+        return string;
     }
 }
