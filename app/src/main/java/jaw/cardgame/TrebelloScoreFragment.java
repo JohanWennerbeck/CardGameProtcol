@@ -17,7 +17,6 @@ import jaw.cardgame.util.StorageUtil;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TrebelloScoreFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class TrebelloScoreFragment extends Fragment implements View.OnClickListener {

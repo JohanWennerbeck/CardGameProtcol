@@ -7,30 +7,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link PlayerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PlayerFragment extends Fragment {
+public class PlayerFragment extends Fragment implements View.OnClickListener {
 
+    private Context mContext;
     String new_player_name;
     private static final String STATE_NEW_PLAYER_NAME = "newPlayerName";
+
+    Button add_new_player;
+    EditText editText_new_player_name;
+
     public PlayerFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment PlayerFragment.
-     */
-    public static PlayerFragment newInstance() {
-        PlayerFragment fragment = new PlayerFragment();
-        return fragment;
     }
 
     @Override
@@ -42,23 +37,41 @@ public class PlayerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_player, container, false);
+        View v = inflater.inflate(R.layout.fragment_player, container, false);
+        add_new_player = v.findViewById(R.id.add_new_player_button);
+        add_new_player.setOnClickListener(this);
+        editText_new_player_name = v.findViewById(R.id.new_player_name);
+        return v;
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // Save the user's current game state
+        savedInstanceState.putString(STATE_NEW_PLAYER_NAME, new_player_name);
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
     public void onAttach(Context context) {
+        mContext = context;
         super.onAttach(context);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.add_new_player_button: {
+                new_player_name = editText_new_player_name.getText().toString();
+                Player player = new Player(new_player_name);
+                player.save(mContext, new_player_name);
+                editText_new_player_name.setText(null);
+            }
+        }
     }
 }
