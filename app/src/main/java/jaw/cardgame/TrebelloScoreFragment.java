@@ -41,17 +41,6 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment TrebelloScoreFragment.
-     */
-    public static TrebelloScoreFragment newInstance() {
-        TrebelloScoreFragment fragment = new TrebelloScoreFragment();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
