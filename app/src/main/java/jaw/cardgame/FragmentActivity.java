@@ -13,26 +13,26 @@ public class FragmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trebello_main);
 
         FragmentManager manager = getSupportFragmentManager();
-        Fragment fragment = manager.findFragmentById(R.id.trebelloFragmentContainer);
+        Fragment fragment = manager.findFragmentById(R.id.fragmentContainer);
         if(getIntent().getAction() == "Game"){
             if (fragment == null) {
-                fragment = new TrebelloScoreFragment();
+                fragment = new SelectPlayersFragment();
                 manager.beginTransaction()
-                        .add(R.id.trebelloFragmentContainer, fragment)
+                        .add(R.id.fragmentContainer, fragment)
                         .commit();
             }
         } else if (getIntent().getAction() == "Statistics"){
             if (fragment == null) {
                 fragment = new TrebelloStatisticsFragment();
                 manager.beginTransaction()
-                        .add(R.id.trebelloFragmentContainer, fragment)
+                        .add(R.id.fragmentContainer, fragment)
                         .commit();
             }
         } else if (getIntent().getAction() == "EditPlayers"){
             if (fragment == null) {
                 fragment = new PlayerFragment();
                 manager.beginTransaction()
-                        .add(R.id.trebelloFragmentContainer, fragment)
+                        .add(R.id.fragmentContainer, fragment)
                         .commit();
             }
         }
