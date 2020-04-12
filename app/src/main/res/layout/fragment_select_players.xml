@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectPlayersFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".SelectPlayersFragment"
+    android:id="@+id/select_player_fragment">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/select_player_textview"
+        android:text="@string/select_3_players"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:textSize="@dimen/_14sdp"/>
+</RelativeLayout>

@@ -50,7 +50,7 @@ public class Player {
         try {
             element = StorageUtil.load(context.getApplicationContext(), "All_players");
         } catch (IllegalStateException e){
-            StorageUtil.resetData(context.getApplicationContext(), id);
+            StorageUtil.resetData(context.getApplicationContext(), "All_players");
         } catch (FileNotFoundException ignored){
         }
 
