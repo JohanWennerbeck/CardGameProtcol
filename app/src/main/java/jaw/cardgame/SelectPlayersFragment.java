@@ -1,5 +1,6 @@
 package jaw.cardgame;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.media.Image;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MarginLayoutParamsCompat;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -104,20 +107,27 @@ public class SelectPlayersFragment extends Fragment implements View.OnClickListe
             }
         }
 
-        Button myButton = new Button(v.getContext());
-        myButton.setText(R.string.start_new_game);
-
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMarginEnd(50);
-        lp.setMarginStart(50);
-        lp.addRule(RelativeLayout.BELOW, allPlayerButtons.get(allPlayerButtons.size()-1).getId());
-        ll.addView(myButton, lp);
         if(allNames.size() < 3 || notEnoughPlayers){
-            notEnoughPlayers();
+            notEnoughPlayers(v.getContext().getApplicationContext());
+        } else {
+            Button myButton = new Button(v.getContext());
+            myButton.setText(R.string.start_new_game);
+
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMarginEnd(50);
+            lp.setMarginStart(50);
+            lp.addRule(RelativeLayout.BELOW, allPlayerButtons.get(allPlayerButtons.size()-1).getId());
+            ll.addView(myButton, lp);
         }
     }
 
-    private void notEnoughPlayers() {
+    private void notEnoughPlayers(Context context) {
+        CharSequence text = "Not enough players is created to play a game of trebello";
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 
     @Override
