@@ -4,11 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -68,9 +70,28 @@ public class PlayerFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.add_new_player_button: {
                 new_player_name = editText_new_player_name.getText().toString();
-                Player player = new Player(new_player_name);
-                player.saveNewPlayer(mContext, new_player_name);
-                editText_new_player_name.setText(null);
+                if(!new_player_name.equals("")){
+                    Player player = new Player(new_player_name);
+                    boolean uniqueName = player.saveNewPlayer(mContext, new_player_name);
+                    if(!uniqueName){
+                        CharSequence text = "Player with that name already exists";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(mContext, text, duration);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                    } else {
+                        editText_new_player_name.setText(null);
+                    }
+                } else {
+                    CharSequence text = "Can't enter empty name";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(mContext, text, duration);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }
+
             }
         }
     }

@@ -45,7 +45,7 @@ public class Player {
         StorageUtil.save(context.getApplicationContext(), id, object);
     }
 
-    void saveNewPlayer(Context context, String id){
+    boolean saveNewPlayer(Context context, String id){
         JsonElement element = null;
         try {
             element = StorageUtil.load(context.getApplicationContext(), "All_players");
@@ -60,7 +60,7 @@ public class Player {
             initAllNames.add(id);
             JsonArray newArray = PlayerConverterJson.getInstance().toJson(initAllNames);
             StorageUtil.save(context.getApplicationContext(), "All_players", newArray);
-            return;
+            return true;
         } else {
             JsonArray array = element.getAsJsonArray();
             ArrayList<String> allNames = PlayerConverterJson.getInstance().toObjectString(array);
@@ -68,10 +68,14 @@ public class Player {
                 allNames.add(id);
                 JsonArray newArray = PlayerConverterJson.getInstance().toJson(allNames);
                 StorageUtil.save(context.getApplicationContext(), "All_players", newArray);
+            } else {
+                //Name already exists
+                return false;
             }
         }
         JsonObject object = PlayerConverterJson.getInstance().toJson(this);
         StorageUtil.save(context.getApplicationContext(), id, object);
+        return true;
     }
     void load(Context context, String id){
         JsonElement element = null;
