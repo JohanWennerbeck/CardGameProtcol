@@ -32,7 +32,7 @@ import jaw.cardgame.util.StorageUtil;
  * A simple {@link Fragment} subclass.
  */
 public class SelectPlayersFragment extends Fragment implements View.OnClickListener{
-    ArrayList<String> chosenPlayers;
+    ArrayList<String> selectedPlayers;
 
     public SelectPlayersFragment() {
         // Required empty public constructor
@@ -43,7 +43,7 @@ public class SelectPlayersFragment extends Fragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        chosenPlayers = new ArrayList<>();
+        selectedPlayers = new ArrayList<>();
         View v = inflater.inflate(R.layout.fragment_select_players, container, false);
         initButtons(v);
 
@@ -94,10 +94,12 @@ public class SelectPlayersFragment extends Fragment implements View.OnClickListe
                 lpImage.addRule(RelativeLayout.END_OF, playerButton.getId());
                 playerButton.setOnClickListener((View view) -> {
                     selectedCheckImage.setImageResource(R.drawable.ic_check_black_24dp);
+                    selectedPlayers.add(playerButton.getText().toString());
                 });
 
                 playerButton.setOnLongClickListener((View view2) -> {
                     selectedCheckImage.setImageResource(android.R.color.transparent);
+                    selectedPlayers.remove(playerButton.getText().toString());
                     return true;
                 });
                 
