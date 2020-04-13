@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectPlayersFragment"
+    android:id="@+id/select_player_fragment">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/load_or_new"
+        android:text="@string/do_you_want_to_continue_on_the_previous_game_or_start_a_new_one"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:textSize="@dimen/_14sdp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/load_button"
+        android:text="@string/load_game"
+        android:layout_below="@+id/load_or_new"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/new_game_button"
+        android:text="@string/load_game"
+        android:layout_below="@+id/load_button"/>
+
+
+</RelativeLayout>

@@ -18,36 +18,36 @@ public class TrebelloGameConverterJson{
 
     }
 
-    public JsonArray toJson(ArrayList<Integer> list) {
+    public JsonArray toJson(ArrayList<Integer> list, String name) {
         JsonArray jsonArray = new JsonArray();
 
         for (Integer integer : list) {
-            jsonArray.add(toJson(integer));
+            jsonArray.add(toJson(integer, name));
         }
         return jsonArray;
     }
 
-    public JsonArray toJson(boolean[] booleans) {
+    public JsonArray toJson(boolean[] booleans, String name) {
         JsonArray jsonArray = new JsonArray();
 
         for (boolean bool : booleans) {
-            jsonArray.add(toJson(bool));
+            jsonArray.add(toJson(bool, name));
         }
         return jsonArray;
     }
 
-    public JsonObject toJson(Integer integer) {
+    public JsonObject toJson(Integer integer, String name) {
         JsonObject jsonObject = new JsonObject();
 
-        jsonObject.addProperty("Score", integer);
+        jsonObject.addProperty(name, integer);
 
         return jsonObject;
     }
 
-    public JsonObject toJson(boolean bool) {
+    public JsonObject toJson(boolean bool, String name) {
         JsonObject jsonObject = new JsonObject();
 
-        jsonObject.addProperty("GameOption", bool);
+        jsonObject.addProperty(name, bool);
 
         return jsonObject;
     }
@@ -60,31 +60,26 @@ public class TrebelloGameConverterJson{
         return jsonObject;
     }
 
-    public ArrayList<Integer> toObject(JsonArray array) {
+    public ArrayList<Integer> toObject(JsonArray array, String name) {
         ArrayList<Integer> list = new ArrayList<>();
         for (int i = 0; i < array.size(); i++) {
             JsonObject object = array.get(i).getAsJsonObject();
 
-            list.add(toObject(object));
+            list.add(toObject(object, name));
         }
         return list;
     }
 
-    public boolean[] toObjectBool(JsonArray array) {
+    public boolean[] toObjectBool(JsonArray array, String name) {
         boolean[] booleans = new boolean[4];
         for (int i = 0; i < array.size(); i++) {
             JsonObject object = array.get(i).getAsJsonObject();
-            booleans[i] = toObjectBool(object);
+            booleans[i] = toObjectBool(object, name);
         }
         return booleans;
     }
 
-    public int toObject(JsonObject object) {
-        Integer integer = object.get("Score").getAsInt();
-        return integer;
-    }
-
-    public boolean toObjectBool(JsonObject object) {
+    public boolean toObjectBool(JsonObject object, String name) {
         boolean bool = object.get("GameOption").getAsBoolean();
         return bool;
     }

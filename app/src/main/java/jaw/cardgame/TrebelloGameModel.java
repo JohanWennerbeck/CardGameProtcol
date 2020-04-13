@@ -27,9 +27,9 @@ class TrebelloGameModel {
     private Player playerOne, playerTwo, playerThree;
 
     private static final String STATE_ROUND = "round";
-    private static final String STATE_PERSON_ONE_SCORE = "playerOne";
-    private static final String STATE_PERSON_TWO_SCORE = "playerTwo";
-    private static final String STATE_PERSON_THREE_SCORE = "playerThree";
+    private static final String STATE_PERSON_ONE_SCORE = "playerOneScore";
+    private static final String STATE_PERSON_TWO_SCORE = "playerTwoScore";
+    private static final String STATE_PERSON_THREE_SCORE = "playerThreeScore";
     private static final String STATE_PERSON_ONE_SCORE_ARRAY = "playerOneScoreArray";
     private static final String STATE_PERSON_TWO_SCORE_ARRAY = "playerTwoScoreArray";
     private static final String STATE_PERSON_THREE_SCORE_ARRAY = "playerThreeScoreArray";
@@ -40,7 +40,7 @@ class TrebelloGameModel {
     private static final String STATE_GAME_OPTION_TWO = "gameOptionTwo";
     private static final String STATE_GAME_OPTION_THREE = "gameOptionThree";
 
-    TrebelloGameModel(ArrayList<String> playerNames){
+    TrebelloGameModel(Bundle bundleArguments){
         playerOneScore = 0;
         playerTwoScore = 0;
         playerThreeScore = 0;
@@ -48,9 +48,9 @@ class TrebelloGameModel {
         playerTwoTotalScore = 0;
         playerThreeTotalScore = 0;
         round = 1;
-        playerOne = new Player(playerNames.get(0));
-        playerTwo = new Player(playerNames.get(1));
-        playerThree = new Player(playerNames.get(2));
+        playerOne = new Player(bundleArguments.getStringArrayList("playerNames").get(0));
+        playerTwo = new Player(bundleArguments.getStringArrayList("playerNames").get(1));
+        playerThree = new Player(bundleArguments.getStringArrayList("playerNames").get(2));
         playerOneScoreArray = new ArrayList<>(Collections.nCopies(0,12));
         playerTwoScoreArray = new ArrayList<>(Collections.nCopies(0,12));
         playerThreeScoreArray = new ArrayList<>(Collections.nCopies(0,12));
@@ -92,12 +92,12 @@ class TrebelloGameModel {
 
     void save(Context context){
         savePlayers(context);
-        JsonArray array1 = TrebelloGameConverterJson.getInstance().toJson(playerOneScoreArray);
-        JsonArray array2 = TrebelloGameConverterJson.getInstance().toJson(playerTwoScoreArray);
-        JsonArray array3 = TrebelloGameConverterJson.getInstance().toJson(playerThreeScoreArray);
-        JsonArray array4 = TrebelloGameConverterJson.getInstance().toJson(checkedGameOptions[0]);
-        JsonArray array5 = TrebelloGameConverterJson.getInstance().toJson(checkedGameOptions[1]);
-        JsonArray array6 = TrebelloGameConverterJson.getInstance().toJson(checkedGameOptions[2]);
+        JsonArray array1 = TrebelloGameConverterJson.getInstance().toJson(playerOneScoreArray, "Score");
+        JsonArray array2 = TrebelloGameConverterJson.getInstance().toJson(playerTwoScoreArray, "Score");
+        JsonArray array3 = TrebelloGameConverterJson.getInstance().toJson(playerThreeScoreArray, "Score");
+        JsonArray array4 = TrebelloGameConverterJson.getInstance().toJson(checkedGameOptions[0], "GameOption");
+        JsonArray array5 = TrebelloGameConverterJson.getInstance().toJson(checkedGameOptions[1], "GameOption");
+        JsonArray array6 = TrebelloGameConverterJson.getInstance().toJson(checkedGameOptions[2], "GameOption");
         JsonObject object1 = TrebelloGameConverterJson.getInstance().toJson(round, "Round");
         JsonObject object2 = TrebelloGameConverterJson.getInstance().toJson(playerOneTotalScore, "PlayerOneScore");
         JsonObject object3 = TrebelloGameConverterJson.getInstance().toJson(playerTwoTotalScore, "PlayerTwoScore");
@@ -182,16 +182,16 @@ class TrebelloGameModel {
         JsonArray array5 = element9.getAsJsonArray();
         JsonArray array6 = element10.getAsJsonArray();
 
-        playerOneScoreArray = TrebelloGameConverterJson.getInstance().toObject(array1);
-        playerTwoScoreArray = TrebelloGameConverterJson.getInstance().toObject(array2);
-        playerThreeScoreArray = TrebelloGameConverterJson.getInstance().toObject(array3);
+        playerOneScoreArray = TrebelloGameConverterJson.getInstance().toObject(array1, "Score");
+        playerTwoScoreArray = TrebelloGameConverterJson.getInstance().toObject(array2, "Score");
+        playerThreeScoreArray = TrebelloGameConverterJson.getInstance().toObject(array3, "Score");
         round = TrebelloGameConverterJson.getInstance().toObject(object1, "Round");
         playerOneTotalScore = TrebelloGameConverterJson.getInstance().toObject(object2, "PlayerOneScore");
         playerTwoTotalScore = TrebelloGameConverterJson.getInstance().toObject(object3, "PlayerTwoScore");
         playerThreeTotalScore = TrebelloGameConverterJson.getInstance().toObject(object4, "PlayerThreeScore");
-        checkedGameOptions[0] = TrebelloGameConverterJson.getInstance().toObjectBool(array4);
-        checkedGameOptions[1] = TrebelloGameConverterJson.getInstance().toObjectBool(array5);
-        checkedGameOptions[2] = TrebelloGameConverterJson.getInstance().toObjectBool(array6);
+        checkedGameOptions[0] = TrebelloGameConverterJson.getInstance().toObjectBool(array4, "GameOption");
+        checkedGameOptions[1] = TrebelloGameConverterJson.getInstance().toObjectBool(array5, "GameOption");
+        checkedGameOptions[2] = TrebelloGameConverterJson.getInstance().toObjectBool(array6, "GameOption");
 
     }
 

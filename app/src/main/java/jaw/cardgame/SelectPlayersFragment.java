@@ -26,7 +26,7 @@ import jaw.cardgame.util.StorageUtil;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SelectPlayersFragment extends Fragment implements View.OnClickListener{
+public class SelectPlayersFragment extends Fragment{
     ArrayList<String> selectedPlayers;
 
     public SelectPlayersFragment() {
@@ -119,6 +119,7 @@ public class SelectPlayersFragment extends Fragment implements View.OnClickListe
                 if(selectedPlayers.size() == 3){
                     Bundle bundle = new Bundle();
                     bundle.putStringArrayList("playerNames", selectedPlayers);
+                    bundle.putBoolean("newGame", true);
                     TrebelloScoreFragment trebelloScoreFragment= new TrebelloScoreFragment();
                     trebelloScoreFragment.setArguments(bundle);
                     Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
@@ -147,10 +148,5 @@ public class SelectPlayersFragment extends Fragment implements View.OnClickListe
         Toast toast = Toast.makeText(context, text, duration);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }

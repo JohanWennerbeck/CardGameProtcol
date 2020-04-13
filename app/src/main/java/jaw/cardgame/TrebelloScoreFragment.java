@@ -51,8 +51,8 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_score, container, false);
-        Bundle playerNames = getArguments();
-        initView(v, savedInstanceState, Objects.requireNonNull(playerNames));
+        Bundle bundleArguments = getArguments();
+        initView(v, savedInstanceState, Objects.requireNonNull(bundleArguments));
         return v;
     }
 
@@ -88,8 +88,8 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
         super.onDetach();
     }
 
-    private void initView(View v, Bundle savedInstanceState, Bundle playerNamesBundle) {
-        model = new TrebelloGameModel(Objects.requireNonNull(playerNamesBundle.getStringArrayList("playerNames")));
+    private void initView(View v, Bundle savedInstanceState, Bundle bundleArguments) {
+        model = new TrebelloGameModel(bundleArguments);
 
         scorePlayerOneTextView = v.findViewById(R.id.scoreCount1);
         scorePlayerTwoTextView = v.findViewById(R.id.scoreCount2);
@@ -98,7 +98,6 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
         initPlayerNames(v);
         initCounterButtons(v);
 
-        //Init register score
         registerScore = v.findViewById(R.id.register);
         registerScore.setOnClickListener(this);
 
@@ -108,10 +107,17 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
         initScoreViews(v);
         initGameOptions(v);
         initGameOptionsBooleans();
-        if (savedInstanceState != null) {
-            model.setSavedInstanceState(savedInstanceState);
-            setSavedUI();
+        if(bundleArguments.getBoolean("newGame")){
+            newGame();
+            model.newGame(mContext);
+        } else {
+            if (savedInstanceState != null) {
+                model.setSavedInstanceState(savedInstanceState);
+                setSavedUI();
+            }
         }
+
+
 
     }
 
