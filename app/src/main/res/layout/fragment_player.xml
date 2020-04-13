@@ -23,7 +23,8 @@
         android:maxLines="1"
         android:inputType="text"
         android:hint="@string/write_the_player_name_here"
-        android:layout_marginTop="@dimen/_15sdp"/>
+        android:layout_marginTop="@dimen/_15sdp"
+        android:autofillHints="@string/write_the_player_name_here" />
 
     <Button
         android:id="@+id/add_new_player_button"

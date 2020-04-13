@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -69,7 +68,7 @@
         android:layout_below="@+id/playerName1"
         android:layout_toEndOf="@id/high"
         android:layout_marginStart="@dimen/_20sdp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
     <ImageButton
         android:id="@+id/ImageButton2"
         android:layout_width="@dimen/_60sdp"
@@ -77,7 +76,7 @@
         android:layout_alignTop="@id/ImageButton1"
         android:layout_toEndOf="@id/ImageButton1"
         android:layout_marginStart="@dimen/_20sdp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
     <ImageButton
         android:id="@+id/ImageButton3"
         android:layout_width="@dimen/_60sdp"
@@ -85,7 +84,7 @@
         android:layout_alignTop="@id/ImageButton2"
         android:layout_toEndOf="@id/ImageButton2"
         android:layout_marginStart="@dimen/_20sdp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
 
     <ImageButton
         android:id="@+id/ImageButton4"
@@ -93,21 +92,21 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/ImageButton1"
         android:layout_alignStart="@id/ImageButton1"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
     <ImageButton
         android:id="@+id/ImageButton5"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/ImageButton2"
         android:layout_alignStart="@id/ImageButton2"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
     <ImageButton
         android:id="@+id/ImageButton6"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/ImageButton3"
         android:layout_alignStart="@id/ImageButton3"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
 
     <ImageButton
         android:id="@+id/ImageButton7"
@@ -115,21 +114,21 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/ImageButton4"
         android:layout_alignStart="@id/ImageButton4"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
     <ImageButton
         android:id="@+id/ImageButton8"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/ImageButton5"
         android:layout_alignStart="@id/ImageButton5"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
     <ImageButton
         android:id="@+id/ImageButton9"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/ImageButton6"
         android:layout_alignStart="@id/ImageButton6"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
 
     <ImageButton
         android:id="@+id/ImageButton10"
@@ -137,21 +136,21 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/ImageButton7"
         android:layout_alignStart="@id/ImageButton7"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
     <ImageButton
         android:id="@+id/ImageButton11"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/ImageButton8"
         android:layout_alignStart="@id/ImageButton8"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
     <ImageButton
         android:id="@+id/ImageButton12"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/ImageButton9"
         android:layout_alignStart="@id/ImageButton9"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/checkbox_for_a_game_option" />
 
 
     <ImageButton
@@ -161,7 +160,7 @@
         android:layout_above="@id/register"
         android:layout_toStartOf="@id/count2"
         android:src="@drawable/ic_remove_black_24dp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/button_to_decrease_score" />
     <ImageButton
         android:id="@+id/count2"
         android:layout_width="@dimen/_40sdp"
@@ -170,7 +169,7 @@
         android:layout_toStartOf="@id/count3"
         android:layout_marginEnd="@dimen/_10sdp"
         android:src="@drawable/ic_add_black_24dp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/button_to_increase_score" />
     <ImageButton
         android:id="@+id/count3"
         android:layout_width="@dimen/_40sdp"
@@ -179,7 +178,7 @@
         android:layout_toStartOf="@id/scoreCount2"
         android:layout_marginEnd="@dimen/_minus10sdp"
         android:src="@drawable/ic_remove_black_24dp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/button_to_decrease_score" />
     <ImageButton
         android:id="@+id/count4"
         android:layout_width="@dimen/_40sdp"
@@ -188,7 +187,7 @@
         android:layout_toEndOf="@id/count3"
         android:layout_marginStart="@dimen/_10sdp"
         android:src="@drawable/ic_add_black_24dp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/button_to_increase_score" />
     <ImageButton
         android:id="@+id/count5"
         android:layout_width="@dimen/_40sdp"
@@ -197,7 +196,7 @@
         android:layout_toEndOf="@id/count4"
         android:layout_marginStart="@dimen/_10sdp"
         android:src="@drawable/ic_remove_black_24dp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/button_to_decrease_score" />
     <ImageButton
         android:id="@+id/count6"
         android:layout_width="@dimen/_40sdp"
@@ -205,7 +204,7 @@
         android:layout_above="@id/register"
         android:layout_toEndOf="@id/count5"
         android:src="@drawable/ic_add_black_24dp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/button_to_increase_score" />
 
     <TextView
         android:id="@+id/scoreCount1"

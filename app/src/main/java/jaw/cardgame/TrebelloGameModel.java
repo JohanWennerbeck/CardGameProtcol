@@ -14,7 +14,7 @@ import java.util.Collections;
 import jaw.cardgame.util.StorageUtil;
 import jaw.cardgame.util.TrebelloGameConverterJson;
 
-public class TrebelloGameModel {
+class TrebelloGameModel {
 
     private int playerOneScore, playerTwoScore, playerThreeScore;
     private int playerOneTotalScore, playerTwoTotalScore, playerThreeTotalScore;
@@ -115,7 +115,7 @@ public class TrebelloGameModel {
         StorageUtil.save(context.getApplicationContext(), "PlayerThreeScore", object4);
     }
 
-    void savePlayers(Context context){
+    private void savePlayers(Context context){
         playerOne.save(context, playerOne.getName());
         playerTwo.save(context, playerTwo.getName());
         playerThree.save(context, playerThree.getName());
@@ -195,7 +195,7 @@ public class TrebelloGameModel {
 
     }
 
-    void loadPlayers(Context context){
+    private void loadPlayers(Context context){
         playerOne.load(context, playerOne.getName());
         playerTwo.load(context, playerTwo.getName());
         playerThree.load(context, playerThree.getName());
@@ -354,64 +354,32 @@ public class TrebelloGameModel {
         return playerOneTotalScore;
     }
 
-    public void setPlayerOneTotalScore(int playerOneTotalScore) {
-        this.playerOneTotalScore = playerOneTotalScore;
-    }
-
     int getPlayerTwoTotalScore() {
         return playerTwoTotalScore;
-    }
-
-    public void setPlayerTwoTotalScore(int playerTwoTotalScore) {
-        this.playerTwoTotalScore = playerTwoTotalScore;
     }
 
     int getPlayerThreeTotalScore() {
         return playerThreeTotalScore;
     }
 
-    public void setPlayerThreeTotalScore(int playerThreeTotalScore) {
-        this.playerThreeTotalScore = playerThreeTotalScore;
-    }
-
     ArrayList<Integer> getPlayerOneScoreArray() {
         return playerOneScoreArray;
-    }
-
-    public void setPlayerOneScoreArray(ArrayList<Integer> playerOneScoreArray) {
-        this.playerOneScoreArray = playerOneScoreArray;
     }
 
     ArrayList<Integer> getPlayerTwoScoreArray() {
         return playerTwoScoreArray;
     }
 
-    public void setPlayerTwoScoreArray(ArrayList<Integer> playerTwoScoreArray) {
-        this.playerTwoScoreArray = playerTwoScoreArray;
-    }
-
     ArrayList<Integer> getPlayerThreeScoreArray() {
         return playerThreeScoreArray;
-    }
-
-    public void setPlayerThreeScoreArray(ArrayList<Integer> playerThreeScoreArray) {
-        this.playerThreeScoreArray = playerThreeScoreArray;
     }
 
     int getRound() {
         return round;
     }
 
-    public void setRound(int round) {
-        this.round = round;
-    }
-
     boolean[][] getCheckedGameOptions() {
         return checkedGameOptions;
-    }
-
-    public void setCheckedGameOptions(boolean[][] checkedGameOptions) {
-        this.checkedGameOptions = checkedGameOptions;
     }
 
     void setCheckedGameOption(int i, int j, boolean bool){

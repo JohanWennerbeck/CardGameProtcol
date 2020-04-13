@@ -23,7 +23,7 @@ public class Player {
     private int trebelloHighScore;
     private int trebelloJumboScore;
 
-    public Player(String name) {
+    Player(String name) {
         this.name = name;
         trebelloFirst = 0;
         trebelloSecond = 0;

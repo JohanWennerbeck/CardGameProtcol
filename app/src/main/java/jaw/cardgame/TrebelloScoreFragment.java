@@ -2,6 +2,7 @@ package jaw.cardgame;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,10 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Objects;
-
-import jaw.cardgame.util.StorageUtil;
 
 
 /**
@@ -29,12 +27,12 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
 
     TextView scorePlayerOneTextView, scorePlayerTwoTextView, scorePlayerThreeTextView;
     TextView finalScorePlayerOneTextView, finalScorePlayerTwoTextView, finalScorePlayerThreeTextView;
-    TextView scoreTextViews[][] = new TextView[3][12];
+    TextView[][] scoreTextViews = new TextView[3][12];
     ImageButton decrementPlayerOneButton, incrementPlayerOneButton,
             decrementPlayerTwoButton, incrementPlayerTwoButton,
             decrementPlayerThreeButton, incrementPlayerThreeButton;
     Button registerScore, newGame;
-    ImageButton gameOptions[][] = new ImageButton[3][4];
+    ImageButton[][] gameOptions = new ImageButton[3][4];
     TextView playerOneName, playerTwoName, playerThreeName;
     TextView playerOneScoreName, playerTwoScoreName, playerThreeScoreName;
 
@@ -54,7 +52,7 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_score, container, false);
         Bundle playerNames = getArguments();
-        initView(v, savedInstanceState, playerNames);
+        initView(v, savedInstanceState, Objects.requireNonNull(playerNames));
         return v;
     }
 
@@ -72,7 +70,7 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         // Save the user's current game state
         Bundle savedInstanceStateNew = model.onSaveInstanceState(savedInstanceState);
         // Always call the superclass so it can save the view hierarchy state
@@ -277,7 +275,7 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
                 break;
             }
             case R.id.register: {
-                updateScore(v);
+                updateScore();
                 break;
             }
             case R.id.new_game: {
@@ -347,7 +345,7 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    private void updateScore(View v) {
+    private void updateScore() {
         if (model.getPlayerOneScore() + model.getPlayerTwoScore() + model.getPlayerThreeScore() == 0) {
             model.updateScore();
 

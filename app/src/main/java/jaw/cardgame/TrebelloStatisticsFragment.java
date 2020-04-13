@@ -1,20 +1,18 @@
 package jaw.cardgame;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import jaw.cardgame.util.PlayerConverterJson;
-
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TrebelloStatisticsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class TrebelloStatisticsFragment extends Fragment {
@@ -26,10 +24,6 @@ public class TrebelloStatisticsFragment extends Fragment {
     Player player1;
     Player player2;
     Player player3;
-    public static TrebelloStatisticsFragment newInstance() {
-        TrebelloStatisticsFragment fragment = new TrebelloStatisticsFragment();
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +35,7 @@ public class TrebelloStatisticsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.trebello_statistics, container, false);
-        initView(v, savedInstanceState);
+        initView(v);
         return v;
     }
 
@@ -56,7 +50,7 @@ public class TrebelloStatisticsFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -72,7 +66,7 @@ public class TrebelloStatisticsFragment extends Fragment {
         super.onDetach();
     }
 
-    private void initView(View v, Bundle savedInstanceState) {
+    private void initView(View v) {
         player1 = new Player("Fredrik");
         player2 = new Player("Anders");
         player3 = new Player("Johan");
@@ -109,26 +103,27 @@ public class TrebelloStatisticsFragment extends Fragment {
         jumboscore3 = v.findViewById(R.id.stat_jumboscore3);
     }
 
+    @SuppressLint("DefaultLocale")
     void initStatistics(){
         name1.setText(player1.getName());
-        first1.setText("First placements: " + player1.getTrebelloFirst());
-        second1.setText("Second placements: " + player1.getTrebelloSecond());
-        third1.setText("Third placements: " + player1.getTrebelloThird());
-        highscore1.setText("Highest score: " + player1.getTrebelloHighScore());
-        jumboscore1.setText("Lowest score: " + player1.getTrebelloJumboScore());
+        first1.setText(String.format("First placements: %d", player1.getTrebelloFirst()));
+        second1.setText(String.format("Second placements: %d", player1.getTrebelloSecond()));
+        third1.setText(String.format("Third placements: %d", player1.getTrebelloThird()));
+        highscore1.setText(String.format("Highest score: %d", player1.getTrebelloHighScore()));
+        jumboscore1.setText(String.format("Lowest score: %d", player1.getTrebelloJumboScore()));
 
         name2.setText(player2.getName());
-        first2.setText("First placements: " + player2.getTrebelloFirst());
-        second2.setText("Second placements: " + player2.getTrebelloSecond());
-        third2.setText("Third placements: " + player2.getTrebelloThird());
-        highscore2.setText("Highest score: " + player2.getTrebelloHighScore());
-        jumboscore2.setText("Lowest score: " + player2.getTrebelloJumboScore());
+        first2.setText(String.format("First placements: %d", player2.getTrebelloFirst()));
+        second2.setText(String.format("Second placements: %d", player2.getTrebelloSecond()));
+        third2.setText(String.format("Third placements: %d", player2.getTrebelloThird()));
+        highscore2.setText(String.format("Highest score: %d", player2.getTrebelloHighScore()));
+        jumboscore2.setText(String.format("Lowest score: %d", player2.getTrebelloJumboScore()));
 
         name3.setText(player3.getName());
-        first3.setText("First placements: " + player3.getTrebelloFirst());
-        second3.setText("Second placements: " + player3.getTrebelloSecond());
-        third3.setText("Third placements: " + player3.getTrebelloThird());
-        highscore3.setText("Highest score: " + player3.getTrebelloHighScore());
-        jumboscore3.setText("Lowest score: " + player3.getTrebelloJumboScore());
+        first3.setText(String.format("First placements: %d", player3.getTrebelloFirst()));
+        second3.setText(String.format("Second placements: %d", player3.getTrebelloSecond()));
+        third3.setText(String.format("Third placements: %d", player3.getTrebelloThird()));
+        highscore3.setText(String.format("Highest score: %d", player3.getTrebelloHighScore()));
+        jumboscore3.setText(String.format("Lowest score: %d", player3.getTrebelloJumboScore()));
     }
 }
