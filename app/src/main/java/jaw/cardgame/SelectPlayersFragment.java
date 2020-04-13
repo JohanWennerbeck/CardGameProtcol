@@ -112,14 +112,23 @@ public class SelectPlayersFragment extends Fragment implements View.OnClickListe
         if(allNames.size() < 3 || notEnoughPlayers){
             notEnoughPlayers(v.getContext().getApplicationContext());
         } else {
-            Button myButton = new Button(v.getContext());
-            myButton.setText(R.string.start_new_game);
+            Button startGameButton = new Button(v.getContext());
+            startGameButton.setText(R.string.start_new_game);
 
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             lp.setMarginEnd(50);
             lp.setMarginStart(50);
             lp.addRule(RelativeLayout.BELOW, allPlayerButtons.get(allPlayerButtons.size()-1).getId());
-            ll.addView(myButton, lp);
+
+            startGameButton.setOnClickListener((View view) -> {
+                TrebelloScoreFragment trebelloScoreFragment= new TrebelloScoreFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainer, trebelloScoreFragment)
+                        .addToBackStack(null)
+                        .commit();
+            });
+
+            ll.addView(startGameButton, lp);
         }
     }
 
