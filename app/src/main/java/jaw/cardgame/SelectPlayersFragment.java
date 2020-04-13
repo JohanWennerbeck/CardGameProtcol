@@ -1,20 +1,14 @@
 package jaw.cardgame;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
-import android.print.PrintAttributes;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MarginLayoutParamsCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -23,6 +17,7 @@ import com.google.gson.JsonElement;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import jaw.cardgame.util.PlayerConverterJson;
 import jaw.cardgame.util.StorageUtil;
@@ -121,11 +116,24 @@ public class SelectPlayersFragment extends Fragment implements View.OnClickListe
             lp.addRule(RelativeLayout.BELOW, allPlayerButtons.get(allPlayerButtons.size()-1).getId());
 
             startGameButton.setOnClickListener((View view) -> {
-                TrebelloScoreFragment trebelloScoreFragment= new TrebelloScoreFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainer, trebelloScoreFragment)
-                        .addToBackStack(null)
-                        .commit();
+                if(selectedPlayers.size() == 3){
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArrayList("playerNames", selectedPlayers);
+                    TrebelloScoreFragment trebelloScoreFragment= new TrebelloScoreFragment();
+                    trebelloScoreFragment.setArguments(bundle);
+                    Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainer, trebelloScoreFragment)
+                            .addToBackStack(null)
+                            .commit();
+                } else {
+                    CharSequence text = "Select 3 players to play a game of trebello";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(view.getContext(), text, duration);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }
+
             });
 
             ll.addView(startGameButton, lp);

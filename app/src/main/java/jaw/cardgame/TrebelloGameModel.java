@@ -40,7 +40,7 @@ public class TrebelloGameModel {
     private static final String STATE_GAME_OPTION_TWO = "gameOptionTwo";
     private static final String STATE_GAME_OPTION_THREE = "gameOptionThree";
 
-    TrebelloGameModel(){
+    TrebelloGameModel(ArrayList<String> playerNames){
         playerOneScore = 0;
         playerTwoScore = 0;
         playerThreeScore = 0;
@@ -48,9 +48,9 @@ public class TrebelloGameModel {
         playerTwoTotalScore = 0;
         playerThreeTotalScore = 0;
         round = 1;
-        playerOne = new Player("Fredrik");
-        playerTwo = new Player("Anders");
-        playerThree = new Player("Johan");
+        playerOne = new Player(playerNames.get(0));
+        playerTwo = new Player(playerNames.get(1));
+        playerThree = new Player(playerNames.get(2));
         playerOneScoreArray = new ArrayList<>(Collections.nCopies(0,12));
         playerTwoScoreArray = new ArrayList<>(Collections.nCopies(0,12));
         playerThreeScoreArray = new ArrayList<>(Collections.nCopies(0,12));

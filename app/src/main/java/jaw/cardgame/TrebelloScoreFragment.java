@@ -12,6 +12,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 import jaw.cardgame.util.StorageUtil;
 
 
@@ -50,7 +53,8 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_score, container, false);
-        initView(v, savedInstanceState);
+        Bundle playerNames = getArguments();
+        initView(v, savedInstanceState, playerNames);
         return v;
     }
 
@@ -86,8 +90,8 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
         super.onDetach();
     }
 
-    private void initView(View v, Bundle savedInstanceState) {
-        model = new TrebelloGameModel();
+    private void initView(View v, Bundle savedInstanceState, Bundle playerNamesBundle) {
+        model = new TrebelloGameModel(Objects.requireNonNull(playerNamesBundle.getStringArrayList("playerNames")));
 
         scorePlayerOneTextView = v.findViewById(R.id.scoreCount1);
         scorePlayerTwoTextView = v.findViewById(R.id.scoreCount2);
