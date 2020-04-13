@@ -17,9 +17,9 @@ public class FragmentActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         Fragment fragment = manager.findFragmentById(R.id.fragmentContainer);
         switch (Objects.requireNonNull(getIntent().getAction())) {
-            case "SelectPlayersTrebello":
+            case "LoadOrNew":
                 if (fragment == null) {
-                    fragment = new SelectPlayersFragment();
+                    fragment = new NewOrLoadFragment();
                     manager.beginTransaction()
                             .add(R.id.fragmentContainer, fragment)
                             .commit();

@@ -138,6 +138,13 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
     }
 
     private void setSavedUI() {
+        playerOneName.setText(model.getPlayerOne().getName());
+        playerOneScoreName.setText(model.getPlayerOne().getName());
+        playerTwoName.setText(model.getPlayerTwo().getName());
+        playerTwoScoreName.setText(model.getPlayerTwo().getName());
+        playerThreeName.setText(model.getPlayerThree().getName());
+        playerThreeScoreName.setText(model.getPlayerThree().getName());
+
         for (int j = 0; j < model.getRound() - 1; j++) {
             scoreTextViews[0][j].setText(String.valueOf(model.getPlayerOneScoreArray().get(j)));
             scoreTextViews[1][j].setText(String.valueOf(model.getPlayerTwoScoreArray().get(j)));

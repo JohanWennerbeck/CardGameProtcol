@@ -12,6 +12,9 @@
         android:id="@+id/load_or_new"
         android:text="@string/do_you_want_to_continue_on_the_previous_game_or_start_a_new_one"
         android:layout_marginTop="@dimen/_14sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:textAlignment="center"
         android:textSize="@dimen/_14sdp"/>
 
     <Button
@@ -27,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:id="@+id/new_game_button"
-        android:text="@string/load_game"
+        android:text="@string/new_game"
         android:layout_below="@+id/load_button"/>
 
 

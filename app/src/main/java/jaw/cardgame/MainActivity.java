@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         Button trebelloGame = findViewById(R.id.trebelloButton);
         trebelloGame.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
-            intent.setAction("SelectPlayersTrebello");
+            intent.setAction("LoadOrNew");
             startActivity(intent);
         });
 

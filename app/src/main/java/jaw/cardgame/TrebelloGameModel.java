@@ -172,7 +172,6 @@ class TrebelloGameModel {
             element11 = StorageUtil.load(context.getApplicationContext(), "PlayerOneName");
             element12 = StorageUtil.load(context.getApplicationContext(), "PlayerTwoName");
             element13 = StorageUtil.load(context.getApplicationContext(), "PlayerThreeName");
-
         } catch (IllegalStateException e) {
             StorageUtil.resetData(context.getApplicationContext(), "PlayerOneArray");
             StorageUtil.resetData(context.getApplicationContext(), "PlayerTwoArray");
@@ -187,7 +186,6 @@ class TrebelloGameModel {
             StorageUtil.resetData(context.getApplicationContext(), "PlayerOneName");
             StorageUtil.resetData(context.getApplicationContext(), "PlayerTwoName");
             StorageUtil.resetData(context.getApplicationContext(), "PlayerThreeName");
-
         } catch (FileNotFoundException ignored) {
         }
 
@@ -201,9 +199,9 @@ class TrebelloGameModel {
                 || (element8 == null) || !element8.isJsonArray()
                 || (element9 == null) || !element9.isJsonArray()
                 || (element10 == null) || !element10.isJsonArray()
-                || (element11 == null) || !element11.isJsonArray()
-                || (element12 == null) || !element12.isJsonArray()
-                || (element13 == null) || !element13.isJsonArray()) {
+                || (element11 == null) || !element11.isJsonObject()
+                || (element12 == null) || !element12.isJsonObject()
+                || (element13 == null) || !element13.isJsonObject()) {
             return;
         }
         JsonArray array1 = element1.getAsJsonArray();
