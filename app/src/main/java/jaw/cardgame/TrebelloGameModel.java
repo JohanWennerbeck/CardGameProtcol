@@ -10,6 +10,7 @@ import com.google.gson.JsonObject;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 import jaw.cardgame.util.StorageUtil;
 import jaw.cardgame.util.TrebelloGameConverterJson;
@@ -52,9 +53,9 @@ class TrebelloGameModel {
         playerThreeTotalScore = 0;
         round = 1;
         if(bundleArguments.getStringArrayList("playerNames") != null){
-            playerOne = new Player(bundleArguments.getStringArrayList("playerNames").get(0));
-            playerTwo = new Player(bundleArguments.getStringArrayList("playerNames").get(1));
-            playerThree = new Player(bundleArguments.getStringArrayList("playerNames").get(2));
+            playerOne = new Player(Objects.requireNonNull(bundleArguments.getStringArrayList("playerNames")).get(0));
+            playerTwo = new Player(Objects.requireNonNull(bundleArguments.getStringArrayList("playerNames")).get(1));
+            playerThree = new Player(Objects.requireNonNull(bundleArguments.getStringArrayList("playerNames")).get(2));
         } else {
             playerOne = new Player();
             playerTwo = new Player();
