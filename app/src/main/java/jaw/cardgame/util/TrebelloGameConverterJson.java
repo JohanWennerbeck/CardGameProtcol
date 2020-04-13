@@ -60,12 +60,20 @@ public class TrebelloGameConverterJson{
         return jsonObject;
     }
 
+    public JsonObject toJson(String string, String name) {
+        JsonObject jsonObject = new JsonObject();
+
+        jsonObject.addProperty(name, string);
+
+        return jsonObject;
+    }
+
     public ArrayList<Integer> toObject(JsonArray array, String name) {
         ArrayList<Integer> list = new ArrayList<>();
         for (int i = 0; i < array.size(); i++) {
             JsonObject object = array.get(i).getAsJsonObject();
 
-            list.add(toObject(object, name));
+            list.add(toObjectInt(object, name));
         }
         return list;
     }
@@ -84,8 +92,13 @@ public class TrebelloGameConverterJson{
         return bool;
     }
 
-    public int toObject(JsonObject object, String name){
+    public int toObjectInt(JsonObject object, String name){
         int integer = object.get(name).getAsInt();
         return integer;
+    }
+
+    public String toObjectString(JsonObject object, String name){
+        String string = object.get(name).getAsString();
+        return string;
     }
 }
