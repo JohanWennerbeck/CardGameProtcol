@@ -89,7 +89,9 @@ public class SelectPlayersFragment extends Fragment{
                 lpImage.addRule(RelativeLayout.END_OF, playerButton.getId());
                 playerButton.setOnClickListener((View view) -> {
                     selectedCheckImage.setImageResource(R.drawable.ic_check_black_24dp);
-                    selectedPlayers.add(playerButton.getText().toString());
+                    if(!selectedPlayers.contains(playerButton.getText().toString())){
+                        selectedPlayers.add(playerButton.getText().toString());
+                    }
                 });
 
                 playerButton.setOnLongClickListener((View view2) -> {
