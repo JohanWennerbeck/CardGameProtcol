@@ -392,12 +392,12 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
         scorePlayerOneTextView.setTextColor(scorePlayerOneTextView.getTextColors().withAlpha(0));
         scorePlayerTwoTextView.setTextColor(scorePlayerTwoTextView.getTextColors().withAlpha(0));
         scorePlayerThreeTextView.setTextColor(scorePlayerThreeTextView.getTextColors().withAlpha(0));
-        decrementPlayerOneButton.setEnabled(false);
-        incrementPlayerOneButton.setEnabled(false);
-        decrementPlayerTwoButton.setEnabled(false);
-        incrementPlayerTwoButton.setEnabled(false);
-        decrementPlayerThreeButton.setEnabled(false);
-        incrementPlayerThreeButton.setEnabled(false);
+        decrementPlayerOneButton.setVisibility(View.INVISIBLE);
+        incrementPlayerOneButton.setVisibility(View.INVISIBLE);
+        decrementPlayerTwoButton.setVisibility(View.INVISIBLE);
+        incrementPlayerTwoButton.setVisibility(View.INVISIBLE);
+        decrementPlayerThreeButton.setVisibility(View.INVISIBLE);
+        incrementPlayerThreeButton.setVisibility(View.INVISIBLE);
         finalScorePlayerOneTextView.setText(String.valueOf(model.getPlayerOneTotalScore()));
         finalScorePlayerTwoTextView.setText(String.valueOf(model.getPlayerTwoTotalScore()));
         finalScorePlayerThreeTextView.setText(String.valueOf(model.getPlayerThreeTotalScore()));
@@ -429,15 +429,13 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
         scorePlayerOneTextView.setTextColor(scorePlayerOneTextView.getTextColors().withAlpha(255));
         scorePlayerTwoTextView.setTextColor(scorePlayerTwoTextView.getTextColors().withAlpha(255));
         scorePlayerThreeTextView.setTextColor(scorePlayerThreeTextView.getTextColors().withAlpha(255));
-        decrementPlayerOneButton.setEnabled(true);
-        incrementPlayerOneButton.setEnabled(true);
-        decrementPlayerTwoButton.setEnabled(true);
-        incrementPlayerTwoButton.setEnabled(true);
-        decrementPlayerThreeButton.setEnabled(true);
-        incrementPlayerThreeButton.setEnabled(true);
+        decrementPlayerOneButton.setVisibility(View.VISIBLE);
+        incrementPlayerOneButton.setVisibility(View.VISIBLE);
+        decrementPlayerTwoButton.setVisibility(View.VISIBLE);
+        incrementPlayerTwoButton.setVisibility(View.VISIBLE);
+        decrementPlayerThreeButton.setVisibility(View.VISIBLE);
+        incrementPlayerThreeButton.setVisibility(View.VISIBLE);
         registerScore.setEnabled(true);
-
-
     }
 
 }
