@@ -1,6 +1,7 @@
 package jaw.cardgame;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -71,8 +72,9 @@ public class SelectPlayersFragment extends Fragment{
                 Button playerButton = new Button(v.getContext());
                 playerButton.setText(playerName);
                 playerButton.setId(100 + i);
+                playerButton.setBackgroundResource(R.drawable.button_corner_selectable);
                 RelativeLayout.LayoutParams lpButton = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                lpButton.setMargins(20, 0, 20, 0);
+                lpButton.setMargins(20, 10, 20, 0);
                 lpButton.addRule(RelativeLayout.CENTER_HORIZONTAL);
                 if(i > 0){
                     lpButton.addRule(RelativeLayout.BELOW, allPlayerButtons.get(i-1).getId());
@@ -88,16 +90,15 @@ public class SelectPlayersFragment extends Fragment{
                 lpImage.addRule(RelativeLayout.ALIGN_BOTTOM, playerButton.getId());
                 lpImage.addRule(RelativeLayout.END_OF, playerButton.getId());
                 playerButton.setOnClickListener((View view) -> {
-                    selectedCheckImage.setImageResource(R.drawable.ic_check_black_24dp);
                     if(!selectedPlayers.contains(playerButton.getText().toString())){
+                        selectedCheckImage.setImageResource(R.drawable.ic_check_black_24dp);
                         selectedPlayers.add(playerButton.getText().toString());
+                        playerButton.setSelected(true);
+                    } else {
+                        selectedPlayers.remove(playerButton.getText().toString());
+                        selectedCheckImage.setImageResource(android.R.color.transparent);
+                        playerButton.setSelected(false);
                     }
-                });
-
-                playerButton.setOnLongClickListener((View view2) -> {
-                    selectedCheckImage.setImageResource(android.R.color.transparent);
-                    selectedPlayers.remove(playerButton.getText().toString());
-                    return true;
                 });
                 
                 rl.addView(selectedCheckImage, lpImage);
@@ -111,10 +112,10 @@ public class SelectPlayersFragment extends Fragment{
         } else {
             Button startGameButton = new Button(v.getContext());
             startGameButton.setText(R.string.start_new_game);
-
+            startGameButton.setBackgroundResource(R.drawable.button_corner);
+            startGameButton.setTypeface(null, Typeface.BOLD);
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            lp.setMarginEnd(50);
-            lp.setMarginStart(50);
+            lp.setMargins(50,20,50,20);
             lp.addRule(RelativeLayout.BELOW, allPlayerButtons.get(allPlayerButtons.size()-1).getId());
 
             startGameButton.setOnClickListener((View view) -> {

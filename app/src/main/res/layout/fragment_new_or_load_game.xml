@@ -15,7 +15,8 @@
         android:layout_marginEnd="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_30sdp"
         android:textAlignment="center"
-        android:textSize="@dimen/_14sdp"/>
+        android:textSize="@dimen/_14sdp"
+        />
 
     <Button
         android:layout_width="wrap_content"
@@ -23,7 +24,9 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/load_button"
         android:text="@string/load_game"
-        android:layout_below="@+id/load_or_new"/>
+        android:layout_below="@+id/load_or_new"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@drawable/button_corner"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -31,7 +34,9 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/new_game_button"
         android:text="@string/new_game"
-        android:layout_below="@+id/load_button"/>
+        android:layout_below="@+id/load_button"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@drawable/button_corner"/>
 
 
 </RelativeLayout>
