@@ -47,7 +47,7 @@ public class SelectPlayersFragment extends Fragment{
 
     private void initButtons(View v) {
         boolean notEnoughPlayers = false;
-        RelativeLayout ll = v.findViewById(R.id.select_player_fragment);
+        RelativeLayout rl = v.findViewById(R.id.select_player_fragment);
         ArrayList<String> allNames = new ArrayList<>();
         ArrayList<Button> allPlayerButtons = new ArrayList<>();
 
@@ -98,8 +98,8 @@ public class SelectPlayersFragment extends Fragment{
                     return true;
                 });
                 
-                ll.addView(selectedCheckImage, lpImage);
-                ll.addView(playerButton, lpButton);
+                rl.addView(selectedCheckImage, lpImage);
+                rl.addView(playerButton, lpButton);
                 allPlayerButtons.add(playerButton);
             }
         }
@@ -137,7 +137,7 @@ public class SelectPlayersFragment extends Fragment{
 
             });
 
-            ll.addView(startGameButton, lp);
+            rl.addView(startGameButton, lp);
         }
     }
 

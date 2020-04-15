@@ -2,13 +2,26 @@ package jaw.cardgame;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
+import jaw.cardgame.util.PlayerConverterJson;
+import jaw.cardgame.util.StorageUtil;
 
 
 /**
@@ -18,12 +31,6 @@ import android.widget.TextView;
 public class TrebelloStatisticsFragment extends Fragment {
 
     private Context mContext;
-    private TextView name1, first1, second1, third1, highscore1, jumboscore1;
-    private TextView name2, first2, second2, third2, highscore2, jumboscore2;
-    private TextView name3, first3, second3, third3, highscore3, jumboscore3;
-    Player player1;
-    Player player2;
-    Player player3;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,64 +73,85 @@ public class TrebelloStatisticsFragment extends Fragment {
         super.onDetach();
     }
 
-    private void initView(View v) {
-        player1 = new Player("Fredrik");
-        player2 = new Player("Anders");
-        player3 = new Player("Johan");
-        player1.load(mContext, player1.getName());
-        player2.load(mContext, player2.getName());
-        player3.load(mContext, player3.getName());
-
-        initTextViews(v);
-        initStatistics();
-
-
-    }
-
-    void initTextViews(View v){
-        name1 = v.findViewById(R.id.stat_name1);
-        first1 = v.findViewById(R.id.stat_first1);
-        second1 = v.findViewById(R.id.stat_second1) ;
-        third1 = v.findViewById(R.id.stat_third1);
-        highscore1 = v.findViewById(R.id.stat_highscore1);
-        jumboscore1 = v.findViewById(R.id.stat_jumboscore1);
-
-        name2 = v.findViewById(R.id.stat_name2);
-        first2 = v.findViewById(R.id.stat_first2);
-        second2 = v.findViewById(R.id.stat_second2) ;
-        third2 = v.findViewById(R.id.stat_third2);
-        highscore2 = v.findViewById(R.id.stat_highscore2);
-        jumboscore2 = v.findViewById(R.id.stat_jumboscore2);
-
-        name3 = v.findViewById(R.id.stat_name3);
-        first3 = v.findViewById(R.id.stat_first3);
-        second3 = v.findViewById(R.id.stat_second3) ;
-        third3 = v.findViewById(R.id.stat_third3);
-        highscore3 = v.findViewById(R.id.stat_highscore3);
-        jumboscore3 = v.findViewById(R.id.stat_jumboscore3);
-    }
-
     @SuppressLint("DefaultLocale")
-    void initStatistics(){
-        name1.setText(player1.getName());
-        first1.setText(String.format("First placements: %d", player1.getTrebelloFirst()));
-        second1.setText(String.format("Second placements: %d", player1.getTrebelloSecond()));
-        third1.setText(String.format("Third placements: %d", player1.getTrebelloThird()));
-        highscore1.setText(String.format("Highest score: %d", player1.getTrebelloHighScore()));
-        jumboscore1.setText(String.format("Lowest score: %d", player1.getTrebelloJumboScore()));
+    private void initView(View v) {
+        RelativeLayout rl = v.findViewById(R.id.trebello_statistics_fragment);
+        ArrayList<String> allNames;
+        JsonElement element = null;
+        try {
+            element = StorageUtil.load(v.getContext().getApplicationContext(), "All_players");
+        } catch (IllegalStateException e){
+            StorageUtil.resetData(v.getContext().getApplicationContext(), "All_players");
+        } catch (FileNotFoundException ignored){
+        }
 
-        name2.setText(player2.getName());
-        first2.setText(String.format("First placements: %d", player2.getTrebelloFirst()));
-        second2.setText(String.format("Second placements: %d", player2.getTrebelloSecond()));
-        third2.setText(String.format("Third placements: %d", player2.getTrebelloThird()));
-        highscore2.setText(String.format("Highest score: %d", player2.getTrebelloHighScore()));
-        jumboscore2.setText(String.format("Lowest score: %d", player2.getTrebelloJumboScore()));
+        if(!(element == null || !element.isJsonArray())){
 
-        name3.setText(player3.getName());
-        first3.setText(String.format("First placements: %d", player3.getTrebelloFirst()));
-        second3.setText(String.format("Second placements: %d", player3.getTrebelloSecond()));
-        third3.setText(String.format("Third placements: %d", player3.getTrebelloThird()));
-        highscore3.setText(String.format("Highest score: %d", player3.getTrebelloHighScore()));
-        jumboscore3.setText(String.format("Lowest score: %d", player3.getTrebelloJumboScore()));
+            JsonArray array = element.getAsJsonArray();
+            allNames = PlayerConverterJson.getInstance().toObjectString(array);
+            for (int i = 0; i < allNames.size(); i++) {
+                String playerName = allNames.get(i);
+                Player player = new Player();
+                player.load(mContext, playerName);
+
+                TextView name = new TextView(v.getContext());
+                name.setText(player.getName());
+                name.setId(100+i);
+                name.setTypeface(null, Typeface.BOLD);
+                name.setGravity(Gravity.CENTER);
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                lp.setMargins(0,40,0,0);
+                lp.addRule(RelativeLayout.TEXT_ALIGNMENT_CENTER);
+
+                if (i > 0) {
+                    lp.addRule(RelativeLayout.BELOW, 600+i-1);
+                } else {
+                    lp.addRule(RelativeLayout.BELOW, rl.getId());
+                }
+                rl.addView(name, lp);
+
+                TextView firstPlacements = new TextView(v.getContext());
+                firstPlacements.setText(String.format("First placements: %d", player.getTrebelloFirst()));
+                firstPlacements.setId(200+i);
+                firstPlacements.setGravity(Gravity.CENTER);
+                RelativeLayout.LayoutParams lp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp2.addRule(RelativeLayout.BELOW, name.getId());
+                lp2.setMargins(0,10,0,0);
+                rl.addView(firstPlacements, lp2);
+
+                TextView secondPlacements = new TextView(v.getContext());
+                secondPlacements.setText(String.format("Second placements: %d", player.getTrebelloSecond()));
+                secondPlacements.setId(300+i);
+                secondPlacements.setGravity(Gravity.CENTER);
+                RelativeLayout.LayoutParams lp3 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp3.addRule(RelativeLayout.BELOW, firstPlacements.getId());
+                rl.addView(secondPlacements, lp3);
+
+                TextView thirdPlacements = new TextView(v.getContext());
+                thirdPlacements.setText(String.format("Third placements: %d", player.getTrebelloThird()));
+                thirdPlacements.setId(400+i);
+                thirdPlacements.setGravity(Gravity.CENTER);
+                RelativeLayout.LayoutParams lp4 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp4.addRule(RelativeLayout.BELOW, secondPlacements.getId());
+                rl.addView(thirdPlacements, lp4);
+
+                TextView highscore = new TextView(v.getContext());
+                highscore.setText(String.format("Highest score: %d", player.getTrebelloHighScore()));
+                highscore.setId(500+i);
+                highscore.setGravity(Gravity.CENTER);
+                RelativeLayout.LayoutParams lp5 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp5.addRule(RelativeLayout.BELOW, thirdPlacements.getId());
+                rl.addView(highscore, lp5);
+
+                TextView jumboscore = new TextView(v.getContext());
+                jumboscore.setText(String.format("Lowest score: %d",player.getTrebelloJumboScore()));
+                jumboscore.setId(600+i);
+                jumboscore.setGravity(Gravity.CENTER);
+                RelativeLayout.LayoutParams lp6 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp6.addRule(RelativeLayout.BELOW, highscore.getId());
+                rl.addView(jumboscore, lp6);
+            }
+        }
     }
 }
