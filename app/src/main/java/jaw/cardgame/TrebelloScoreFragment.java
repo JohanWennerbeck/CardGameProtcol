@@ -89,7 +89,7 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
     }
 
     private void initView(View v, Bundle savedInstanceState, Bundle bundleArguments) {
-        model = new TrebelloGameModel(bundleArguments);
+        model = new TrebelloGameModel(bundleArguments, mContext);
 
         scorePlayerOneTextView = v.findViewById(R.id.scoreCount1);
         scorePlayerTwoTextView = v.findViewById(R.id.scoreCount2);

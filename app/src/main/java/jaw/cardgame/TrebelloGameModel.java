@@ -44,7 +44,7 @@ class TrebelloGameModel {
     private static final String STATE_PLAYER_TWO_NAME = "playerTwoName";
     private static final String STATE_PLAYER_THREE_NAME = "playerThreeName";
 
-    TrebelloGameModel(Bundle bundleArguments){
+    TrebelloGameModel(Bundle bundleArguments, Context context){
         playerOneScore = 0;
         playerTwoScore = 0;
         playerThreeScore = 0;
@@ -54,8 +54,11 @@ class TrebelloGameModel {
         round = 1;
         if(bundleArguments.getStringArrayList("playerNames") != null){
             playerOne = new Player(Objects.requireNonNull(bundleArguments.getStringArrayList("playerNames")).get(0));
+            playerOne.load(context, Objects.requireNonNull(bundleArguments.getStringArrayList("playerNames")).get(0) );
             playerTwo = new Player(Objects.requireNonNull(bundleArguments.getStringArrayList("playerNames")).get(1));
+            playerTwo.load(context, Objects.requireNonNull(bundleArguments.getStringArrayList("playerNames")).get(1));
             playerThree = new Player(Objects.requireNonNull(bundleArguments.getStringArrayList("playerNames")).get(2));
+            playerThree.load(context, Objects.requireNonNull(bundleArguments.getStringArrayList("playerNames")).get(2));
         } else {
             playerOne = new Player();
             playerTwo = new Player();
