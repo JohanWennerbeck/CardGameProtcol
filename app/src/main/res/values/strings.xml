@@ -25,4 +25,7 @@
     <string name="do_you_want_to_continue_on_the_previous_game_or_start_a_new_one">Do you want to continue on the previous game or start a new one?</string>
     <string name="load_game">Load game</string>
     <string name="add_new_player">Add new player</string>
+    <string name="select_players_you_want_to_delete">Select players you want to delete</string>
+    <string name="delete_selected_players">Delete selected players</string>
+    <string name="delete_players">Delete players</string>
 </resources>

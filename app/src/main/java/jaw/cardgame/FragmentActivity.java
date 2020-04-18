@@ -34,9 +34,17 @@ public class FragmentActivity extends AppCompatActivity {
                             .commit();
                 }
                 break;
-            case "EditPlayers":
+            case "AddPlayers":
                 if (fragment == null) {
-                    fragment = new PlayerFragment();
+                    fragment = new AddPlayerFragment();
+                    manager.beginTransaction()
+                            .add(R.id.fragmentContainer, fragment)
+                            .commit();
+                }
+                break;
+            case "DeletePlayers":
+                if (fragment == null) {
+                    fragment = new DeletePlayerFragment();
                     manager.beginTransaction()
                             .add(R.id.fragmentContainer, fragment)
                             .commit();

@@ -16,7 +16,7 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  * create an instance of this fragment.
  */
-public class PlayerFragment extends Fragment implements View.OnClickListener {
+public class AddPlayerFragment extends Fragment implements View.OnClickListener {
 
     private Context mContext;
     String new_player_name;
@@ -25,7 +25,7 @@ public class PlayerFragment extends Fragment implements View.OnClickListener {
     Button add_new_player;
     EditText editText_new_player_name;
 
-    public PlayerFragment() {
+    public AddPlayerFragment() {
         // Required empty public constructor
     }
 

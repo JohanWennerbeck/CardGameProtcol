@@ -31,10 +31,17 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Button editPlayers = findViewById(R.id.edit_players);
-        editPlayers.setOnClickListener(view -> {
+        Button addPlayers = findViewById(R.id.add_players);
+        addPlayers.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
-            intent.setAction("EditPlayers");
+            intent.setAction("AddPlayers");
+            startActivity(intent);
+        });
+
+        Button deletePlayers = findViewById(R.id.delete_players);
+        deletePlayers.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
+            intent.setAction("DeletePlayers");
             startActivity(intent);
         });
     }
