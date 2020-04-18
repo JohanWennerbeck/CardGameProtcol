@@ -8,6 +8,6 @@
     <color name="colorAccent">#6ec6ff</color>
     <color name="colorButtonBlue">#0084FF</color>
     <color name="black">#000000</color>
-    <color name="color_button_plus">#7CFC00</color>
-    <color name="color_button_minus">#bf3c41</color>
+    <color name="color_button_plus">#008000</color>
+    <color name="color_button_minus">#FF0000</color>
 </resources>

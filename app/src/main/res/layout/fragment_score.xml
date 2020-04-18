@@ -665,4 +665,48 @@
         android:layout_marginStart="@dimen/_minus3sdp"
         android:textSize="@dimen/_24sdp" />
 
+    <View
+        android:layout_width="match_parent"
+        android:id="@+id/line1"
+        android:layout_height="1dp"
+        android:layout_below="@id/ImageButton10"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:background="@color/black"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1"
+        android:layout_above="@id/register"
+        android:layout_toStartOf="@id/count1"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:background="@color/black"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1"
+        android:layout_above="@id/register"
+        android:layout_toEndOf="@id/count2"
+        android:layout_marginStart="@dimen/_minus5sdp"
+        android:background="@color/black"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1"
+        android:layout_above="@id/register"
+        android:layout_toEndOf="@id/count4"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:background="@color/black"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1"
+        android:layout_above="@id/register"
+        android:layout_toEndOf="@id/count6"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:background="@color/black"/>
+
 </RelativeLayout>
