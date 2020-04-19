@@ -17,27 +17,27 @@ public class Player {
 
 
     private String name;
-    private int trebelloFirst;
-    private int trebelloSecond;
-    private int trebelloThird;
-    private int trebelloHighScore;
-    private int trebelloJumboScore;
+    private int tribelloFirst;
+    private int tribelloSecond;
+    private int tribelloThird;
+    private int tribelloHighScore;
+    private int tribelloJumboScore;
 
     Player(String name) {
         this.name = name;
-        trebelloFirst = 0;
-        trebelloSecond = 0;
-        trebelloThird = 0;
-        trebelloHighScore = 0;
-        trebelloJumboScore = 0;
+        tribelloFirst = 0;
+        tribelloSecond = 0;
+        tribelloThird = 0;
+        tribelloHighScore = 0;
+        tribelloJumboScore = 0;
     }
 
     public Player() {
-        trebelloFirst = 0;
-        trebelloSecond = 0;
-        trebelloThird = 0;
-        trebelloHighScore = 0;
-        trebelloJumboScore = 0;
+        tribelloFirst = 0;
+        tribelloSecond = 0;
+        tribelloThird = 0;
+        tribelloHighScore = 0;
+        tribelloJumboScore = 0;
     }
 
     void save(Context context, String id){
@@ -94,11 +94,11 @@ public class Player {
 
         Player player = PlayerConverterJson.getInstance().toObject(object);
         this.name = player.getName();
-        this.trebelloFirst = player.getTrebelloFirst();
-        this.trebelloSecond = player.getTrebelloSecond();
-        this.trebelloThird = player.getTrebelloThird();
-        this.trebelloHighScore = player.getTrebelloHighScore();
-        this.trebelloJumboScore = player.getTrebelloJumboScore();
+        this.tribelloFirst = player.getTribelloFirst();
+        this.tribelloSecond = player.getTribelloSecond();
+        this.tribelloThird = player.getTribelloThird();
+        this.tribelloHighScore = player.getTribelloHighScore();
+        this.tribelloJumboScore = player.getTribelloJumboScore();
     }
 
     public String getName() {
@@ -109,43 +109,43 @@ public class Player {
         this.name = name;
     }
 
-    public int getTrebelloJumboScore() {
-        return trebelloJumboScore;
+    public int getTribelloJumboScore() {
+        return tribelloJumboScore;
     }
 
-    public void setTrebelloJumboScore(int trebelloJumboScore) {
-        this.trebelloJumboScore = trebelloJumboScore;
+    public void setTribelloJumboScore(int tribelloJumboScore) {
+        this.tribelloJumboScore = tribelloJumboScore;
     }
 
-    public int getTrebelloHighScore() {
-        return trebelloHighScore;
+    public int getTribelloHighScore() {
+        return tribelloHighScore;
     }
 
-    public void setTrebelloHighScore(int trebelloHighscore) {
-        this.trebelloHighScore = trebelloHighscore;
+    public void setTribelloHighScore(int tribelloHighscore) {
+        this.tribelloHighScore = tribelloHighscore;
     }
 
-    public int getTrebelloThird() {
-        return trebelloThird;
+    public int getTribelloThird() {
+        return tribelloThird;
     }
 
-    public void setTrebelloThird(int trebelloThird) {
-        this.trebelloThird = trebelloThird;
+    public void setTribelloThird(int tribelloThird) {
+        this.tribelloThird = tribelloThird;
     }
 
-    public int getTrebelloSecond() {
-        return trebelloSecond;
+    public int getTribelloSecond() {
+        return tribelloSecond;
     }
 
-    public void setTrebelloSecond(int trebelloSecond) {
-        this.trebelloSecond = trebelloSecond;
+    public void setTribelloSecond(int tribelloSecond) {
+        this.tribelloSecond = tribelloSecond;
     }
 
-    public int getTrebelloFirst() {
-        return trebelloFirst;
+    public int getTribelloFirst() {
+        return tribelloFirst;
     }
 
-    public void setTrebelloFirst(int trebelloFirst) {
-        this.trebelloFirst = trebelloFirst;
+    public void setTribelloFirst(int tribelloFirst) {
+        this.tribelloFirst = tribelloFirst;
     }
 }

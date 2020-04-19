@@ -13,9 +13,9 @@ import java.util.Collections;
 import java.util.Objects;
 
 import jaw.cardgame.util.StorageUtil;
-import jaw.cardgame.util.TrebelloGameConverterJson;
+import jaw.cardgame.util.TribelloGameConverterJson;
 
-class TrebelloGameModel {
+class TribelloGameModel {
 
     private int playerOneScore, playerTwoScore, playerThreeScore;
     private int playerOneTotalScore, playerTwoTotalScore, playerThreeTotalScore;
@@ -44,7 +44,7 @@ class TrebelloGameModel {
     private static final String STATE_PLAYER_TWO_NAME = "playerTwoName";
     private static final String STATE_PLAYER_THREE_NAME = "playerThreeName";
 
-    TrebelloGameModel(Bundle bundleArguments, Context context){
+    TribelloGameModel(Bundle bundleArguments, Context context){
         playerOneScore = 0;
         playerTwoScore = 0;
         playerThreeScore = 0;
@@ -111,19 +111,19 @@ class TrebelloGameModel {
 
     void save(Context context){
         savePlayers(context);
-        JsonArray array1 = TrebelloGameConverterJson.getInstance().toJson(playerOneScoreArray, "Score");
-        JsonArray array2 = TrebelloGameConverterJson.getInstance().toJson(playerTwoScoreArray, "Score");
-        JsonArray array3 = TrebelloGameConverterJson.getInstance().toJson(playerThreeScoreArray, "Score");
-        JsonArray array4 = TrebelloGameConverterJson.getInstance().toJson(checkedGameOptions[0], "GameOption");
-        JsonArray array5 = TrebelloGameConverterJson.getInstance().toJson(checkedGameOptions[1], "GameOption");
-        JsonArray array6 = TrebelloGameConverterJson.getInstance().toJson(checkedGameOptions[2], "GameOption");
-        JsonObject object1 = TrebelloGameConverterJson.getInstance().toJson(round, "Round");
-        JsonObject object2 = TrebelloGameConverterJson.getInstance().toJson(playerOneTotalScore, "PlayerOneScore");
-        JsonObject object3 = TrebelloGameConverterJson.getInstance().toJson(playerTwoTotalScore, "PlayerTwoScore");
-        JsonObject object4 = TrebelloGameConverterJson.getInstance().toJson(playerThreeTotalScore, "PlayerThreeScore");
-        JsonObject object5 = TrebelloGameConverterJson.getInstance().toJson(playerOne.getName(), "PlayerOneName");
-        JsonObject object6 = TrebelloGameConverterJson.getInstance().toJson(playerTwo.getName(), "PlayerTwoName");
-        JsonObject object7 = TrebelloGameConverterJson.getInstance().toJson(playerThree.getName(), "PlayerThreeName");
+        JsonArray array1 = TribelloGameConverterJson.getInstance().toJson(playerOneScoreArray, "Score");
+        JsonArray array2 = TribelloGameConverterJson.getInstance().toJson(playerTwoScoreArray, "Score");
+        JsonArray array3 = TribelloGameConverterJson.getInstance().toJson(playerThreeScoreArray, "Score");
+        JsonArray array4 = TribelloGameConverterJson.getInstance().toJson(checkedGameOptions[0], "GameOption");
+        JsonArray array5 = TribelloGameConverterJson.getInstance().toJson(checkedGameOptions[1], "GameOption");
+        JsonArray array6 = TribelloGameConverterJson.getInstance().toJson(checkedGameOptions[2], "GameOption");
+        JsonObject object1 = TribelloGameConverterJson.getInstance().toJson(round, "Round");
+        JsonObject object2 = TribelloGameConverterJson.getInstance().toJson(playerOneTotalScore, "PlayerOneScore");
+        JsonObject object3 = TribelloGameConverterJson.getInstance().toJson(playerTwoTotalScore, "PlayerTwoScore");
+        JsonObject object4 = TribelloGameConverterJson.getInstance().toJson(playerThreeTotalScore, "PlayerThreeScore");
+        JsonObject object5 = TribelloGameConverterJson.getInstance().toJson(playerOne.getName(), "PlayerOneName");
+        JsonObject object6 = TribelloGameConverterJson.getInstance().toJson(playerTwo.getName(), "PlayerTwoName");
+        JsonObject object7 = TribelloGameConverterJson.getInstance().toJson(playerThree.getName(), "PlayerThreeName");
 
         StorageUtil.save(context.getApplicationContext(), "PlayerOneScoreArray" ,array1);
         StorageUtil.save(context.getApplicationContext(), "PlayerTwoScoreArray" ,array2);
@@ -221,19 +221,19 @@ class TrebelloGameModel {
         JsonObject object6 = element12.getAsJsonObject();
         JsonObject object7 = element13.getAsJsonObject();
 
-        playerOneScoreArray = TrebelloGameConverterJson.getInstance().toObject(array1, "Score");
-        playerTwoScoreArray = TrebelloGameConverterJson.getInstance().toObject(array2, "Score");
-        playerThreeScoreArray = TrebelloGameConverterJson.getInstance().toObject(array3, "Score");
-        round = TrebelloGameConverterJson.getInstance().toObjectInt(object1, "Round");
-        playerOneTotalScore = TrebelloGameConverterJson.getInstance().toObjectInt(object2, "PlayerOneScore");
-        playerTwoTotalScore = TrebelloGameConverterJson.getInstance().toObjectInt(object3, "PlayerTwoScore");
-        playerThreeTotalScore = TrebelloGameConverterJson.getInstance().toObjectInt(object4, "PlayerThreeScore");
-        checkedGameOptions[0] = TrebelloGameConverterJson.getInstance().toObjectBool(array4, "GameOption");
-        checkedGameOptions[1] = TrebelloGameConverterJson.getInstance().toObjectBool(array5, "GameOption");
-        checkedGameOptions[2] = TrebelloGameConverterJson.getInstance().toObjectBool(array6, "GameOption");
-        playerOne.setName(TrebelloGameConverterJson.getInstance().toObjectString(object5, "PlayerOneName"));
-        playerTwo.setName(TrebelloGameConverterJson.getInstance().toObjectString(object6, "PlayerTwoName"));
-        playerThree.setName(TrebelloGameConverterJson.getInstance().toObjectString(object7, "PlayerThreeName"));
+        playerOneScoreArray = TribelloGameConverterJson.getInstance().toObject(array1, "Score");
+        playerTwoScoreArray = TribelloGameConverterJson.getInstance().toObject(array2, "Score");
+        playerThreeScoreArray = TribelloGameConverterJson.getInstance().toObject(array3, "Score");
+        round = TribelloGameConverterJson.getInstance().toObjectInt(object1, "Round");
+        playerOneTotalScore = TribelloGameConverterJson.getInstance().toObjectInt(object2, "PlayerOneScore");
+        playerTwoTotalScore = TribelloGameConverterJson.getInstance().toObjectInt(object3, "PlayerTwoScore");
+        playerThreeTotalScore = TribelloGameConverterJson.getInstance().toObjectInt(object4, "PlayerThreeScore");
+        checkedGameOptions[0] = TribelloGameConverterJson.getInstance().toObjectBool(array4, "GameOption");
+        checkedGameOptions[1] = TribelloGameConverterJson.getInstance().toObjectBool(array5, "GameOption");
+        checkedGameOptions[2] = TribelloGameConverterJson.getInstance().toObjectBool(array6, "GameOption");
+        playerOne.setName(TribelloGameConverterJson.getInstance().toObjectString(object5, "PlayerOneName"));
+        playerTwo.setName(TribelloGameConverterJson.getInstance().toObjectString(object6, "PlayerTwoName"));
+        playerThree.setName(TribelloGameConverterJson.getInstance().toObjectString(object7, "PlayerThreeName"));
 
         loadPlayers(context);
     }
@@ -286,85 +286,85 @@ class TrebelloGameModel {
     void addStatistics(Context context) {
         if(playerOneTotalScore > playerTwoTotalScore ){
             if (playerTwoTotalScore > playerThreeTotalScore) {
-                playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
-                playerTwo.setTrebelloSecond(playerTwo.getTrebelloSecond()+1);
-                playerThree.setTrebelloThird(playerThree.getTrebelloThird()+1);
+                playerOne.setTribelloFirst(playerOne.getTribelloFirst()+1);
+                playerTwo.setTribelloSecond(playerTwo.getTribelloSecond()+1);
+                playerThree.setTribelloThird(playerThree.getTribelloThird()+1);
             } else if (playerTwoTotalScore < playerThreeTotalScore) {
                 if (playerOneTotalScore > playerThreeTotalScore) {
-                    playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
-                    playerTwo.setTrebelloThird(playerTwo.getTrebelloThird()+1);
-                    playerThree.setTrebelloSecond(playerThree.getTrebelloSecond()+1);
+                    playerOne.setTribelloFirst(playerOne.getTribelloFirst()+1);
+                    playerTwo.setTribelloThird(playerTwo.getTribelloThird()+1);
+                    playerThree.setTribelloSecond(playerThree.getTribelloSecond()+1);
                 } else if ( playerOneTotalScore < playerThreeTotalScore){
-                    playerOne.setTrebelloSecond(playerOne.getTrebelloSecond()+1);
-                    playerTwo.setTrebelloThird(playerTwo.getTrebelloThird()+1);
-                    playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+                    playerOne.setTribelloSecond(playerOne.getTribelloSecond()+1);
+                    playerTwo.setTribelloThird(playerTwo.getTribelloThird()+1);
+                    playerThree.setTribelloFirst(playerThree.getTribelloFirst()+1);
                 } else {
-                    playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
-                    playerTwo.setTrebelloThird(playerTwo.getTrebelloThird()+1);
-                    playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+                    playerOne.setTribelloFirst(playerOne.getTribelloFirst()+1);
+                    playerTwo.setTribelloThird(playerTwo.getTribelloThird()+1);
+                    playerThree.setTribelloFirst(playerThree.getTribelloFirst()+1);
                 }
             } else {
-                playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
-                playerTwo.setTrebelloSecond(playerTwo.getTrebelloSecond()+1);
-                playerThree.setTrebelloSecond(playerThree.getTrebelloSecond()+1);
+                playerOne.setTribelloFirst(playerOne.getTribelloFirst()+1);
+                playerTwo.setTribelloSecond(playerTwo.getTribelloSecond()+1);
+                playerThree.setTribelloSecond(playerThree.getTribelloSecond()+1);
             }
         } else if (playerOneTotalScore < playerTwoTotalScore) {
             if (playerOneTotalScore > playerThreeTotalScore) {
-                playerOne.setTrebelloSecond(playerOne.getTrebelloSecond()+1);
-                playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
-                playerThree.setTrebelloThird(playerThree.getTrebelloThird()+1);
+                playerOne.setTribelloSecond(playerOne.getTribelloSecond()+1);
+                playerTwo.setTribelloFirst(playerTwo.getTribelloFirst()+1);
+                playerThree.setTribelloThird(playerThree.getTribelloThird()+1);
             } else if (playerOneTotalScore < playerThreeTotalScore) {
                 if (playerTwoTotalScore > playerThreeTotalScore) {
-                    playerOne.setTrebelloThird(playerOne.getTrebelloThird()+1);
-                    playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
-                    playerThree.setTrebelloSecond(playerThree.getTrebelloSecond()+1);
+                    playerOne.setTribelloThird(playerOne.getTribelloThird()+1);
+                    playerTwo.setTribelloFirst(playerTwo.getTribelloFirst()+1);
+                    playerThree.setTribelloSecond(playerThree.getTribelloSecond()+1);
                 } else if (playerTwoTotalScore < playerThreeTotalScore) {
-                    playerOne.setTrebelloThird(playerOne.getTrebelloThird()+1);
-                    playerTwo.setTrebelloSecond(playerTwo.getTrebelloSecond()+1);
-                    playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+                    playerOne.setTribelloThird(playerOne.getTribelloThird()+1);
+                    playerTwo.setTribelloSecond(playerTwo.getTribelloSecond()+1);
+                    playerThree.setTribelloFirst(playerThree.getTribelloFirst()+1);
                 } else {
-                    playerOne.setTrebelloThird(playerOne.getTrebelloThird()+1);
-                    playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
-                    playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+                    playerOne.setTribelloThird(playerOne.getTribelloThird()+1);
+                    playerTwo.setTribelloFirst(playerTwo.getTribelloFirst()+1);
+                    playerThree.setTribelloFirst(playerThree.getTribelloFirst()+1);
                 }
             } else {
-                playerOne.setTrebelloSecond(playerOne.getTrebelloSecond()+1);
-                playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
-                playerThree.setTrebelloSecond(playerThree.getTrebelloSecond()+1);
+                playerOne.setTribelloSecond(playerOne.getTribelloSecond()+1);
+                playerTwo.setTribelloFirst(playerTwo.getTribelloFirst()+1);
+                playerThree.setTribelloSecond(playerThree.getTribelloSecond()+1);
             }
         } else {
             if (playerOneTotalScore > playerThreeTotalScore) {
-                playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
-                playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
-                playerThree.setTrebelloThird(playerThree.getTrebelloThird()+1);
+                playerOne.setTribelloFirst(playerOne.getTribelloFirst()+1);
+                playerTwo.setTribelloFirst(playerTwo.getTribelloFirst()+1);
+                playerThree.setTribelloThird(playerThree.getTribelloThird()+1);
             } else if (playerOneTotalScore < playerThreeTotalScore) {
-                playerOne.setTrebelloSecond(playerOne.getTrebelloSecond()+1);
-                playerTwo.setTrebelloSecond(playerTwo.getTrebelloSecond()+1);
-                playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+                playerOne.setTribelloSecond(playerOne.getTribelloSecond()+1);
+                playerTwo.setTribelloSecond(playerTwo.getTribelloSecond()+1);
+                playerThree.setTribelloFirst(playerThree.getTribelloFirst()+1);
             } else {
-                playerOne.setTrebelloFirst(playerOne.getTrebelloFirst()+1);
-                playerTwo.setTrebelloFirst(playerTwo.getTrebelloFirst()+1);
-                playerThree.setTrebelloFirst(playerThree.getTrebelloFirst()+1);
+                playerOne.setTribelloFirst(playerOne.getTribelloFirst()+1);
+                playerTwo.setTribelloFirst(playerTwo.getTribelloFirst()+1);
+                playerThree.setTribelloFirst(playerThree.getTribelloFirst()+1);
             }
         }
 
-        if (playerOneTotalScore > playerOne.getTrebelloHighScore()){
-            playerOne.setTrebelloHighScore(playerOneTotalScore);
+        if (playerOneTotalScore > playerOne.getTribelloHighScore()){
+            playerOne.setTribelloHighScore(playerOneTotalScore);
         }
-        if (playerOneTotalScore < playerOne.getTrebelloJumboScore()){
-            playerOne.setTrebelloJumboScore(playerOneTotalScore);
+        if (playerOneTotalScore < playerOne.getTribelloJumboScore()){
+            playerOne.setTribelloJumboScore(playerOneTotalScore);
         }
-        if (playerTwoTotalScore > playerTwo.getTrebelloHighScore()){
-            playerTwo.setTrebelloHighScore(playerTwoTotalScore);
+        if (playerTwoTotalScore > playerTwo.getTribelloHighScore()){
+            playerTwo.setTribelloHighScore(playerTwoTotalScore);
         }
-        if (playerTwoTotalScore < playerTwo.getTrebelloJumboScore()){
-            playerTwo.setTrebelloJumboScore(playerTwoTotalScore);
+        if (playerTwoTotalScore < playerTwo.getTribelloJumboScore()){
+            playerTwo.setTribelloJumboScore(playerTwoTotalScore);
         }
-        if (playerThreeTotalScore > playerThree.getTrebelloHighScore()){
-            playerThree.setTrebelloHighScore(playerThreeTotalScore);
+        if (playerThreeTotalScore > playerThree.getTribelloHighScore()){
+            playerThree.setTribelloHighScore(playerThreeTotalScore);
         }
-        if (playerThreeTotalScore < playerThree.getTrebelloJumboScore()){
-            playerThree.setTrebelloJumboScore(playerThreeTotalScore);
+        if (playerThreeTotalScore < playerThree.getTribelloJumboScore()){
+            playerThree.setTribelloJumboScore(playerThreeTotalScore);
         }
         savePlayers(context);
     }

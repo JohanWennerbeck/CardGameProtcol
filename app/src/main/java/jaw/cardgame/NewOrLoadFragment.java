@@ -37,16 +37,19 @@ public class NewOrLoadFragment extends Fragment {
         loadButton.setOnClickListener((View view) -> {
             Bundle bundle = new Bundle();
             bundle.putBoolean("newGame", false);
-            TrebelloScoreFragment trebelloScoreFragment= new TrebelloScoreFragment();
-            trebelloScoreFragment.setArguments(bundle);
+            TribelloScoreFragment tribelloScoreFragment= new TribelloScoreFragment();
+            tribelloScoreFragment.setArguments(bundle);
             Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, trebelloScoreFragment)
+                    .replace(R.id.fragmentContainer, tribelloScoreFragment)
                     .addToBackStack(null)
                     .commit();
         });
 
         newGameButton.setOnClickListener((View view) -> {
             SelectPlayersFragment selectPlayersFragment= new SelectPlayersFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("Game_option", "Tribello");
+            selectPlayersFragment.setArguments(bundle);
             Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainer, selectPlayersFragment)
                     .addToBackStack(null)

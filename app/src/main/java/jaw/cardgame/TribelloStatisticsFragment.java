@@ -28,7 +28,7 @@ import jaw.cardgame.util.StorageUtil;
  * A simple {@link Fragment} subclass.
  * create an instance of this fragment.
  */
-public class TrebelloStatisticsFragment extends Fragment {
+public class TribelloStatisticsFragment extends Fragment {
 
     private Context mContext;
 
@@ -41,7 +41,7 @@ public class TrebelloStatisticsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.trebello_statistics, container, false);
+        View v = inflater.inflate(R.layout.tribello_statistics, container, false);
         initView(v);
         return v;
     }
@@ -75,7 +75,7 @@ public class TrebelloStatisticsFragment extends Fragment {
 
     @SuppressLint("DefaultLocale")
     private void initView(View v) {
-        RelativeLayout rl = v.findViewById(R.id.trebello_statistics_fragment);
+        RelativeLayout rl = v.findViewById(R.id.tribello_statistics_fragment);
         ArrayList<String> allNames;
         JsonElement element = null;
         try {
@@ -112,7 +112,7 @@ public class TrebelloStatisticsFragment extends Fragment {
                 rl.addView(name, lp);
 
                 TextView firstPlacements = new TextView(v.getContext());
-                firstPlacements.setText(String.format("First placements: %d", player.getTrebelloFirst()));
+                firstPlacements.setText(String.format("First placements: %d", player.getTribelloFirst()));
                 firstPlacements.setId(200+i);
                 firstPlacements.setGravity(Gravity.CENTER);
                 RelativeLayout.LayoutParams lp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -121,7 +121,7 @@ public class TrebelloStatisticsFragment extends Fragment {
                 rl.addView(firstPlacements, lp2);
 
                 TextView secondPlacements = new TextView(v.getContext());
-                secondPlacements.setText(String.format("Second placements: %d", player.getTrebelloSecond()));
+                secondPlacements.setText(String.format("Second placements: %d", player.getTribelloSecond()));
                 secondPlacements.setId(300+i);
                 secondPlacements.setGravity(Gravity.CENTER);
                 RelativeLayout.LayoutParams lp3 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -129,7 +129,7 @@ public class TrebelloStatisticsFragment extends Fragment {
                 rl.addView(secondPlacements, lp3);
 
                 TextView thirdPlacements = new TextView(v.getContext());
-                thirdPlacements.setText(String.format("Third placements: %d", player.getTrebelloThird()));
+                thirdPlacements.setText(String.format("Third placements: %d", player.getTribelloThird()));
                 thirdPlacements.setId(400+i);
                 thirdPlacements.setGravity(Gravity.CENTER);
                 RelativeLayout.LayoutParams lp4 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -137,7 +137,7 @@ public class TrebelloStatisticsFragment extends Fragment {
                 rl.addView(thirdPlacements, lp4);
 
                 TextView highscore = new TextView(v.getContext());
-                highscore.setText(String.format("Highest score: %d", player.getTrebelloHighScore()));
+                highscore.setText(String.format("Highest score: %d", player.getTribelloHighScore()));
                 highscore.setId(500+i);
                 highscore.setGravity(Gravity.CENTER);
                 RelativeLayout.LayoutParams lp5 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -145,7 +145,7 @@ public class TrebelloStatisticsFragment extends Fragment {
                 rl.addView(highscore, lp5);
 
                 TextView jumboscore = new TextView(v.getContext());
-                jumboscore.setText(String.format("Lowest score: %d",player.getTrebelloJumboScore()));
+                jumboscore.setText(String.format("Lowest score: %d",player.getTribelloJumboScore()));
                 jumboscore.setId(600+i);
                 jumboscore.setGravity(Gravity.CENTER);
                 RelativeLayout.LayoutParams lp6 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);

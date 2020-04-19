@@ -20,9 +20,9 @@ import java.util.Objects;
  * A simple {@link Fragment} subclass.
  * create an instance of this fragment.
  */
-public class TrebelloScoreFragment extends Fragment implements View.OnClickListener {
+public class TribelloScoreFragment extends Fragment implements View.OnClickListener {
 
-    TrebelloGameModel model;
+    TribelloGameModel model;
     private Context mContext;
 
     TextView scorePlayerOneTextView, scorePlayerTwoTextView, scorePlayerThreeTextView;
@@ -37,7 +37,7 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
     TextView playerOneScoreName, playerTwoScoreName, playerThreeScoreName;
 
 
-    public TrebelloScoreFragment() {
+    public TribelloScoreFragment() {
         // Required empty public constructor
     }
 
@@ -89,7 +89,7 @@ public class TrebelloScoreFragment extends Fragment implements View.OnClickListe
     }
 
     private void initView(View v, Bundle savedInstanceState, Bundle bundleArguments) {
-        model = new TrebelloGameModel(bundleArguments, mContext);
+        model = new TribelloGameModel(bundleArguments, mContext);
 
         scorePlayerOneTextView = v.findViewById(R.id.scoreCount1);
         scorePlayerTwoTextView = v.findViewById(R.id.scoreCount2);

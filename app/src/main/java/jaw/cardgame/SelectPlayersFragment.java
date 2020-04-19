@@ -38,15 +38,19 @@ public class SelectPlayersFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Bundle bundleArguments = getArguments();
+        assert bundleArguments != null;
+        String gameOption = bundleArguments.getString("Game_option");
+        
         // Inflate the layout for this fragment
         selectedPlayers = new ArrayList<>();
         View v = inflater.inflate(R.layout.fragment_select_players, container, false);
-        initButtons(v);
+        initButtons(v, gameOption);
 
         return v;
     }
 
-    private void initButtons(View v) {
+    private void initButtons(View v, String gameOption) {
         boolean notEnoughPlayers = false;
         RelativeLayout rl = v.findViewById(R.id.select_player_fragment);
         ArrayList<String> allNames = new ArrayList<>();
@@ -117,35 +121,35 @@ public class SelectPlayersFragment extends Fragment{
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             lp.setMargins(50,20,50,20);
             lp.addRule(RelativeLayout.BELOW, allPlayerButtons.get(allPlayerButtons.size()-1).getId());
+            if(gameOption.equals("Tribello")) {
+                startGameButton.setOnClickListener((View view) -> {
+                    if (selectedPlayers.size() == 3) {
+                        Bundle bundle = new Bundle();
+                        bundle.putStringArrayList("playerNames", selectedPlayers);
+                        bundle.putBoolean("newGame", true);
+                        TribelloScoreFragment tribelloScoreFragment = new TribelloScoreFragment();
+                        tribelloScoreFragment.setArguments(bundle);
+                        Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentContainer, tribelloScoreFragment)
+                                .addToBackStack(null)
+                                .commit();
+                    } else {
+                        CharSequence text = "Select 3 players to play a game of Tribello";
+                        int duration = Toast.LENGTH_LONG;
 
-            startGameButton.setOnClickListener((View view) -> {
-                if(selectedPlayers.size() == 3){
-                    Bundle bundle = new Bundle();
-                    bundle.putStringArrayList("playerNames", selectedPlayers);
-                    bundle.putBoolean("newGame", true);
-                    TrebelloScoreFragment trebelloScoreFragment= new TrebelloScoreFragment();
-                    trebelloScoreFragment.setArguments(bundle);
-                    Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragmentContainer, trebelloScoreFragment)
-                            .addToBackStack(null)
-                            .commit();
-                } else {
-                    CharSequence text = "Select 3 players to play a game of trebello";
-                    int duration = Toast.LENGTH_LONG;
+                        Toast toast = Toast.makeText(view.getContext(), text, duration);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                    }
 
-                    Toast toast = Toast.makeText(view.getContext(), text, duration);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                }
-
-            });
-
+                });
+            }
             rl.addView(startGameButton, lp);
         }
     }
 
     private void notEnoughPlayers(Context context) {
-        CharSequence text = "Not enough players is created to play a game of trebello";
+        CharSequence text = "Not enough players is created to play a game of Tribello";
         int duration = Toast.LENGTH_LONG;
 
         Toast toast = Toast.makeText(context, text, duration);

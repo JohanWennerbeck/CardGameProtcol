@@ -12,7 +12,7 @@ public class FragmentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trebello_main);
+        setContentView(R.layout.activity_tribello_main);
         Objects.requireNonNull(getSupportActionBar()).setTitle("");
 
         FragmentManager manager = getSupportFragmentManager();
@@ -21,6 +21,7 @@ public class FragmentActivity extends AppCompatActivity {
             case "LoadOrNew":
                 if (fragment == null) {
                     fragment = new NewOrLoadFragment();
+
                     manager.beginTransaction()
                             .add(R.id.fragmentContainer, fragment)
                             .commit();
@@ -28,7 +29,7 @@ public class FragmentActivity extends AppCompatActivity {
                 break;
             case "Statistics":
                 if (fragment == null) {
-                    fragment = new TrebelloStatisticsFragment();
+                    fragment = new TribelloStatisticsFragment();
                     manager.beginTransaction()
                             .add(R.id.fragmentContainer, fragment)
                             .commit();

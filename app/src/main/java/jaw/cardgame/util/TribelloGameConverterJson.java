@@ -4,18 +4,17 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class TrebelloGameConverterJson{
+public class TribelloGameConverterJson {
 
-    private final static TrebelloGameConverterJson INSTANCE = new TrebelloGameConverterJson();
+    private final static TribelloGameConverterJson INSTANCE = new TribelloGameConverterJson();
 
-    public static TrebelloGameConverterJson getInstance(){
-        return INSTANCE;
+    private TribelloGameConverterJson(){
+
     }
 
-    private TrebelloGameConverterJson(){
-
+    public static TribelloGameConverterJson getInstance(){
+        return INSTANCE;
     }
 
     public JsonArray toJson(ArrayList<Integer> list, String name) {
