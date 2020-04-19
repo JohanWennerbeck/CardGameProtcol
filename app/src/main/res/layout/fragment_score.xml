@@ -186,9 +186,10 @@
         android:layout_marginEnd="@dimen/_30sdp"
         android:src="@drawable/ic_add_green_48dp"
         android:contentDescription="@string/button_to_increase_score"
-        android:background="@drawable/button_transparent"
         android:layout_marginBottom="@dimen/_3sdp"
-        android:layout_marginStart="@dimen/_2sdp"/>
+        android:layout_marginStart="@dimen/_2sdp"
+        android:background="@drawable/button_transparent"
+        />
     <ImageButton
         android:id="@+id/count3"
         android:layout_width="@dimen/_32sdp"
@@ -199,6 +200,7 @@
         android:contentDescription="@string/button_to_decrease_score"
         android:layout_marginBottom="@dimen/_3sdp"
         android:layout_marginEnd="@dimen/_minus8sdp"
+        android:background="@drawable/button_transparent"
         />
     <ImageButton
         android:id="@+id/count4"
