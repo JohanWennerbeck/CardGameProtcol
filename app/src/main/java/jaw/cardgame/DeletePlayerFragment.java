@@ -1,6 +1,5 @@
 package jaw.cardgame;
 
-import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,8 +27,8 @@ import jaw.cardgame.util.StorageUtil;
  * A simple {@link Fragment} subclass.
  */
 public class DeletePlayerFragment extends Fragment{
-    ArrayList<String> selectedPlayers;
-    ArrayList<String> allNames;
+    private ArrayList<String> selectedPlayers;
+    private ArrayList<String> allNames;
     public DeletePlayerFragment() {
         // Required empty public constructor
     }

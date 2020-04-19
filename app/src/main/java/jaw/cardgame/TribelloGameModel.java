@@ -23,9 +23,11 @@ class TribelloGameModel {
     private ArrayList<Integer> playerTwoScoreArray;
     private ArrayList<Integer> playerThreeScoreArray;
     private int round;
-    private boolean[][] checkedGameOptions = new boolean[3][4];
+    private final boolean[][] checkedGameOptions = new boolean[3][4];
 
-    private Player playerOne, playerTwo, playerThree;
+    private final Player playerOne;
+    private final Player playerTwo;
+    private final Player playerThree;
 
     private static final String STATE_ROUND = "round";
     private static final String STATE_PLAYER_ONE_SCORE = "playerOneScore";
@@ -228,9 +230,9 @@ class TribelloGameModel {
         playerOneTotalScore = TribelloGameConverterJson.getInstance().toObjectInt(object2, "PlayerOneScore");
         playerTwoTotalScore = TribelloGameConverterJson.getInstance().toObjectInt(object3, "PlayerTwoScore");
         playerThreeTotalScore = TribelloGameConverterJson.getInstance().toObjectInt(object4, "PlayerThreeScore");
-        checkedGameOptions[0] = TribelloGameConverterJson.getInstance().toObjectBool(array4, "GameOption");
-        checkedGameOptions[1] = TribelloGameConverterJson.getInstance().toObjectBool(array5, "GameOption");
-        checkedGameOptions[2] = TribelloGameConverterJson.getInstance().toObjectBool(array6, "GameOption");
+        checkedGameOptions[0] = TribelloGameConverterJson.getInstance().toObjectBool(array4);
+        checkedGameOptions[1] = TribelloGameConverterJson.getInstance().toObjectBool(array5);
+        checkedGameOptions[2] = TribelloGameConverterJson.getInstance().toObjectBool(array6);
         playerOne.setName(TribelloGameConverterJson.getInstance().toObjectString(object5, "PlayerOneName"));
         playerTwo.setName(TribelloGameConverterJson.getInstance().toObjectString(object6, "PlayerTwoName"));
         playerThree.setName(TribelloGameConverterJson.getInstance().toObjectString(object7, "PlayerThreeName"));

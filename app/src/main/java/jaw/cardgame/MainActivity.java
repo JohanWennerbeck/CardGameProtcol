@@ -3,7 +3,6 @@ package jaw.cardgame;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -13,19 +12,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().hide();
 
-        Button trebelloGame = findViewById(R.id.trebelloButton);
-        trebelloGame.setOnClickListener(view -> {
+        Button tribelloGame = findViewById(R.id.tribello_button);
+        tribelloGame.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
             intent.setAction("LoadOrNew");
             startActivity(intent);
         });
 
-        Button trebelloStatistics = findViewById(R.id.statistics);
-        trebelloStatistics.setOnClickListener(view -> {
+        Button tribelloStatistics = findViewById(R.id.statistics);
+        tribelloStatistics.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, FragmentActivity.class);
             intent.setAction("Statistics");
             startActivity(intent);

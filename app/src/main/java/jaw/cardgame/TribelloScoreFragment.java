@@ -22,19 +22,31 @@ import java.util.Objects;
  */
 public class TribelloScoreFragment extends Fragment implements View.OnClickListener {
 
-    TribelloGameModel model;
+    private TribelloGameModel model;
     private Context mContext;
 
-    TextView scorePlayerOneTextView, scorePlayerTwoTextView, scorePlayerThreeTextView;
-    TextView finalScorePlayerOneTextView, finalScorePlayerTwoTextView, finalScorePlayerThreeTextView;
-    TextView[][] scoreTextViews = new TextView[3][12];
-    ImageButton decrementPlayerOneButton, incrementPlayerOneButton,
-            decrementPlayerTwoButton, incrementPlayerTwoButton,
-            decrementPlayerThreeButton, incrementPlayerThreeButton;
-    Button registerScore, newGame;
-    ImageButton[][] gameOptions = new ImageButton[3][4];
-    TextView playerOneName, playerTwoName, playerThreeName;
-    TextView playerOneScoreName, playerTwoScoreName, playerThreeScoreName;
+    private TextView scorePlayerOneTextView;
+    private TextView scorePlayerTwoTextView;
+    private TextView scorePlayerThreeTextView;
+    private TextView finalScorePlayerOneTextView;
+    private TextView finalScorePlayerTwoTextView;
+    private TextView finalScorePlayerThreeTextView;
+    private final TextView[][] scoreTextViews = new TextView[3][12];
+    private ImageButton decrementPlayerOneButton;
+    private ImageButton incrementPlayerOneButton;
+    private ImageButton decrementPlayerTwoButton;
+    private ImageButton incrementPlayerTwoButton;
+    private ImageButton decrementPlayerThreeButton;
+    private ImageButton incrementPlayerThreeButton;
+    private Button registerScore;
+    private Button newGame;
+    private final ImageButton[][] gameOptions = new ImageButton[3][4];
+    private TextView playerOneName;
+    private TextView playerTwoName;
+    private TextView playerThreeName;
+    private TextView playerOneScoreName;
+    private TextView playerTwoScoreName;
+    private TextView playerThreeScoreName;
 
 
     public TribelloScoreFragment() {
@@ -81,11 +93,6 @@ public class TribelloScoreFragment extends Fragment implements View.OnClickListe
     public void onAttach(Context context) {
         mContext = context;
         super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     private void initView(View v, Bundle savedInstanceState, Bundle bundleArguments) {
@@ -385,7 +392,7 @@ public class TribelloScoreFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    void endGame(){
+    private void endGame(){
         registerScore.setEnabled(false);
         registerScore.setVisibility(View.INVISIBLE);
         newGame.setVisibility(View.VISIBLE);
@@ -404,7 +411,7 @@ public class TribelloScoreFragment extends Fragment implements View.OnClickListe
 
     }
 
-    void newGame(){
+    private void newGame(){
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 3; j++) {
                 scoreTextViews[j][i].setText("");

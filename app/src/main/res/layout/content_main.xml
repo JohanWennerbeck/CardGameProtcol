@@ -19,11 +19,11 @@
         android:layout_marginTop="@dimen/_50sdp"/>
 
     <Button
-        android:id="@+id/trebelloButton"
+        android:id="@+id/tribello_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tribello"
-        android:layout_below="@+id/welcome"
+        android:layout_below="@id/welcome"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_30sdp"
         android:background="@drawable/button_corner"/>
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistics"
-        android:layout_below="@+id/trebelloButton"
+        android:layout_below="@id/tribello_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_30sdp"
         android:background="@drawable/button_corner"/>
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_new_player"
-        android:layout_below="@+id/statistics"
+        android:layout_below="@id/statistics"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_30sdp"
         android:background="@drawable/button_corner"/>
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/delete_players"
-        android:layout_below="@+id/add_players"
+        android:layout_below="@id/add_players"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_30sdp"
         android:background="@drawable/button_corner"/>

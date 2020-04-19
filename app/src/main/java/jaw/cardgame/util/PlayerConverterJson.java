@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import jaw.cardgame.Player;
 
@@ -56,7 +55,7 @@ public class PlayerConverterJson {
         return jsonArray;
     }
 
-    public JsonObject toJson(String string) {
+    private JsonObject toJson(String string) {
         JsonObject jsonObject = new JsonObject();
 
         jsonObject.addProperty("Name", string);
@@ -74,8 +73,7 @@ public class PlayerConverterJson {
         return list;
     }
 
-    public String toObjectString(JsonObject object) {
-        String string = object.get("Name").getAsString();
-        return string;
+    private String toObjectString(JsonObject object) {
+        return object.get("Name").getAsString();
     }
 }

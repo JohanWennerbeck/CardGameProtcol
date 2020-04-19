@@ -28,7 +28,7 @@ import jaw.cardgame.util.StorageUtil;
  * A simple {@link Fragment} subclass.
  */
 public class SelectPlayersFragment extends Fragment{
-    ArrayList<String> selectedPlayers;
+    private ArrayList<String> selectedPlayers;
 
     public SelectPlayersFragment() {
         // Required empty public constructor

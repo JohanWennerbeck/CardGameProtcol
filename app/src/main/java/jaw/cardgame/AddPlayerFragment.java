@@ -19,11 +19,10 @@ import android.widget.Toast;
 public class AddPlayerFragment extends Fragment implements View.OnClickListener {
 
     private Context mContext;
-    String new_player_name;
+    private String new_player_name;
     private static final String STATE_NEW_PLAYER_NAME = "newPlayerName";
 
-    Button add_new_player;
-    EditText editText_new_player_name;
+    private EditText editText_new_player_name;
 
     public AddPlayerFragment() {
         // Required empty public constructor
@@ -39,7 +38,7 @@ public class AddPlayerFragment extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_player, container, false);
-        add_new_player = v.findViewById(R.id.add_new_player_button);
+        Button add_new_player = v.findViewById(R.id.add_new_player_button);
         add_new_player.setOnClickListener(this);
         editText_new_player_name = v.findViewById(R.id.new_player_name);
         return v;
@@ -57,11 +56,6 @@ public class AddPlayerFragment extends Fragment implements View.OnClickListener 
     public void onAttach(Context context) {
         mContext = context;
         super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     @Override

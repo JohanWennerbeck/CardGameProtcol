@@ -35,7 +35,7 @@ public class TribelloGameConverterJson {
         return jsonArray;
     }
 
-    public JsonObject toJson(Integer integer, String name) {
+    private JsonObject toJson(Integer integer, String name) {
         JsonObject jsonObject = new JsonObject();
 
         jsonObject.addProperty(name, integer);
@@ -43,7 +43,7 @@ public class TribelloGameConverterJson {
         return jsonObject;
     }
 
-    public JsonObject toJson(boolean bool, String name) {
+    private JsonObject toJson(boolean bool, String name) {
         JsonObject jsonObject = new JsonObject();
 
         jsonObject.addProperty(name, bool);
@@ -77,27 +77,24 @@ public class TribelloGameConverterJson {
         return list;
     }
 
-    public boolean[] toObjectBool(JsonArray array, String name) {
+    public boolean[] toObjectBool(JsonArray array) {
         boolean[] booleans = new boolean[4];
         for (int i = 0; i < array.size(); i++) {
             JsonObject object = array.get(i).getAsJsonObject();
-            booleans[i] = toObjectBool(object, name);
+            booleans[i] = toObjectBool(object);
         }
         return booleans;
     }
 
-    public boolean toObjectBool(JsonObject object, String name) {
-        boolean bool = object.get("GameOption").getAsBoolean();
-        return bool;
+    private boolean toObjectBool(JsonObject object) {
+        return object.get("GameOption").getAsBoolean();
     }
 
     public int toObjectInt(JsonObject object, String name){
-        int integer = object.get(name).getAsInt();
-        return integer;
+        return object.get(name).getAsInt();
     }
 
     public String toObjectString(JsonObject object, String name){
-        String string = object.get(name).getAsString();
-        return string;
+        return object.get(name).getAsString();
     }
 }

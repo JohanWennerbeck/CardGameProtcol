@@ -5,15 +5,12 @@
     <string name="red">Red</string>
     <string name="low">Low</string>
     <string name="high">High</string>
-    <string name="minus">-</string>
-    <string name="plus">+</string>
     <string name="register">Register score</string>
     <string name="zero">0</string>
     <string name="welcome">Welcome!!!</string>
     <string name="tribello">Tribello</string>
     <string name="statistics">Statistics</string>
     <string name="new_game">New Game</string>
-    <string name="edit_players">Edit Players</string>
     <string name="name_new_player">Name of new player</string>
     <string name="add_player">Add player</string>
     <string name="write_the_player_name_here">Write the player name here</string>
@@ -25,7 +22,6 @@
     <string name="do_you_want_to_continue_on_the_previous_game_or_start_a_new_one">Do you want to continue on the previous game or start a new one?</string>
     <string name="load_game">Load game</string>
     <string name="add_new_player">Add new player</string>
-    <string name="select_players_you_want_to_delete">Select players you want to delete</string>
     <string name="delete_selected_players">Delete selected players</string>
     <string name="delete_players">Delete players</string>
 </resources>

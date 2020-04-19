@@ -52,9 +52,8 @@ public class StorageUtil {
 
         //Read string from file and parse it to JsonObject
         FileReader reader = new FileReader(file);
-        JsonParser parser = new JsonParser();
 
-        return parser.parse(reader);
+        return JsonParser.parseReader(reader);
     }
 
     /**
