@@ -4,6 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TrebelloScoreFragment">
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1"
+        android:layout_above="@id/register"
+        android:layout_toStartOf="@id/count5"
+        android:layout_toEndOf="@id/count2"
+        android:layout_marginStart="@dimen/_minus15sdp"
+        android:layout_marginEnd="@dimen/_minus15sdp"
+        android:background="@color/lightgray"/>
 
     <TextView
         android:id="@+id/playerName1"
@@ -33,7 +43,8 @@
         android:id="@+id/high"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_alignTop="@id/ImageButton1"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:text="@string/high" />
     <TextView
@@ -41,24 +52,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/high"
+        android:layout_alignTop="@id/ImageButton4"
         android:layout_alignStart="@+id/high"
-        android:layout_marginTop="@dimen/_27sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:text="@string/low" />
     <TextView
         android:id="@+id/red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/low"
+        android:layout_alignTop="@id/ImageButton7"
         android:layout_alignStart="@+id/low"
-        android:layout_marginTop="@dimen/_27sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:text="@string/red" />
     <TextView
         android:id="@+id/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/red"
+        android:layout_alignTop="@id/ImageButton10"
         android:layout_alignStart="@+id/red"
-        android:layout_marginTop="@dimen/_27sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:text="@string/black" />
 
     <ImageButton
@@ -159,21 +173,21 @@
         android:layout_height="@dimen/_32sdp"
         android:layout_above="@id/register"
         android:layout_toStartOf="@id/count2"
-        android:src="@drawable/ic_remove_black_24dp"
+        android:src="@drawable/ic_remove_red_48dp"
         android:contentDescription="@string/button_to_decrease_score"
         android:layout_marginBottom="@dimen/_3sdp"
         android:layout_marginEnd="@dimen/_2sdp"
-        android:background="@drawable/button_corner_minus"/>
+        android:background="@drawable/button_transparent"/>
     <ImageButton
         android:id="@+id/count2"
         android:layout_width="@dimen/_32sdp"
         android:layout_height="@dimen/_32sdp"
         android:layout_above="@id/register"
         android:layout_toStartOf="@id/count3"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:src="@drawable/ic_add_black_24dp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:src="@drawable/ic_add_green_48dp"
         android:contentDescription="@string/button_to_increase_score"
-        android:background="@drawable/button_corner_plus"
+        android:background="@drawable/button_transparent"
         android:layout_marginBottom="@dimen/_3sdp"
         android:layout_marginStart="@dimen/_2sdp"/>
     <ImageButton
@@ -182,11 +196,11 @@
         android:layout_height="@dimen/_32sdp"
         android:layout_above="@id/register"
         android:layout_toStartOf="@id/scoreCount2"
-        android:src="@drawable/ic_remove_black_24dp"
+        android:src="@drawable/ic_remove_red_48dp"
         android:contentDescription="@string/button_to_decrease_score"
         android:layout_marginBottom="@dimen/_3sdp"
         android:layout_marginEnd="@dimen/_minus8sdp"
-        android:background="@drawable/button_corner_minus"/>
+        android:background="@drawable/button_transparent"/>
     <ImageButton
         android:id="@+id/count4"
         android:layout_width="@dimen/_32sdp"
@@ -194,31 +208,31 @@
         android:layout_above="@id/register"
         android:layout_toEndOf="@id/count3"
         android:layout_marginStart="@dimen/_12sdp"
-        android:src="@drawable/ic_add_black_24dp"
         android:contentDescription="@string/button_to_increase_score"
-        android:background="@drawable/button_corner_plus"
-        android:layout_marginBottom="@dimen/_3sdp" />
+        android:src="@drawable/ic_add_green_48dp"
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:background="@drawable/button_transparent"/>
     <ImageButton
         android:id="@+id/count5"
         android:layout_width="@dimen/_32sdp"
         android:layout_height="@dimen/_32sdp"
         android:layout_above="@id/register"
         android:layout_toEndOf="@id/count4"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:src="@drawable/ic_remove_black_24dp"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:src="@drawable/ic_remove_red_48dp"
         android:contentDescription="@string/button_to_decrease_score"
         android:layout_marginBottom="@dimen/_3sdp"
         android:layout_marginEnd="@dimen/_2sdp"
-        android:background="@drawable/button_corner_minus"/>
+        android:background="@drawable/button_transparent"/>
     <ImageButton
         android:id="@+id/count6"
         android:layout_width="@dimen/_32sdp"
         android:layout_height="@dimen/_32sdp"
         android:layout_above="@id/register"
         android:layout_toEndOf="@id/count5"
-        android:src="@drawable/ic_add_black_24dp"
+        android:src="@drawable/ic_add_green_48dp"
         android:contentDescription="@string/button_to_increase_score"
-        android:background="@drawable/button_corner_plus"
+        android:background="@drawable/button_transparent"
         android:layout_marginBottom="@dimen/_3sdp"
         android:layout_marginStart="@dimen/_2sdp"/>
 
@@ -255,8 +269,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
         android:layout_marginBottom="@dimen/_3sdp"
         android:text="@string/register"
         android:background="@drawable/button_corner"/>
@@ -266,8 +280,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
         android:text="@string/new_game"
         android:background="@drawable/button_corner"
         android:layout_marginBottom="@dimen/_3sdp"
@@ -276,8 +290,8 @@
         android:id="@+id/playerScoreName1"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/black"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@id/line1"
+        android:layout_marginTop="@dimen/_2sdp"
         android:layout_alignStart="@id/scoreCount1"
         android:layout_marginStart="@dimen/_minus47sdp"
         android:gravity="center" />
@@ -673,40 +687,6 @@
         android:layout_marginTop="@dimen/_2sdp"
         android:background="@color/black"/>
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line1"
-        android:layout_above="@id/register"
-        android:layout_toStartOf="@id/count1"
-        android:layout_marginEnd="@dimen/_5sdp"
-        android:background="@color/black"/>
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line1"
-        android:layout_above="@id/register"
-        android:layout_toEndOf="@id/count2"
-        android:layout_marginStart="@dimen/_minus5sdp"
-        android:background="@color/black"/>
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line1"
-        android:layout_above="@id/register"
-        android:layout_toEndOf="@id/count4"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:background="@color/black"/>
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line1"
-        android:layout_above="@id/register"
-        android:layout_toEndOf="@id/count6"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:background="@color/black"/>
 
 </RelativeLayout>
